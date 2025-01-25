@@ -37,15 +37,23 @@ public class Player : MonoBehaviour
             float scaleValue = ChangeScale(-scaleSpeed);
             transform.localScale = new Vector3(scaleValue, scaleValue, transform.localScale.y);
         }
-        //b.MovePosition(rb.position + inputVector * (speed * Time.fixedDeltaTime));
+        else
+        {
+            ChangeScaleToOrigin();
+        }
+
+        rb.MovePosition(rb.position + inputVector * (speed * Time.fixedDeltaTime));
     }
 
     private float ChangeScale(float scaleSpeed)
     {
-        float newScaleX = transform.localScale.x + scaleSpeed * Time.fixedDeltaTime;
-
-        //float newScaleX = transform.localScale.x + transform.localScale.x * scaleSpeed * Time.fixedDeltaTime;
+        float newScaleX = Mathf.Clamp(transform.localScale.x + scaleSpeed * Time.fixedDeltaTime, minSize, maxSize);
 
         return newScaleX;
+    }
+
+    private void ChangeScaleToOrigin()
+    {
+        transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(originSize, originSize, originSize), scaleSpeed * Time.fixedDeltaTime);
     }
 }
