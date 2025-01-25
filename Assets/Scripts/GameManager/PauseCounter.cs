@@ -7,7 +7,12 @@ using TMPro;
 public class PauseCounter : MonoBehaviour
 {
     private bool isPaused = false;
+    private float m_currentSpeed = 1.0f;
+    private int m_diffLvl = 1;
     // public
+    [SerializeField] private float easyDiffLvl = 1.0f;
+    [SerializeField] private float midDiffLvl = 1.5f;
+    [SerializeField] private float hardDiffLvl = 2.0f;
     public TextMeshProUGUI _timeText;
     public GameObject pausePanel; // Принимаем объект панели паузы, чтобы ее скрыть и показать
     // interface
@@ -16,6 +21,17 @@ public class PauseCounter : MonoBehaviour
             ResumeMake();
         } else {
             PauseMake();
+        }
+    }
+    public void SpeedToggle() {
+        if (m_diffLvl == 1) {
+            MidDiffLvl();
+        }
+        if (m_diffLvl == 2) {
+            HardDiffLvl();
+        }
+        if (m_diffLvl == 3) {
+            EasyDiffLvl();
         }
     }
     // start
@@ -50,8 +66,20 @@ public class PauseCounter : MonoBehaviour
     }
     private void PauseMake() {
         pausePanel.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = m_currentSpeed;
         isPaused = true;
+    }
+    private void EasyDiffLvl() {
+        m_currentSpeed = easyDiffLvl;
+        m_diffLvl = 1;
+    }
+    private void MidDiffLvl() {
+        m_currentSpeed = midDiffLvl;
+        m_diffLvl = 2;
+    }
+    private void HardDiffLvl() {
+        m_currentSpeed = hardDiffLvl;
+        m_diffLvl = 3;
     }
 }
 // https://t.me/natureModelSpb
