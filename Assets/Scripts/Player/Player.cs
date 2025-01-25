@@ -12,10 +12,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float scaleSpeed = 1f;
 
     private Rigidbody2D rb;
+    private CircleCollider2D collider;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CircleCollider2D>();
     }
 
     private void FixedUpdate()
@@ -55,5 +57,10 @@ public class Player : MonoBehaviour
     private void ChangeScaleToOrigin()
     {
         transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(originSize, originSize, originSize), scaleSpeed * Time.fixedDeltaTime);
+    }
+
+    private void UpdateCollider()
+    {
+        //collider.radius = 
     }
 }
