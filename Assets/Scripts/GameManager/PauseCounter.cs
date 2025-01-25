@@ -9,6 +9,7 @@ public class PauseCounter : MonoBehaviour
     private bool isPaused;
     // public
     public TextMeshProUGUI _timeText;
+    public GameObject pausePanel; // Принимаем объект панели паузы, чтобы ее скрыть и показать
     // interface
     public void PauseToggle() {
         if (isPaused) {
@@ -20,6 +21,7 @@ public class PauseCounter : MonoBehaviour
     // start
     void Start() {
         //PauseMake();
+        ResumeMake();
     }
     // Update
     void Update() {
@@ -42,12 +44,12 @@ public class PauseCounter : MonoBehaviour
         }
     }
     private void ResumeMake() {
-        // pausePanel.SetActive(false);
+        pausePanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
     private void PauseMake() {
-        // pausePanel.SetActive(true);
+        pausePanel.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
