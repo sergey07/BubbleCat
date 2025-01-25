@@ -19,7 +19,7 @@ public class PauseCounter : MonoBehaviour
     }
     // start
     void Start() {
-        PauseMake();
+        //PauseMake();
     }
     // Update
     void Update() {
