@@ -46,14 +46,12 @@ public class Player : MonoBehaviour
         }
 
         float velocityY = transform.localScale.x - originSize;
-        Debug.Log(velocityY);
+        //Debug.Log(velocityY);
         velocityY = Mathf.Clamp(velocityY, -maxYSpeed, maxYSpeed);
 
         float newPosX = inputVector.x * (speed * Time.fixedDeltaTime);
         float newPosY = velocityY * Time.fixedDeltaTime; 
 
-        //rb.MovePosition(rb.position + Vector2.up * (velocityY * Time.fixedDeltaTime));
-        //rb.MovePosition(rb.position + Vector2.right * inputVector.x * (speed * Time.fixedDeltaTime));
         rb.MovePosition(rb.position + new Vector2(newPosX, newPosY));
     }
 
@@ -68,5 +66,13 @@ public class Player : MonoBehaviour
     private void ChangeScaleToOrigin()
     {
         transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(originSize, originSize, originSize), scaleSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
