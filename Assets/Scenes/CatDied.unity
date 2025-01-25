@@ -7096,8 +7096,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3688989964855381931, guid: 6a2921150d83feb4196797d6cf8b9e74, type: 3}
+      propertyPath: m_Size.y
+      value: 0.62847614
+      objectReference: {fileID: 0}
+    - target: {fileID: 3688989964855381931, guid: 6a2921150d83feb4196797d6cf8b9e74, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3688989964855381931, guid: 6a2921150d83feb4196797d6cf8b9e74, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.5263252
       objectReference: {fileID: 0}
     - target: {fileID: 4110914917250357628, guid: 6a2921150d83feb4196797d6cf8b9e74, type: 3}
       propertyPath: m_Name
