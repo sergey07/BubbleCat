@@ -29,12 +29,21 @@ public class Cat : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        if (!_isFalling)
+        {
+            transform.position = playerTransform.position;
+            //falledCatTrigger.transform.position = new Vector3(falledCatTrigger.transform.position.x, transform.position.y - offsetTrigger, falledCatTrigger.transform.position.z);
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if (!_isFalling)
         {
-            transform.position = playerTransform.position;
+            //transform.position = playerTransform.position;
             //falledCatTrigger.transform.position = new Vector3(falledCatTrigger.transform.position.x, transform.position.y - offsetTrigger, falledCatTrigger.transform.position.z);
         }
         else
