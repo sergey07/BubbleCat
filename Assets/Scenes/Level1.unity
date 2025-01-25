@@ -641,6 +641,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb51cbac12a2df41a0f556d3213424c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  easyDiffLvl: 1
+  midDiffLvl: 1.5
+  hardDiffLvl: 2
   _timeText: {fileID: 0}
   pausePanel: {fileID: 2134317783}
 --- !u!114 &625504629
@@ -1077,11 +1080,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7, y: -2.75, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1982880817}
-  - {fileID: 1638813610}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1275226953
@@ -1126,7 +1128,7 @@ MonoBehaviour:
   horizontalSpeed: 5
   maxYSpeed: 10
   originSize: 3
-  minSize: 1
+  minSize: 2
   maxSize: 100
   scaleSpeed: 2
   ySpeedMultiplayer: 6
@@ -1478,12 +1480,12 @@ Transform:
   m_GameObject: {fileID: 1638813609}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -7, y: -2.75, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2065337827}
-  m_Father: {fileID: 1275226952}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1638813611
 MonoBehaviour:
@@ -1498,7 +1500,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallingSpeed: 10
-  offsetTrigger: 20
   playerTransform: {fileID: 1275226952}
   falledCatTrigger: {fileID: 1257814927}
   spawnManager: {fileID: 2027369316}
@@ -8238,6 +8239,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1275226952}
+  - {fileID: 1638813610}
   - {fileID: 1362180240}
   - {fileID: 1573238290}
   - {fileID: 625504626}

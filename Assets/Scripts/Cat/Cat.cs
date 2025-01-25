@@ -32,20 +32,17 @@ public class Cat : MonoBehaviour
     {
         if (!_isFalling)
         {
-            transform.position = playerTransform.position;
-            //falledCatTrigger.transform.position = new Vector3(falledCatTrigger.transform.position.x, transform.position.y - offsetTrigger, falledCatTrigger.transform.position.z);
+            if (playerTransform != null)
+            {
+                transform.position = playerTransform.position;
+            }
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!_isFalling)
-        {
-            //transform.position = playerTransform.position;
-            //falledCatTrigger.transform.position = new Vector3(falledCatTrigger.transform.position.x, transform.position.y - offsetTrigger, falledCatTrigger.transform.position.z);
-        }
-        else
+        if (_isFalling)
         {
             rb.MovePosition(rb.position - new Vector2(0, fallingSpeed * Time.fixedDeltaTime));
         }
