@@ -645,6 +645,7 @@ MonoBehaviour:
   midDiffLvl: 1.5
   hardDiffLvl: 2
   _timeText: {fileID: 0}
+  diffBtn: {fileID: 720554794}
   pausePanel: {fileID: 2134317783}
 --- !u!114 &625504629
 MonoBehaviour:
@@ -656,6 +657,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46e81f87071ef3e46bc6ab28fd8e1a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &720554794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4747140192545951013, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+  m_PrefabInstance: {fileID: 3977881998584089982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &729772970
@@ -8140,6 +8152,34 @@ PrefabInstance:
       value: Exit, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4142557135995864740, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747140192545951013, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747140192545951013, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747140192545951013, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 625504628}
+    - target: {fileID: 4747140192545951013, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747140192545951013, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpeedToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747140192545951013, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseCounter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747140192545951013, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
