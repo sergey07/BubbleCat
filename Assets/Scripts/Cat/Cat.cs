@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Cat : MonoBehaviour
 {
@@ -21,6 +22,20 @@ public class Cat : MonoBehaviour
         transform.parent = null;
 
         rb = GetComponent<Rigidbody2D>();
+
+        if (SceneManager.GetActiveScene().name == "CatDied")
+        {
+            _isFalling = true;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (!_isFalling)
+        {
+            transform.position = playerTransform.position;
+            //falledCatTrigger.transform.position = new Vector3(falledCatTrigger.transform.position.x, transform.position.y - offsetTrigger, falledCatTrigger.transform.position.z);
+        }
     }
 
     // Update is called once per frame
@@ -28,7 +43,7 @@ public class Cat : MonoBehaviour
     {
         if (!_isFalling)
         {
-            transform.position = playerTransform.position;
+            //transform.position = playerTransform.position;
             //falledCatTrigger.transform.position = new Vector3(falledCatTrigger.transform.position.x, transform.position.y - offsetTrigger, falledCatTrigger.transform.position.z);
         }
         else
@@ -48,7 +63,8 @@ public class Cat : MonoBehaviour
         {
             //gameObject.SetActive(false);
             _isFalling = false;
-            spawnManager.Respawn();
+            //spawnManager.Respawn();
+            SceneManager.LoadScene("CatDied");
         }
     }
 }
