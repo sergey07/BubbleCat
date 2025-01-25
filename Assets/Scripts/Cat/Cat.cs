@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Cat : MonoBehaviour
 {
     [SerializeField] float fallingSpeed = 5.0f;
-    [SerializeField] float offsetTrigger = 20.0f;
     [SerializeField] Transform playerTransform;
     [SerializeField] GameObject falledCatTrigger;
     [SerializeField] private SpawnManager spawnManager;
@@ -62,9 +61,14 @@ public class Cat : MonoBehaviour
         if (collision.gameObject.CompareTag("FalledCatTrigger"))
         {
             //gameObject.SetActive(false);
-            _isFalling = false;
+            //_isFalling = false;
             //spawnManager.Respawn();
+            GameProgress.currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("CatDied");
+        }
+        else if (collision.gameObject.CompareTag("Boiler"))
+        {
+            SceneManager.LoadScene(GameProgress.currentSceneName);
         }
     }
 }

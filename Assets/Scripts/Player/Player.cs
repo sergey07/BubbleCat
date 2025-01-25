@@ -90,9 +90,17 @@ public class Player : MonoBehaviour
             //spawnManager.Respawn();
             //gameObject.SetActive(true);
         }
-        else if (collision.gameObject.CompareTag("FinishTrigger"))
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("FinishTrigger"))
         {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            if (currentSceneName != "Level2")
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 
