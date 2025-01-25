@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - FinishTrigger
+  - FalledCatTrigger
   layers:
   - Default
   - TransparentFX

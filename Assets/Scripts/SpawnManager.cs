@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
         if (player != null)
         {
             player.transform.position = spawnPoint.transform.position;
-            player.GetComponent<Player>().ResetScale();
+            player.GetComponent<Player>().Reset();
         }
     }
 }

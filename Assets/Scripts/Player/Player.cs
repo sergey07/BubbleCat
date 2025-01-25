@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float ySpeedMultiplayer = 2f;
 
     [SerializeField] private SpawnManager spawnManager;
+    [SerializeField] private GameObject catObject;
 
     private Rigidbody2D rb;
 
@@ -84,16 +85,24 @@ public class Player : MonoBehaviour
         {
             //Destroy(gameObject);
             gameObject.SetActive(false);
-            spawnManager.Respawn();
-            gameObject.SetActive(true);
+            catObject.GetComponent<Cat>().SetFalling(true);
+            //catObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+            //spawnManager.Respawn();
+            //gameObject.SetActive(true);
         }
         else if (collision.gameObject.CompareTag("FinishTrigger"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
-    public void ResetScale()
+    public void Reset()
+    {
+        gameObject.SetActive(true);
+        ResetScale();
+    }
+
+    private void ResetScale()
     {
         transform.localScale = originScale;
     }
