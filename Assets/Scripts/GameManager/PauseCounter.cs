@@ -6,7 +6,7 @@ using TMPro;
 
 public class PauseCounter : MonoBehaviour
 {
-    private bool isPaused;
+    private bool isPaused = false;
     // public
     public TextMeshProUGUI _timeText;
     public GameObject pausePanel; // Принимаем объект панели паузы, чтобы ее скрыть и показать
