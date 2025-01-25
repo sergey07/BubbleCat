@@ -37,7 +37,7 @@ public class PauseCounter : MonoBehaviour
     }
     private void CheckPauseButton() {
         // И поменять на стандартную клавишу для разных платформ!!!
-        if (Input.GetButtonDown("Jump")) {
+        if (Input.GetKeyDown(KeyCode.Escape)) { // KeyCode.Y
             PauseToggle();
         }
     }
