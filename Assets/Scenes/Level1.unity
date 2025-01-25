@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &60262356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3619791596086923488, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+  m_PrefabInstance: {fileID: 3977881998584089982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &73231187
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +346,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -475,6 +487,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject: {fileID: 1275226950}
   cameraOffset: -10
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7ce835632ce724fb6df3dfb10e4e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  zoomBtn: {fileID: 60262356}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -8072,6 +8098,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 625504627}
+    - target: {fileID: 3619791596086923488, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619791596086923488, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619791596086923488, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 519420034}
+    - target: {fileID: 3619791596086923488, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619791596086923488, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ZoomCamerToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619791596086923488, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraZoom, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619791596086923488, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4142557135995864740, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
