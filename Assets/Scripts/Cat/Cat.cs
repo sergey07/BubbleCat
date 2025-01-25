@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Cat : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class Cat : MonoBehaviour
         transform.parent = null;
 
         rb = GetComponent<Rigidbody2D>();
+
+        if (SceneManager.GetActiveScene().name == "CatDied")
+        {
+            _isFalling = true;
+        }
     }
 
     // Update is called once per frame
@@ -48,7 +54,8 @@ public class Cat : MonoBehaviour
         {
             //gameObject.SetActive(false);
             _isFalling = false;
-            spawnManager.Respawn();
+            //spawnManager.Respawn();
+            SceneManager.LoadScene("CatDied");
         }
     }
 }
