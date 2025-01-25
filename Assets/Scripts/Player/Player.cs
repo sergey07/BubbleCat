@@ -2,23 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float horizontalSpeed = 5.0f;
     [SerializeField] private float maxYSpeed = 20.0f;
     [SerializeField] private float originSize = 1f;
     [SerializeField] private float minSize = 1f;
     [SerializeField] private float maxSize = 100f;
     [SerializeField] private float scaleSpeed = 1f;
+    [SerializeField] private float ySpeedMultiplayer = 2f;
 
     [SerializeField] private SpawnManager spawnManager;
 
     private Rigidbody2D rb;
 
+    private Vector3 originScale;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        originScale = new Vector3(originSize, originSize, originSize);
+        ResetScale();
     }
 
     private void FixedUpdate()
@@ -45,11 +55,11 @@ public class Player : MonoBehaviour
             ChangeScaleToOrigin();
         }
 
-        float velocityY = transform.localScale.x - originSize;
+        float velocityY = (transform.localScale.x - originSize) * ySpeedMultiplayer;
         //Debug.Log(velocityY);
         velocityY = Mathf.Clamp(velocityY, -maxYSpeed, maxYSpeed);
 
-        float newPosX = inputVector.x * (speed * Time.fixedDeltaTime);
+        float newPosX = inputVector.x * (horizontalSpeed * Time.fixedDeltaTime);
         float newPosY = velocityY * Time.fixedDeltaTime; 
 
         rb.MovePosition(rb.position + new Vector2(newPosX, newPosY));
@@ -77,5 +87,14 @@ public class Player : MonoBehaviour
             spawnManager.Respawn();
             gameObject.SetActive(true);
         }
+        else if (collision.gameObject.CompareTag("FinishTrigger"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    public void ResetScale()
+    {
+        transform.localScale = originScale;
     }
 }
