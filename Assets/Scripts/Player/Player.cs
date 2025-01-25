@@ -12,13 +12,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxSize = 100f;
     [SerializeField] private float scaleSpeed = 1f;
 
+    [SerializeField] private SpawnManager spawnManager;
+
     private Rigidbody2D rb;
-    private CircleCollider2D collider;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CircleCollider2D>();
     }
 
     private void FixedUpdate()
@@ -72,7 +72,10 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+            spawnManager.Respawn();
+            gameObject.SetActive(true);
         }
     }
 }
