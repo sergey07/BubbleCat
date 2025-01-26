@@ -9,6 +9,7 @@ public class StartGame : MonoBehaviour
     [SerializeField] private float timeBeforeTranslateCatByWitch = 2.0f;
     [SerializeField] private float timeBeforeBoilerBoils = 2.0f;
     [SerializeField] private float timeBeforeBubbleHasCat = 2.0f;
+    [SerializeField] private float timeBeforeLoadFirstLevel = 2.0f;
 
     [SerializeField] private float scaleSpeed = 2.0f;
     [SerializeField] private float newScaleX = 12.0f;
@@ -73,9 +74,11 @@ public class StartGame : MonoBehaviour
         catObject.transform.position = bubbleObject.transform.position;
         catObject.transform.parent = bubbleObject.transform;
         bubbleObject.SetActive(true);
+
+        StartCoroutine(LoadFirstLevel());
     }
 
-    IEnumerator WaitForLoadFirstLevel()
+    IEnumerator LoadFirstLevel()
     {
         yield return new WaitForSeconds(5.0f);
 
