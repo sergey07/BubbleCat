@@ -1736,9 +1736,11 @@ MonoBehaviour:
   falledCatTrigger: {fileID: 7428638555195708616}
   spawnManager: {fileID: 3355288238794269220}
   gameManager: {fileID: 1403829546538309518}
+  chpokSoundTriggerTransform: {fileID: 0}
   audioSource: {fileID: 6166558481219770189}
   audioClipCpock: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
   audioClipMau: {fileID: 8300000, guid: d11c48fe0a53ebb41b75027ba47415a2, type: 3}
+  audioClipBulk: {fileID: 0}
 --- !u!82 &6166558481219770189
 AudioSource:
   m_ObjectHideFlags: 0
