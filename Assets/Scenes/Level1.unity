@@ -8528,6 +8528,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1904825181719692563, guid: 3b66b70a07d8614439644ff085ced93c, type: 3}
+      propertyPath: fallingSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4703333205396097050, guid: 3b66b70a07d8614439644ff085ced93c, type: 3}
       propertyPath: m_Name
       value: Common

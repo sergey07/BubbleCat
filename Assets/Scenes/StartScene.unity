@@ -259,7 +259,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34468823}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c145421df1960454faf9b317bd59f9e5, type: 3}
@@ -354,15 +354,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1843562126}
     m_Modifications:
     - target: {fileID: 2553170219944691050, guid: eb49746c925d0ce479ba1f64f0abfd25, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553170219944691050, guid: eb49746c925d0ce479ba1f64f0abfd25, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553170219944691050, guid: eb49746c925d0ce479ba1f64f0abfd25, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.5
+      value: -0.56125
       objectReference: {fileID: 0}
     - target: {fileID: 2553170219944691050, guid: eb49746c925d0ce479ba1f64f0abfd25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: 0.22750002
       objectReference: {fileID: 0}
     - target: {fileID: 2553170219944691050, guid: eb49746c925d0ce479ba1f64f0abfd25, type: 3}
       propertyPath: m_LocalPosition.z
@@ -405,6 +413,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb49746c925d0ce479ba1f64f0abfd25, type: 3}
+--- !u!4 &175106420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2553170219944691050, guid: eb49746c925d0ce479ba1f64f0abfd25, type: 3}
+  m_PrefabInstance: {fileID: 175106419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &468310459
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5873c7a03ef72154b8586f9e8b742ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBeforeTranslateCatByWitch: 2
+  witchObject: {fileID: 0}
+  catObject: {fileID: 0}
 --- !u!4 &468310461
 Transform:
   m_ObjectHideFlags: 0
@@ -6977,10 +6993,11 @@ Transform:
   m_GameObject: {fileID: 1843562124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13, y: -9, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: -5, y: -6.25, z: 0}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 175106420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
@@ -6991,5 +7008,4 @@ SceneRoots:
   - {fileID: 1714760298}
   - {fileID: 1681784649}
   - {fileID: 1843562126}
-  - {fileID: 175106419}
   - {fileID: 468310461}
