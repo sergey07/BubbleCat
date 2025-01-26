@@ -464,6 +464,7 @@ MonoBehaviour:
   timeBeforeTranslateCatByWitch: 2
   timeBeforeBoilerBoils: 2
   timeBeforeBubbleHasCat: 0.5
+  timeBeforeLoadFirstLevel: 0.5
   scaleSpeed: 2
   newScaleX: 2
   newScaleY: 2
