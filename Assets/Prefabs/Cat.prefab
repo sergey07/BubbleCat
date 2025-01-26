@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7474818803435822753}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.75, y: 10, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
@@ -48,11 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76a59b3aa5ecce45a80e71ed7dcb4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingSpeed: 10
-  offsetTrigger: 20
+  fallingSpeed: 30
+  offsetFromBottom: 0
   playerTransform: {fileID: 0}
   falledCatTrigger: {fileID: 0}
   spawnManager: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!50 &7597182208327141157
 Rigidbody2D:
   serializedVersion: 4
@@ -137,11 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76a59b3aa5ecce45a80e71ed7dcb4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingSpeed: 5
-  offsetTrigger: 20
+  fallingSpeed: 10
+  offsetFromBottom: 0
   playerTransform: {fileID: 0}
   falledCatTrigger: {fileID: 0}
   spawnManager: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!1 &8096210285576437928
 GameObject:
   m_ObjectHideFlags: 0
