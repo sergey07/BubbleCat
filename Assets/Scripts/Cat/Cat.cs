@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Cat : MonoBehaviour
 {
     [SerializeField] float fallingSpeed = 5.0f;
-    [SerializeField] float offsetFromBottom = 0.0f;
+    //[SerializeField] float offsetFromBottom = 0.0f;
 
     [SerializeField] Transform playerTransform;
     [SerializeField] GameObject falledCatTrigger;

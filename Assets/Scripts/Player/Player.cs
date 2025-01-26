@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
         {
             gameObject.SetActive(false);
             catObject.GetComponent<Cat>().SetFalling(true);
+            //catObject.GetComponent<SpriteRenderer>().sprite.name = false;
         }
     }
 
