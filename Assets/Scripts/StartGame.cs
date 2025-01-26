@@ -30,6 +30,9 @@ public class StartGame : MonoBehaviour
         bubbleObject.SetActive(false);
         bubbleBoomObject.SetActive(false);
 
+        bubbleObject.transform.position = bubbleBoomObject.transform.position;
+        catObject.transform.position = bubbleBoomObject.transform.position;
+
         //StartCoroutine(WaitForLoadFirstLevel());
         StartCoroutine(TranslateCatByWitch());
     }
@@ -53,16 +56,18 @@ public class StartGame : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeBoilerBoils);
 
         witchObject.GetComponent<SpriteRenderer>().sprite = witchWithoutCat;
+        catObject.SetActive(true);
         bubbleBoomObject.SetActive(true);
-
 
         transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(newScaleX, newScaleY, 1), scaleSpeed * Time.fixedDeltaTime);
 
-        BubbleHasCat();
+        StartCoroutine(BubbleHasCat());
     }
 
     IEnumerator BubbleHasCat()
     {
+        Debug.Log("BubbleHasCat");
+
         yield return new WaitForSeconds(timeBeforeBubbleHasCat);
 
         catObject.transform.position = bubbleObject.transform.position;
