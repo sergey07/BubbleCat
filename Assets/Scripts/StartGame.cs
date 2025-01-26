@@ -67,9 +67,11 @@ public class StartGame : MonoBehaviour
 
     IEnumerator BubbleHasCat()
     {
-        Debug.Log("BubbleHasCat");
+        //Debug.Log("BubbleHasCat");
 
         yield return new WaitForSeconds(timeBeforeBubbleHasCat);
+
+        bubbleBoomObject.SetActive(false);
 
         catObject.transform.position = bubbleObject.transform.position;
         catObject.transform.parent = bubbleObject.transform;
