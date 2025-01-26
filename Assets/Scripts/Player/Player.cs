@@ -94,9 +94,13 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("FinishTrigger"))
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
-            if (currentSceneName != "Level2")
+            if (currentSceneName != "Level3")
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+                SceneManager.LoadScene("Level1");
             }
         }
     }
