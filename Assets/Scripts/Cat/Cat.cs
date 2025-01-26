@@ -18,7 +18,8 @@ public class Cat : MonoBehaviour
     void Start()
     {
         // Disable parent scaling
-        transform.parent = null;
+        //transform.parent = null;
+
 
         rb = GetComponent<Rigidbody2D>();
 
