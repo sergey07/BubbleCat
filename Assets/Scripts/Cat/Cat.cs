@@ -11,6 +11,7 @@ public class Cat : MonoBehaviour
     [SerializeField] Transform playerTransform;
     [SerializeField] GameObject falledCatTrigger;
     [SerializeField] private SpawnManager spawnManager;
+    [SerializeField] private GameObject gameManager;
     //[SerializeField] private GameObject bottomEdgeBubblePoint;
 
     private Rigidbody2D rb;
@@ -64,11 +65,13 @@ public class Cat : MonoBehaviour
             //gameObject.SetActive(false);
             //_isFalling = false;
             //spawnManager.Respawn();
+            gameManager.SetActive(false);
             GameProgress.currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("CatDied");
         }
         else if (collision.gameObject.CompareTag("Boiler"))
         {
+            gameManager.SetActive(true);
             SceneManager.LoadScene(GameProgress.currentSceneName);
         }
     }

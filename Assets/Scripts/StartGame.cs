@@ -9,12 +9,11 @@ public class StartGame : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitForLoadFirstLevel());
-        //SceneManager.LoadScene("Level1");
     }
 
     IEnumerator WaitForLoadFirstLevel()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(5.0f);
 
         SceneManager.LoadScene("Level1");
     }
