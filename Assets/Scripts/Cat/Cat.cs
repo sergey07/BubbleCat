@@ -12,14 +12,18 @@ public class Cat : MonoBehaviour
     [SerializeField] GameObject falledCatTrigger;
     [SerializeField] private SpawnManager spawnManager;
     [SerializeField] private GameObject gameManager;
+    [SerializeField] private Transform chpokSoundTriggerTransform;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] public AudioClip audioClipCpock;
     [SerializeField] public AudioClip audioClipMau;
+    [SerializeField] public AudioClip audioClipBulk;
     //[SerializeField] private GameObject bottomEdgeBubblePoint;
 
     private Rigidbody2D rb;
 
     private bool _isFalling = false;
+
+    private bool isCpock = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +57,12 @@ public class Cat : MonoBehaviour
         if (_isFalling)
         {
             rb.MovePosition(rb.position - new Vector2(0, fallingSpeed * Time.fixedDeltaTime));
+            if (!isCpock && transform.position.y < chpokSoundTriggerTransform.position.y)
+            {
+                Debug.Log(chpokSoundTriggerTransform);
+                isCpock = true;
+                audioSource.PlayOneShot(audioClipBulk);
+            }
         }
     }
 
