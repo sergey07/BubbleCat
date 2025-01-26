@@ -6802,14 +6802,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1691407691467424565, guid: 6a2921150d83feb4196797d6cf8b9e74, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1691407691467424565, guid: 6a2921150d83feb4196797d6cf8b9e74, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1691407691467424565, guid: 6a2921150d83feb4196797d6cf8b9e74, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
       objectReference: {fileID: 0}
@@ -6852,10 +6844,6 @@ PrefabInstance:
     - target: {fileID: 4110914917250357628, guid: 6a2921150d83feb4196797d6cf8b9e74, type: 3}
       propertyPath: m_Name
       value: Boiler
-      objectReference: {fileID: 0}
-    - target: {fileID: 5952352467936517671, guid: 6a2921150d83feb4196797d6cf8b9e74, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
