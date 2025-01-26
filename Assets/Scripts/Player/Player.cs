@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private SpawnManager spawnManager;
     [SerializeField] private GameObject catObject;
+    [SerializeField] private GameObject bubbleBoomObject;
     //[SerializeField] private GameObject bottomEdgeBubblePoint;
 
     private Rigidbody2D rb;
@@ -85,9 +86,18 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             gameObject.SetActive(false);
+            bubbleBoomObject.SetActive(true);
+
             catObject.GetComponent<Cat>().SetFalling(true);
             //catObject.GetComponent<SpriteRenderer>().sprite.name = false;
         }
+    }
+
+    IEnumerator DestroyBubbleBoom()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        bubbleBoomObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -101,7 +111,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("Level1");
+                SceneManager.LoadScene("FinishGame");
             }
         }
     }

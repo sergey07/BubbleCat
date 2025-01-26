@@ -773,9 +773,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484ab42290fcc524d842573375e059a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 5
+  horizontalSpeed: 6
   maxYSpeed: 10
-  originSize: 4
+  originSize: 3
   minSize: 2.2
   maxSize: 100
   scaleSpeed: 2
@@ -948,7 +948,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2368855583443623069

@@ -9,7 +9,7 @@ public class StartGame : MonoBehaviour
     [SerializeField] private float timeBeforeTranslateCatByWitch = 2.0f;
     [SerializeField] private float timeBeforeBoilerBoils = 2.0f;
     [SerializeField] private float timeBeforeBubbleHasCat = 2.0f;
-    [SerializeField] private float timeBeforeLoadFirstLevel = 2.0f;
+    [SerializeField] private float timeBeforeLoadFirstLevel = 1.0f;
 
     [SerializeField] private float scaleSpeed = 2.0f;
     [SerializeField] private float newScaleX = 12.0f;
@@ -80,7 +80,7 @@ public class StartGame : MonoBehaviour
 
     IEnumerator LoadFirstLevel()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(timeBeforeLoadFirstLevel);
 
         SceneManager.LoadScene("Level1");
     }
