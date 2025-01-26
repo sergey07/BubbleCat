@@ -12,6 +12,9 @@ public class Cat : MonoBehaviour
     [SerializeField] GameObject falledCatTrigger;
     [SerializeField] private SpawnManager spawnManager;
     [SerializeField] private GameObject gameManager;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] public AudioClip audioClipCpock;
+    [SerializeField] public AudioClip audioClipMau;
     //[SerializeField] private GameObject bottomEdgeBubblePoint;
 
     private Rigidbody2D rb;
