@@ -87,6 +87,8 @@ public class Player : MonoBehaviour
         {
             gameObject.SetActive(false);
             bubbleBoomObject.transform.parent = null;
+            catObject.gameObject.GetComponent<AudioSource>().PlayOneShot(catObject.gameObject.GetComponent<Cat>().audioClipCpock);
+            catObject.gameObject.GetComponent<AudioSource>().PlayOneShot(catObject.gameObject.GetComponent<Cat>().audioClipMau);
             bubbleBoomObject.SetActive(true);
 
             catObject.GetComponent<Cat>().SetFalling(true);
@@ -96,7 +98,7 @@ public class Player : MonoBehaviour
 
     IEnumerator DestroyBubbleBoom()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         bubbleBoomObject.SetActive(false);
     }
