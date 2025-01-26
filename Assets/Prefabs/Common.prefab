@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6462327416116454704}
   - component: {fileID: 7115127663397014152}
   - component: {fileID: 2571772117547499134}
+  - component: {fileID: 4720346099913568110}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -265,6 +266,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   zoomBtn: {fileID: 513370093350062149}
+--- !u!114 &4720346099913568110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16677744547674004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49dc541190df4bc48b079132c85882c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicBtn: {fileID: 4349414769006750218}
+  audioSource: {fileID: 0}
 --- !u!1 &885223707790392588
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,6 +747,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7026160356463658370}
+  - {fileID: 2301216678024841260}
   m_Father: {fileID: 6640612756830969306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7781022075798035053
@@ -782,6 +798,7 @@ MonoBehaviour:
   ySpeedMultiplayer: 6
   spawnManager: {fileID: 3355288238794269220}
   catObject: {fileID: 3729454704962165644}
+  bubbleBoomObject: {fileID: 7539801092145708099}
 --- !u!58 &7400168953234487741
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -964,7 +981,7 @@ GameObject:
   - component: {fileID: 7899693634971867771}
   - component: {fileID: 4349414769006750218}
   m_Layer: 5
-  m_Name: ButtonSound
+  m_Name: ButtonMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1071,7 +1088,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7899693634971867771}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4720346099913568110}
+        m_TargetAssemblyTypeName: MusicToggler, Assembly-CSharp
+        m_MethodName: MusicToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2420986528708423192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sound On
+  m_text: Music On
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a977fa845fb4c384cacded4a84f798af, type: 2}
   m_sharedMaterial: {fileID: 3004796273183367624, guid: a977fa845fb4c384cacded4a84f798af, type: 2}
@@ -2382,7 +2411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5717467747155861328
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2979,6 +3008,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7539801092145708099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2301216678024841260}
+  m_Layer: 0
+  m_Name: BoobleBoomObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2301216678024841260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539801092145708099}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6348401226281593786}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7604132128581080615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2991,7 +3051,7 @@ GameObject:
   - component: {fileID: 5737204072819836815}
   - component: {fileID: 8384638338905761049}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: PanelBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3037,7 +3097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3088,7 +3148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 211}
+  m_AnchoredPosition: {x: 0, y: 232}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1944595991533312720
@@ -3119,7 +3179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a977fa845fb4c384cacded4a84f798af, type: 2}
   m_sharedMaterial: {fileID: 3004796273183367624, guid: a977fa845fb4c384cacded4a84f798af, type: 2}
@@ -3153,7 +3213,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

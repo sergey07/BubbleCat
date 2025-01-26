@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             gameObject.SetActive(false);
+            bubbleBoomObject.transform.parent = null;
             bubbleBoomObject.SetActive(true);
 
             catObject.GetComponent<Cat>().SetFalling(true);
@@ -95,7 +96,7 @@ public class Player : MonoBehaviour
 
     IEnumerator DestroyBubbleBoom()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
         bubbleBoomObject.SetActive(false);
     }
