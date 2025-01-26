@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private SpawnManager spawnManager;
     [SerializeField] private GameObject catObject;
+    //[SerializeField] private GameObject bottomEdgeBubblePoint;
 
     private Rigidbody2D rb;
 
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         HandleInput();
+        //bottomEdgeBubblePoint.transform.position = transform.position + new Vector3(transform.position.x, transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius);
     }
 
     private void HandleInput()

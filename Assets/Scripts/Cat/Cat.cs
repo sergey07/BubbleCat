@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 public class Cat : MonoBehaviour
 {
     [SerializeField] float fallingSpeed = 5.0f;
+    [SerializeField] float offsetFromBottom = 0.0f;
+
     [SerializeField] Transform playerTransform;
     [SerializeField] GameObject falledCatTrigger;
     [SerializeField] private SpawnManager spawnManager;
+    //[SerializeField] private GameObject bottomEdgeBubblePoint;
 
     private Rigidbody2D rb;
 
@@ -35,7 +38,7 @@ public class Cat : MonoBehaviour
         {
             if (playerTransform != null)
             {
-                transform.position = playerTransform.position;
+                transform.position = playerTransform.position;// + new Vector3(0, bottomEdgeBubblePoint.transform.position.y + offsetFromBottom);
             }
         }
     }
