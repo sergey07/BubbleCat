@@ -42102,6 +42102,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1506368790454872359, guid: 3b66b70a07d8614439644ff085ced93c, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3355288238794269220, guid: 3b66b70a07d8614439644ff085ced93c, type: 3}
       propertyPath: spawnPoint
       value: 
