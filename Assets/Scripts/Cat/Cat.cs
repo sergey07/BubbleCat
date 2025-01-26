@@ -62,16 +62,11 @@ public class Cat : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("FalledCatTrigger"))
         {
-            //gameObject.SetActive(false);
-            //_isFalling = false;
-            //spawnManager.Respawn();
-            gameManager.SetActive(false);
             GameProgress.currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("CatDied");
         }
         else if (collision.gameObject.CompareTag("Boiler"))
         {
-            gameManager.SetActive(true);
             SceneManager.LoadScene(GameProgress.currentSceneName);
         }
     }
