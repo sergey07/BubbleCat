@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
         }
 
         float velocityY = (transform.localScale.x - originSize) * ySpeedMultiplayer;
-        //Debug.Log(velocityY);
         velocityY = Mathf.Clamp(velocityY, -maxYSpeed, maxYSpeed);
 
         float newPosX = inputVector.x * (horizontalSpeed * Time.fixedDeltaTime);
@@ -83,12 +82,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            //Destroy(gameObject);
             gameObject.SetActive(false);
             catObject.GetComponent<Cat>().SetFalling(true);
-            //catObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
-            //spawnManager.Respawn();
-            //gameObject.SetActive(true);
         }
     }
 
