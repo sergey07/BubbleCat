@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
+    public FixedJoystick fixedJoystick;
     public static GameInput Instance { get; private set; }
 
     private PlayerInputActions playerInputActions;
@@ -20,6 +21,15 @@ public class GameInput : MonoBehaviour
     public Vector2 GetMovementVector()
     {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
+
+        // Если схватил за джойстик, то он перезапишет значения - OnlyMeRus
+        if ((fixedJoystick.Vertical != 0) || fixedJoystick.Horizontal != 0){
+        inputVector = new Vector2(
+            fixedJoystick.Horizontal,
+            fixedJoystick.Vertical
+        );
+        inputVector.Normalize();
+        }
         return inputVector;
     }
 
