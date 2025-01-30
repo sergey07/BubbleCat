@@ -4,129 +4,117 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
+public enum PlayerStatus { InStartGameScene, InGame, BubbleBurst, InCatDiedScene, InFinishGameScene }
+
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float horizontalSpeed = 5.0f;
-    [SerializeField] private float maxYSpeed = 20.0f;
-    [SerializeField] private float originSize = 1f;
-    [SerializeField] private float minSize = 1f;
-    [SerializeField] private float maxSize = 100f;
-    [SerializeField] private float scaleSpeed = 1f;
-    [SerializeField] private float ySpeedMultiplayer = 2f;
+    public static Player Instance {  get; private set; }
 
-    [SerializeField] private SpawnManager spawnManager;
-    [SerializeField] private GameObject catObject;
-    [SerializeField] private GameObject bubbleBoomObject;
-    //[SerializeField] private GameObject bottomEdgeBubblePoint;
+    // Скорость по горизонтали
+    [SerializeField] private float _horizontalSpeed = 5.0f;
+    // Максимальная вертикальная скорость
+    [SerializeField] private float _maxYSpeed = 20.0f;
+    // Множитель для вертикальной скорости
+    [SerializeField] private float _ySpeedMultiplayer = 2f;
+    // Скорость падения кота
+    [SerializeField] private float _fallingSpeed = 5.0f;
 
-    private Rigidbody2D rb;
+    // Объект кота
+    [SerializeField] private GameObject _catObject;
+    // Объект пузыря
+    [SerializeField] private GameObject _bubbleObject;
+    // Место, где поялвяется кот в сцене, где он падает в котёл
+    //[SerializeField] private Transform _spawnPointInCatDiedScene;
 
-    private Vector3 originScale;
+    [SerializeField] private PlayerStatus _playerStatus = PlayerStatus.InGame;
+
+    private Rigidbody2D _rb;
+    private Bubble _bubbleComponent;
+    private Cat _catComponent;
+
+    //private bool _isFalling = false;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        Instance = this;
+        _rb = GetComponent<Rigidbody2D>();
+
+        _bubbleComponent = _bubbleObject.gameObject.GetComponent<Bubble>();
+        _catComponent = _catObject.gameObject.GetComponent<Cat>();
     }
 
     private void Start()
     {
-        originScale = new Vector3(originSize, originSize, originSize);
-        ResetScale();
+        if (SceneManager.GetActiveScene().name == "CatDied")
+        {
+            SetPlayerStatus(PlayerStatus.InCatDiedScene);
+            _catComponent.SetFalling(true);
+            _catObject.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+            _bubbleObject.gameObject.SetActive(false);
+        }
+    }
+
+    public PlayerStatus GetPlayerStatus()
+    {
+        return _playerStatus;
+    }
+
+    public void SetPlayerStatus(PlayerStatus status)
+    {
+        _playerStatus = status;
     }
 
     private void FixedUpdate()
     {
-        HandleInput();
-        //bottomEdgeBubblePoint.transform.position = transform.position + new Vector3(transform.position.x, transform.position.y - gameObject.GetComponent<CircleCollider2D>().radius);
+        switch (_playerStatus)
+        {
+            case PlayerStatus.InGame:
+                HandleInput();
+                break;
+            case PlayerStatus.BubbleBurst:
+            case PlayerStatus.InCatDiedScene:
+                _rb.MovePosition(_rb.position - new Vector2(0, _fallingSpeed * Time.fixedDeltaTime));
+                break;
+        }
     }
 
     private void HandleInput()
     {
         Vector2 inputVector = GameInput.Instance.GetMovementVector();
 
-        if (inputVector.y > 0)
-        {
-            float scaleValue = ChangeScale(scaleSpeed);
-            transform.localScale = new Vector3(scaleValue, scaleValue, transform.localScale.y);
-        }
-        else if (inputVector.y < 0)
-        {
-            float scaleValue = ChangeScale(-scaleSpeed);
-            transform.localScale = new Vector3(scaleValue, scaleValue, transform.localScale.y);
-        }
-        else
-        {
-            ChangeScaleToOrigin();
-        }
+        float deltaScale = _bubbleComponent.GetDeltaScale();
+        float velocityY = deltaScale * _ySpeedMultiplayer;
+        velocityY = Mathf.Clamp(velocityY, -_maxYSpeed, _maxYSpeed);
 
-        float velocityY = (transform.localScale.x - originSize) * ySpeedMultiplayer;
-        velocityY = Mathf.Clamp(velocityY, -maxYSpeed, maxYSpeed);
-
-        float newPosX = inputVector.x * (horizontalSpeed * Time.fixedDeltaTime);
+        float newPosX = inputVector.x * (_horizontalSpeed * Time.fixedDeltaTime);
         float newPosY = velocityY * Time.fixedDeltaTime; 
 
-        rb.MovePosition(rb.position + new Vector2(newPosX, newPosY));
-    }
-
-    private float ChangeScale(float scaleSpeed)
-    {
-        float newScaleX = Mathf.Clamp(transform.localScale.x + scaleSpeed * Time.fixedDeltaTime, minSize, maxSize);
-        
-
-        return newScaleX;
-    }
-
-    private void ChangeScaleToOrigin()
-    {
-        transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(originSize, originSize, originSize), scaleSpeed * Time.fixedDeltaTime);
+        _rb.MovePosition(_rb.position + new Vector2(newPosX, newPosY));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            gameObject.SetActive(false);
-            bubbleBoomObject.transform.parent = null;
-            catObject.gameObject.GetComponent<AudioSource>().PlayOneShot(catObject.gameObject.GetComponent<Cat>().audioClipCpock);
-            catObject.gameObject.GetComponent<AudioSource>().PlayOneShot(catObject.gameObject.GetComponent<Cat>().audioClipMau);
-            bubbleBoomObject.SetActive(true);
+            _bubbleObject.gameObject.SetActive(false);
+            _catObject.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
 
-            catObject.GetComponent<Cat>().SetFalling(true);
+            AudioSource audioSource = _catObject.gameObject.GetComponent<AudioSource>();
+
+            audioSource.PlayOneShot(_bubbleComponent._audioClipCpock);
+            audioSource.PlayOneShot(_catComponent._audioClipMau);
+
+            _bubbleObject.GetComponent<Bubble>().Boom();
+
+            SetPlayerStatus(PlayerStatus.BubbleBurst);
+            _catComponent.SetFalling(true);
             //catObject.GetComponent<SpriteRenderer>().sprite.name = false;
-        }
-    }
-
-    IEnumerator DestroyBubbleBoom()
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        bubbleBoomObject.SetActive(false);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("FinishTrigger"))
-        {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            if (currentSceneName != "Level3")
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-            else
-            {
-                SceneManager.LoadScene("FinishGame");
-            }
         }
     }
 
     public void Reset()
     {
         gameObject.SetActive(true);
-        ResetScale();
-    }
-
-    private void ResetScale()
-    {
-        transform.localScale = originScale;
+        _bubbleComponent.ResetScale();
     }
 }

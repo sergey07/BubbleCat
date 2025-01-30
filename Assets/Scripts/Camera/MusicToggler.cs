@@ -6,33 +6,47 @@ using TMPro;
 
 public class MusicToggler : MonoBehaviour
 {
-    private TextMeshProUGUI musicBtnText;
-    private bool isMusicOn = true;
+    private TextMeshProUGUI _musicBtnText;
+    private bool _isMusicOn = true;
     // public
     public Button musicBtn;
     public AudioSource audioSource;
     // interface
-    public void MusicToggle() {
-        if (isMusicOn) {
+    public void MusicToggle()
+    {
+        if (_isMusicOn)
+        {
             MusicMakeOff();
-        } else {
+        }
+        else
+        {
             MusicMakeOn();
         }
     }
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        musicBtnText = musicBtn.GetComponentInChildren<TextMeshProUGUI>();
+        _musicBtnText = musicBtn.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private void MusicMakeOff() {
-        audioSource.mute = true;
-        isMusicOn = false;
-        musicBtnText.text = "Music Off";
+    private void MusicMakeOff()
+    {
+        if (audioSource != null)
+        {
+            audioSource.mute = true;
+        }
+
+        _isMusicOn = false;
+
+        if (_musicBtnText != null)
+        {
+            _musicBtnText.text = "Music Off";
+        }
     }
-    private void MusicMakeOn() {
+    private void MusicMakeOn()
+    {
         audioSource.mute = false;
-        isMusicOn = true;
-        musicBtnText.text = "Music On";
+        _isMusicOn = true;
+        _musicBtnText.text = "Music On";
     }
 }

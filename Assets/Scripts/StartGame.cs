@@ -6,33 +6,55 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
-    [SerializeField] private float timeBeforeTranslateCatByWitch = 2.0f;
-    [SerializeField] private float timeBeforeBoilerBoils = 2.0f;
-    [SerializeField] private float timeBeforeBubbleHasCat = 2.0f;
-    [SerializeField] private float timeBeforeLoadFirstLevel = 1.0f;
+    // Время в секундах до перемещения кота над котлом
+    [SerializeField] private float _timeBeforeTranslateCatByWitch = 2.0f;
+    // Время в секундах до опрокидывания кота в котёл
+    [SerializeField] private float _timeBeforeBoilerBoils = 2.0f;
+    // Время в секундах перед формированием пузыря с котом внутри
+    [SerializeField] private float _timeBeforeBubbleHasCat = 2.0f;
+    // Время в секундах перед загрузкой первого уровня игры
+    [SerializeField] private float _timeBeforeLoadFirstLevel = 1.0f;
 
-    [SerializeField] private float scaleSpeed = 2.0f;
-    [SerializeField] private float newScaleX = 12.0f;
-    [SerializeField] private float newScaleY = 2.0f;
+    // Цель для масштабирования брызг пузыря по оси X
+    //[SerializeField] private float _newBubbleBoomScaleX = 12.0f;
+    // Цель для масштабирования брызг пузыря по оси Y
+    //[SerializeField] private float _newBubbleBoomScaleY = 2.0f;
+    // Скорость масштабирования брыз пузыря
+    //[SerializeField] private float _scaleBubbleBoomSpeed = 2.0f;
 
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator _animator;
 
-    [SerializeField] private GameObject witchObject;
-    [SerializeField] private GameObject catObject;
-    [SerializeField] private GameObject bubbleBoomObject;
-    [SerializeField] private GameObject bubbleObject;
+    // Объект ведьмы
+    [SerializeField] private GameObject _witchObject;
+    // Объект игрока
+    [SerializeField] private GameObject _playerObject;
+    // Объект кота
+    [SerializeField] private GameObject _catObject;
+    // Объект пузыря
+    [SerializeField] private GameObject _bubbleObject;
+    // Объект брызг от лопнувшего пузыря
+    [SerializeField] private GameObject _bubbleBoomObject;
+    // Место, где поялвяется кот
+    [SerializeField] private Transform _spawnPoint;
 
-    [SerializeField] private Sprite witchWithCat;
-    [SerializeField] private Sprite witchWithoutCat;
+    // Спрайт ведьмы с котом в руках
+    [SerializeField] private Sprite _witchWithCat;
+    // Спрайт ведьмы без кота
+    [SerializeField] private Sprite _witchWithoutCat;
 
     // Start is called before the first frame update
     void Start()
     {
-        bubbleObject.SetActive(false);
-        bubbleBoomObject.SetActive(false);
+        Player.Instance.SetPlayerStatus(PlayerStatus.InStartGameScene);
 
-        bubbleObject.transform.position = bubbleBoomObject.transform.position;
-        catObject.transform.position = bubbleBoomObject.transform.position;
+        _playerObject.SetActive(false);
+        _catObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        //_bubbleObject.SetActive(false);
+        //_bubbleBoomObject.SetActive(false);
+
+        _playerObject.transform.position = _spawnPoint.position;
+        //_bubbleObject.transform.position = _bubbleBoomObject.transform.position;
+        //_catObject.transform.position = _bubbleBoomObject.transform.position;
 
         //StartCoroutine(WaitForLoadFirstLevel());
         StartCoroutine(TranslateCatByWitch());
@@ -41,12 +63,13 @@ public class StartGame : MonoBehaviour
     // Ведьма перемещает кота над котлом
     IEnumerator TranslateCatByWitch()
     {
-        yield return new WaitForSeconds(timeBeforeTranslateCatByWitch);
+        yield return new WaitForSeconds(_timeBeforeTranslateCatByWitch);
 
-        witchObject.transform.localScale = new Vector3(-witchObject.transform.localScale.x, witchObject.transform.localScale.y, witchObject.transform.localScale.z);
+        // Поворачиваем ведьму по оси Х
+        _witchObject.transform.localScale = new Vector3(-_witchObject.transform.localScale.x, _witchObject.transform.localScale.y, _witchObject.transform.localScale.z);
         //catObject.transform.parent = null;
 
-        animator.SetTrigger("boom");
+        _animator.SetTrigger("boom");
 
         StartCoroutine(BoilerBoils());
     }
@@ -54,36 +77,37 @@ public class StartGame : MonoBehaviour
     // Происходит взрыв из котла
     IEnumerator BoilerBoils()
     {
-        yield return new WaitForSeconds(timeBeforeBoilerBoils);
+        yield return new WaitForSeconds(_timeBeforeBoilerBoils);
 
-        witchObject.GetComponent<SpriteRenderer>().sprite = witchWithoutCat;
-        catObject.SetActive(true);
-        bubbleBoomObject.SetActive(true);
+        _witchObject.GetComponent<SpriteRenderer>().sprite = _witchWithoutCat;
+        _playerObject.SetActive(true);
+        _bubbleObject.SetActive(false);
+        _catObject.SetActive(true);
+        _bubbleBoomObject.SetActive(true);
 
-        transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(newScaleX, newScaleY, 1), scaleSpeed * Time.fixedDeltaTime);
+        //_bubbleBoomObject.transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(_newBubbleBoomScaleX, _newBubbleBoomScaleY, 1), _scaleBubbleBoomSpeed * Time.fixedDeltaTime);
 
         StartCoroutine(BubbleHasCat());
     }
 
     IEnumerator BubbleHasCat()
     {
-        //Debug.Log("BubbleHasCat");
+        yield return new WaitForSeconds(_timeBeforeBubbleHasCat);
 
-        yield return new WaitForSeconds(timeBeforeBubbleHasCat);
+        _bubbleBoomObject.SetActive(false);
 
-        bubbleBoomObject.SetActive(false);
-
-        catObject.transform.position = bubbleObject.transform.position;
-        catObject.transform.parent = bubbleObject.transform;
-        bubbleObject.SetActive(true);
+        //_playerObject
+        _catObject.transform.position = _bubbleObject.transform.position;
+        _catObject.transform.parent = _bubbleObject.transform;
+        _bubbleObject.SetActive(true);
 
         StartCoroutine(LoadFirstLevel());
     }
 
     IEnumerator LoadFirstLevel()
     {
-        yield return new WaitForSeconds(timeBeforeLoadFirstLevel);
+        yield return new WaitForSeconds(_timeBeforeLoadFirstLevel);
 
-        SceneManager.LoadScene("Level1");
+        GameManager.Instance.LoadFirstLevel();
     }
 }

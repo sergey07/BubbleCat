@@ -6,84 +6,115 @@ using TMPro;
 
 public class PauseCounter : MonoBehaviour
 {
-    private bool isPaused = false;
-    private float m_currentSpeed = 1.0f;
-    private int m_diffLvl = 1;
-    private TextMeshProUGUI diffBtnText;
-    // public
-    [SerializeField] private float easyDiffLvl = 1.0f;
-    [SerializeField] private float midDiffLvl = 1.5f;
-    [SerializeField] private float hardDiffLvl = 2.0f;
-    public TextMeshProUGUI _timeText;
+    private bool _isPaused = false;
+    private float _currentSpeed = 1.0f;
+    private int _diffLvl = 1;
+    private TextMeshProUGUI _diffBtnText;
+
+    [SerializeField] private float _easyDiffLvl = 1.0f;
+    [SerializeField] private float _midDiffLvl = 1.5f;
+    [SerializeField] private float _hardDiffLvl = 2.0f;
+
+    public TextMeshProUGUI timeText;
     public Button diffBtn;
     public GameObject pausePanel; // Принимаем объект панели паузы, чтобы ее скрыть и показать
-    // interface
-    public void PauseToggle() {
-        if (isPaused) {
+
+    public void PauseToggle()
+    {
+        if (_isPaused)
+        {
             ResumeMake();
-        } else {
+        }
+        else
+        {
             PauseMake();
         }
     }
-    public void SpeedToggle() {
-        if (m_diffLvl == 1) {
+
+    public void SpeedToggle()
+    {
+        if (_diffLvl == 1)
+        {
             MidDiffLvl();
-        } else if (m_diffLvl == 2) {
+        }
+        else if (_diffLvl == 2)
+        {
             HardDiffLvl();
-        } else if (m_diffLvl == 3) {
+        }
+        else if (_diffLvl == 3)
+        {
             EasyDiffLvl();
         }
     }
-    // start
-    void Start() {
+
+    void Start()
+    {
         //PauseMake();
         ResumeMake();
-        diffBtnText = diffBtn.GetComponentInChildren<TextMeshProUGUI>();
+        _diffBtnText = diffBtn.GetComponentInChildren<TextMeshProUGUI>();
     }
-    // Update
-    void Update() {
+
+    void Update()
+    {
         UpdateMaker();
     }
-    private void UpdateMaker() {
+
+    private void UpdateMaker()
+    {
         // DisplayTime(Time.time);
         CheckPauseButton();
     }
-    private void DisplayTime(float timeToDisplay) {
+
+    private void DisplayTime(float timeToDisplay)
+    {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         // Debug.Log(minutes+""+seconds);
-        _timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-    private void CheckPauseButton() {
+
+    private void CheckPauseButton()
+    {
         // И поменять на стандартную клавишу для разных платформ!!!
-        if (Input.GetKeyDown(KeyCode.Escape)) { // KeyCode.Y
+        if (Input.GetKeyDown(KeyCode.Escape))
+        { // KeyCode.Y
             PauseToggle();
         }
     }
-    private void ResumeMake() {
+
+    private void ResumeMake()
+    {
         pausePanel.SetActive(false);
-        Time.timeScale = m_currentSpeed;
-        isPaused = false;
+        Time.timeScale = _currentSpeed;
+        _isPaused = false;
     }
-    private void PauseMake() {
+
+    private void PauseMake()
+    {
         pausePanel.SetActive(true);
         Time.timeScale = 0.0f;
-        isPaused = true;
+        _isPaused = true;
     }
-    private void EasyDiffLvl() {
-        m_currentSpeed = easyDiffLvl;
-        m_diffLvl = 1;
-        diffBtnText.text = "Easy";
+
+    private void EasyDiffLvl()
+    {
+        _currentSpeed = _easyDiffLvl;
+        _diffLvl = 1;
+        _diffBtnText.text = "Easy";
     }
-    private void MidDiffLvl() {
-        m_currentSpeed = midDiffLvl;
-        m_diffLvl = 2;
-        diffBtnText.text = "Medium";
+
+    private void MidDiffLvl()
+    {
+        _currentSpeed = _midDiffLvl;
+        _diffLvl = 2;
+        _diffBtnText.text = "Medium";
     }
-    private void HardDiffLvl() {
-        m_currentSpeed = hardDiffLvl;
-        m_diffLvl = 3;
-        diffBtnText.text = "Hard";
+
+    private void HardDiffLvl()
+    {
+        _currentSpeed = _hardDiffLvl;
+        _diffLvl = 3;
+        _diffBtnText.text = "Hard";
     }
 }
 // https://t.me/natureModelSpb

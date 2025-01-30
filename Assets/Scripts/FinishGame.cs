@@ -5,31 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class FinishGame : MonoBehaviour
 {
-    [SerializeField] private float speed = 10.0f;
-    [SerializeField] private GameObject bubbleObject;
-    [SerializeField] private GameObject catObject;
-    [SerializeField] private Transform endTriggerTransform;
+    [SerializeField] private float _speed = 10.0f;
+    [SerializeField] private GameObject _playerObject;
+    //[SerializeField] private GameObject _bubbleObject;
+    //[SerializeField] private GameObject _catObject;
+    [SerializeField] private Transform _endTriggerTransform;
 
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
 
     void Start()
     {
-        rb = bubbleObject.gameObject.GetComponent<Rigidbody2D>();
-        catObject.gameObject.GetComponent<Cat>().enabled = false;
+        Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
+        _rb = _playerObject.gameObject.GetComponent<Rigidbody2D>();
+        //_rb = _bubbleObject.gameObject.GetComponent<Rigidbody2D>();
+        //_catObject.gameObject.GetComponent<Cat>().enabled = false;
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + new Vector2(speed * Time.fixedDeltaTime, 0));
+        _rb.MovePosition(_rb.position + new Vector2(_speed * Time.fixedDeltaTime, 0));
 
-        if (bubbleObject.transform.position.x > endTriggerTransform.position.x)
+        //if (_bubbleObject.transform.position.x > _endTriggerTransform.position.x)
+        if (_playerObject.transform.position.x > _endTriggerTransform.position.x)
         {
-            SceneManager.LoadScene("Level1");
+            //SceneManager.LoadScene("Level1");
+            GameManager.Instance.LoadFirstLevel();
         }
     }
 
     private void LateUpdate()
     {
-        catObject.transform.position = bubbleObject.transform.position;
+        //_catObject.transform.position = _bubbleObject.transform.position;
     }
 }

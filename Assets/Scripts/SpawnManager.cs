@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject spawnPoint;
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject _spawnPoint;
+    [SerializeField] private GameObject _player;
 
     // Start is called before the first frame update
     void Start()
@@ -15,10 +15,14 @@ public class SpawnManager : MonoBehaviour
 
     public void Respawn()
     {
-        if (player != null)
+        if (_player != null && _spawnPoint != null)
         {
-            player.transform.position = spawnPoint.transform.position;
-            player.GetComponent<Player>().Reset();
+            _player.transform.position = _spawnPoint.transform.position;
+            _player.GetComponent<Player>().Reset();
+        }
+        else
+        {
+            Debug.Log("Player is null or spawnPoint is null!");
         }
     }
 }

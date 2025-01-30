@@ -5,18 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class RestartScene : MonoBehaviour
 {
-    void Start() {
-        
+    void Start()
+    {
+
     }
-    void Update() {
+
+    void Update()
+    {
         InputYDown();
     }
-    private void InputYDown() {
-        if (Input.GetKeyDown(KeyCode.Y)) {
+
+    private void InputYDown()
+    {
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
             SceneLoader();
         }
     }
-    public void SceneLoader() {
+
+    public void SceneLoader()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

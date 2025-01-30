@@ -8,6 +8,8 @@ TagManager:
   - FinishTrigger
   - FalledCatTrigger
   - Boiler
+  - Cat
+  - Bubble
   layers:
   - Default
   - TransparentFX

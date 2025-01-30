@@ -6,35 +6,42 @@ using TMPro;
 
 public class CameraZoom : MonoBehaviour
 {
-    private TextMeshProUGUI zoomBtnText;
-    private bool isZoomBig = true;
+    private TextMeshProUGUI _zoomBtnText;
+    private bool _isZoomBig = true;
     // public
     public Camera cam;
     public Button zoomBtn;
+
     // interface
-    public void ZoomCamerToggle() {
-        if (isZoomBig) {
+    public void ZoomCamerToggle()
+    {
+        if (_isZoomBig)
+        {
             ZoomMakeSmall();
-        } else {
+        }
+        else
+        {
             ZoomMakeBig();
         }
     }
     void Start()
     {
         cam = GetComponent<Camera>();
-        zoomBtnText = zoomBtn.GetComponentInChildren<TextMeshProUGUI>();
+        _zoomBtnText = zoomBtn.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private void ZoomMakeSmall() {
+    private void ZoomMakeSmall()
+    {
         // Set the size of the viewing volume you'd like the orthographic Camera to pick up
         cam.orthographicSize = 6.0f;
-        isZoomBig = false;
-        zoomBtnText.text = "Zoom x6";
+        _isZoomBig = false;
+        _zoomBtnText.text = "Zoom x6";
     }
-    private void ZoomMakeBig() {
+    private void ZoomMakeBig()
+    {
         // Set the size of the viewing volume you'd like the orthographic Camera to pick up
         cam.orthographicSize = 8.0f;
-        isZoomBig = true;
-        zoomBtnText.text = "Zoom x8";
+        _isZoomBig = true;
+        _zoomBtnText.text = "Zoom x8";
     }
 }
