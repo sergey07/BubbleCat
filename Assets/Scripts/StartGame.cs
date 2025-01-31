@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
@@ -14,13 +11,6 @@ public class StartGame : MonoBehaviour
     [SerializeField] private float _timeBeforeBubbleHasCat = 2.0f;
     // Время в секундах перед загрузкой первого уровня игры
     [SerializeField] private float _timeBeforeLoadFirstLevel = 1.0f;
-
-    // Цель для масштабирования брызг пузыря по оси X
-    //[SerializeField] private float _newBubbleBoomScaleX = 12.0f;
-    // Цель для масштабирования брызг пузыря по оси Y
-    //[SerializeField] private float _newBubbleBoomScaleY = 2.0f;
-    // Скорость масштабирования брыз пузыря
-    //[SerializeField] private float _scaleBubbleBoomSpeed = 2.0f;
 
     [SerializeField] private Animator _animator;
 
@@ -49,6 +39,7 @@ public class StartGame : MonoBehaviour
 
         _playerObject.SetActive(false);
         _catObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        _playerObject.transform.localScale = new Vector3(4.0f, 4.0f, 4.0f);
         //_bubbleObject.SetActive(false);
         //_bubbleBoomObject.SetActive(false);
 

@@ -9,6 +9,7 @@ public class GameInput : MonoBehaviour
 
     [SerializeField] private FixedJoystick _fixedJoystick;
     private PlayerInputActions _playerInputActions;
+    private bool _isJoystickVisible = false;
 
     private void Awake()
     {
@@ -21,6 +22,8 @@ public class GameInput : MonoBehaviour
     public Vector2 GetMovementVector()
     {
         Vector2 inputVector = _playerInputActions.Player.Move.ReadValue<Vector2>();
+
+        string currentSceneName = GameManager.Instance.GetCurrentSceneName();
 
         // Если схватил за джойстик, то он перезапишет значения - OnlyMeRus
         if (_fixedJoystick != null && (_fixedJoystick.Vertical != 0 || _fixedJoystick.Horizontal != 0))
@@ -39,5 +42,22 @@ public class GameInput : MonoBehaviour
     {
         Vector3 mousePos = Mouse.current.position.ReadValue();
         return mousePos;
+    }
+
+    public bool IsJoystickVisible()
+    {
+        return _isJoystickVisible;
+    }
+
+    public void ShowJoystick()
+    {
+        _fixedJoystick.gameObject.SetActive(true);
+        _isJoystickVisible = true;
+    }
+
+    public void HideJoystick()
+    {
+        _fixedJoystick.gameObject.SetActive(false);
+        _isJoystickVisible = false;
     }
 }

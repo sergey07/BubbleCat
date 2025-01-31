@@ -19,12 +19,7 @@ public class RestartScene : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            SceneLoader();
+            GameManager.Instance.RestartScene();
         }
-    }
-
-    public void SceneLoader()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

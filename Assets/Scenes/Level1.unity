@@ -333,6 +333,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357250864}
   m_CullTransparentMesh: 1
+--- !u!114 &494906639 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1331124974952298070, guid: 29de6104ed46c4b46852792a24280969, type: 3}
+  m_PrefabInstance: {fileID: 1397345115}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &558755387
 GameObject:
   m_ObjectHideFlags: 0
@@ -35524,26 +35535,18 @@ PrefabInstance:
       propertyPath: musicBtn
       value: 
       objectReference: {fileID: 1397345119}
-    - target: {fileID: 5585079371691480940, guid: b98b0f6b74adebc48a2a276149997af8, type: 3}
-      propertyPath: targetObject
+    - target: {fileID: 2733561766179022561, guid: b98b0f6b74adebc48a2a276149997af8, type: 3}
+      propertyPath: _fixedJoystick
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 494906639}
     - target: {fileID: 5585079371691480940, guid: b98b0f6b74adebc48a2a276149997af8, type: 3}
       propertyPath: _targetObject
       value: 
       objectReference: {fileID: 1397345117}
     - target: {fileID: 5869565855423495497, guid: b98b0f6b74adebc48a2a276149997af8, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5869565855423495497, guid: b98b0f6b74adebc48a2a276149997af8, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 1397345117}
-    - target: {fileID: 5869565855423495497, guid: b98b0f6b74adebc48a2a276149997af8, type: 3}
-      propertyPath: spawnPoint
-      value: 
-      objectReference: {fileID: 880501961}
     - target: {fileID: 5869565855423495497, guid: b98b0f6b74adebc48a2a276149997af8, type: 3}
       propertyPath: _spawnPoint
       value: 

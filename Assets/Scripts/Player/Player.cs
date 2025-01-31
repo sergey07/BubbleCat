@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public enum PlayerStatus { InStartGameScene, InGame, BubbleBurst, InCatDiedScene, InFinishGameScene }
 
@@ -69,6 +70,10 @@ public class Player : MonoBehaviour
         switch (_playerStatus)
         {
             case PlayerStatus.InGame:
+                if (!GameInput.Instance.IsJoystickVisible())
+                {
+                    GameInput.Instance.ShowJoystick();
+                }
                 HandleInput();
                 break;
             case PlayerStatus.BubbleBurst:
@@ -98,6 +103,8 @@ public class Player : MonoBehaviour
         {
             _bubbleObject.gameObject.SetActive(false);
             _catObject.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+
+            GameObject.Find("CollideAble").gameObject.GetComponent<TilemapCollider2D>().enabled = false;
 
             AudioSource audioSource = _catObject.gameObject.GetComponent<AudioSource>();
 

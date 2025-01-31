@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class Cat : MonoBehaviour
 {
     [SerializeField] private Transform _playerTransform;
-    [SerializeField] private GameObject _falledCatTrigger;
     [SerializeField] private GameObject _catVisual;
 
     [SerializeField] public AudioClip _audioClipMau;
