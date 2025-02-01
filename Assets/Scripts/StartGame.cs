@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
+    [Header("Time Configuration")]
     // ����� � �������� �� ����������� ���� ��� ������
     [SerializeField] private float _timeBeforeTranslateCatByWitch = 2.0f;
     // ����� � �������� �� ������������� ���� � ����
@@ -11,10 +12,14 @@ public class StartGame : MonoBehaviour
     [SerializeField] private float _timeBeforeBubbleHasCat = 2.0f;
     // ����� � �������� ����� ��������� ������� ������ ����
     [SerializeField] private float _timeBeforeLoadFirstLevel = 1.0f;
+
+    [Space]
     [SerializeField] private float _catLocalScale = 1.0f;
 
+    [Space]
     [SerializeField] private Animator _animator;
 
+    [Header("Game Objects")]
     // ������ ������
     [SerializeField] private GameObject _witchObject;
     // ������ ������
@@ -25,9 +30,12 @@ public class StartGame : MonoBehaviour
     [SerializeField] private GameObject _bubbleObject;
     // ������ ����� �� ���������� ������
     [SerializeField] private GameObject _bubbleBoomObject;
+
+    [Space]
     // �����, ��� ���������� ���
     [SerializeField] private Transform _spawnPoint;
 
+    [Header("Sprites")]
     // ������ ������ � ����� � �����
     [SerializeField] private Sprite _witchWithCat;
     // ������ ������ ��� ����
