@@ -3,33 +3,34 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
-    // Время в секундах до перемещения кота над котлом
+    // пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private float _timeBeforeTranslateCatByWitch = 2.0f;
-    // Время в секундах до опрокидывания кота в котёл
+    // пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
     [SerializeField] private float _timeBeforeBoilerBoils = 2.0f;
-    // Время в секундах перед формированием пузыря с котом внутри
+    // пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private float _timeBeforeBubbleHasCat = 2.0f;
-    // Время в секундах перед загрузкой первого уровня игры
+    // пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     [SerializeField] private float _timeBeforeLoadFirstLevel = 1.0f;
+    [SerializeField] private float _catLocalScale = 1.0f;
 
     [SerializeField] private Animator _animator;
 
-    // Объект ведьмы
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private GameObject _witchObject;
-    // Объект игрока
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private GameObject _playerObject;
-    // Объект кота
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     [SerializeField] private GameObject _catObject;
-    // Объект пузыря
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private GameObject _bubbleObject;
-    // Объект брызг от лопнувшего пузыря
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private GameObject _bubbleBoomObject;
-    // Место, где поялвяется кот
+    // пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
     [SerializeField] private Transform _spawnPoint;
 
-    // Спрайт ведьмы с котом в руках
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private Sprite _witchWithCat;
-    // Спрайт ведьмы без кота
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     [SerializeField] private Sprite _witchWithoutCat;
 
     // Start is called before the first frame update
@@ -38,7 +39,7 @@ public class StartGame : MonoBehaviour
         Player.Instance.SetPlayerStatus(PlayerStatus.InStartGameScene);
 
         _playerObject.SetActive(false);
-        _catObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        _catObject.transform.localScale = new Vector3(_catLocalScale, _catLocalScale, _catLocalScale);
         _playerObject.transform.localScale = new Vector3(4.0f, 4.0f, 4.0f);
         //_bubbleObject.SetActive(false);
         //_bubbleBoomObject.SetActive(false);
@@ -51,12 +52,12 @@ public class StartGame : MonoBehaviour
         StartCoroutine(TranslateCatByWitch());
     }
 
-    // Ведьма перемещает кота над котлом
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     IEnumerator TranslateCatByWitch()
     {
         yield return new WaitForSeconds(_timeBeforeTranslateCatByWitch);
 
-        // Поворачиваем ведьму по оси Х
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅ
         _witchObject.transform.localScale = new Vector3(-_witchObject.transform.localScale.x, _witchObject.transform.localScale.y, _witchObject.transform.localScale.z);
         //catObject.transform.parent = null;
 
@@ -65,7 +66,7 @@ public class StartGame : MonoBehaviour
         StartCoroutine(BoilerBoils());
     }
 
-    // Происходит взрыв из котла
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     IEnumerator BoilerBoils()
     {
         yield return new WaitForSeconds(_timeBeforeBoilerBoils);

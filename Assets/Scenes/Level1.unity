@@ -816,6 +816,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 776105880923596443, guid: 29de6104ed46c4b46852792a24280969, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1497683670}
     - target: {fileID: 3742908041888843655, guid: 29de6104ed46c4b46852792a24280969, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -35586,6 +35590,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7ce835632ce724fb6df3dfb10e4e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!20 &1497683670 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8420999793011334324, guid: b98b0f6b74adebc48a2a276149997af8, type: 3}
+  m_PrefabInstance: {fileID: 1497683667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1734960733
 GameObject:
   m_ObjectHideFlags: 0
