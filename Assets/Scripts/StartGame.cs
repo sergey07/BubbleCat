@@ -73,8 +73,8 @@ public class StartGame : MonoBehaviour
 
         _witchObject.GetComponent<SpriteRenderer>().sprite = _witchWithoutCat;
         _playerObject.SetActive(true);
+        _catObject.SetActive(false);
         _bubbleObject.SetActive(false);
-        _catObject.SetActive(true);
         _bubbleBoomObject.SetActive(true);
 
         //_bubbleBoomObject.transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(_newBubbleBoomScaleX, _newBubbleBoomScaleY, 1), _scaleBubbleBoomSpeed * Time.fixedDeltaTime);
@@ -92,6 +92,7 @@ public class StartGame : MonoBehaviour
         _catObject.transform.position = _bubbleObject.transform.position;
         _catObject.transform.parent = _bubbleObject.transform;
         _bubbleObject.SetActive(true);
+        _catObject.SetActive(true);
 
         StartCoroutine(LoadFirstLevel());
     }
