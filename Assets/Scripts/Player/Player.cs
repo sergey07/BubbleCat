@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 
 public enum PlayerStatus { InStartGameScene, InGame, BubbleBurst, InCatDiedScene, InFinishGameScene }
 
+[SelectionBase]
 public class Player : MonoBehaviour
 {
     public static Player Instance {  get; private set; }
