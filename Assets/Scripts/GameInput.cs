@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +6,7 @@ public class GameInput : MonoBehaviour
     public static GameInput Instance { get; private set; }
 
     [SerializeField] private FixedJoystick _fixedJoystick;
+
     private PlayerInputActions _playerInputActions;
     private bool _isJoystickVisible = false;
 

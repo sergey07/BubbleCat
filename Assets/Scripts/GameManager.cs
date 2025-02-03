@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,11 +7,19 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [SerializeField] private TextMeshProUGUI _txtChestCounter;
+
     private string _currentSceneName = "StartScene";
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        _txtChestCounter = GameObject.Find("txtChestCounter").GetComponent<TextMeshProUGUI>();
+        _txtChestCounter.text = (GameProgress.levelChestCount + GameProgress.chestCount).ToString();
     }
 
     public string GetCurrentSceneName()
@@ -30,6 +38,8 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
+        GameProgress.chestCount += GameProgress.levelChestCount;
+        GameProgress.levelChestCount = 0;
 
         if (_currentSceneName != "Level1")
         {
@@ -46,6 +56,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadCatDiedScene()
     {
+        GameProgress.levelChestCount = 0;
+
         GameProgress.currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("CatDied");
 
@@ -55,5 +67,11 @@ public class GameManager : MonoBehaviour
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void AddReward(int reward)
+    {
+        GameProgress.levelChestCount += reward;
+        _txtChestCounter.text = (GameProgress.levelChestCount + GameProgress.chestCount).ToString();
     }
 }

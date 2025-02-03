@@ -17,9 +17,6 @@ public class RestartScene : MonoBehaviour
 
     private void InputYDown()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            GameManager.Instance.RestartScene();
-        }
+        
     }
 }
