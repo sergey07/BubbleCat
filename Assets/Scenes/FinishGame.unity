@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
-  _playerObject: {fileID: 0}
+  _playerObject: {fileID: 576281417}
   _endTriggerTransform: {fileID: 212964371}
 --- !u!1001 &183881275
 PrefabInstance:
@@ -527,6 +527,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e0a8e71f44b282459b17e36313ad06a, type: 3}
+--- !u!1 &576281417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7635279973072832729, guid: 9e0a8e71f44b282459b17e36313ad06a, type: 3}
+  m_PrefabInstance: {fileID: 576281416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1122618152
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 1533517573}
-  _player: {fileID: 0}
+  _player: {fileID: 576281417}
 --- !u!4 &1380912403
 Transform:
   m_ObjectHideFlags: 0

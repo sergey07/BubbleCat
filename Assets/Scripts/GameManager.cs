@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
+        _currentSceneName = SceneManager.GetActiveScene().name;
         GameProgress.chestCount += GameProgress.levelChestCount;
         GameProgress.levelChestCount = 0;
 
-        if (_currentSceneName != "Level1")
+        if (_currentSceneName != "Level3")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
