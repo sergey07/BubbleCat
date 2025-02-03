@@ -4,13 +4,9 @@ using UnityEngine;
 public class StartGame : MonoBehaviour
 {
     [Header("Time Configuration")]
-    // ����� � �������� �� ����������� ���� ��� ������
     [SerializeField] private float _timeBeforeTranslateCatByWitch = 2.0f;
-    // ����� � �������� �� ������������� ���� � ����
     [SerializeField] private float _timeBeforeBoilerBoils = 2.0f;
-    // ����� � �������� ����� ������������� ������ � ����� ������
     [SerializeField] private float _timeBeforeBubbleHasCat = 2.0f;
-    // ����� � �������� ����� ��������� ������� ������ ����
     [SerializeField] private float _timeBeforeLoadFirstLevel = 1.0f;
 
     [Space]
@@ -20,25 +16,17 @@ public class StartGame : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     [Header("Game Objects")]
-    // ������ ������
     [SerializeField] private GameObject _witchObject;
-    // ������ ������
     [SerializeField] private GameObject _playerObject;
-    // ������ ����
     [SerializeField] private GameObject _catObject;
-    // ������ ������
     [SerializeField] private GameObject _bubbleObject;
-    // ������ ����� �� ���������� ������
     [SerializeField] private GameObject _bubbleBoomObject;
 
     [Space]
-    // �����, ��� ���������� ���
     [SerializeField] private Transform _spawnPoint;
 
     [Header("Sprites")]
-    // ������ ������ � ����� � �����
     [SerializeField] private Sprite _witchWithCat;
-    // ������ ������ ��� ����
     [SerializeField] private Sprite _witchWithoutCat;
 
     // Start is called before the first frame update
@@ -60,12 +48,10 @@ public class StartGame : MonoBehaviour
         StartCoroutine(TranslateCatByWitch());
     }
 
-    // ������ ���������� ���� ��� ������
     IEnumerator TranslateCatByWitch()
     {
         yield return new WaitForSeconds(_timeBeforeTranslateCatByWitch);
 
-        // ������������ ������ �� ��� �
         _witchObject.transform.localScale = new Vector3(-_witchObject.transform.localScale.x, _witchObject.transform.localScale.y, _witchObject.transform.localScale.z);
         //catObject.transform.parent = null;
 
@@ -74,7 +60,6 @@ public class StartGame : MonoBehaviour
         StartCoroutine(BoilerBoils());
     }
 
-    // ���������� ����� �� �����
     IEnumerator BoilerBoils()
     {
         yield return new WaitForSeconds(_timeBeforeBoilerBoils);

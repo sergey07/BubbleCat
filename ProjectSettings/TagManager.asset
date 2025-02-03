@@ -10,6 +10,7 @@ TagManager:
   - Boiler
   - Cat
   - Bubble
+  - Chest
   layers:
   - Default
   - TransparentFX

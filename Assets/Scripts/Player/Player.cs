@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     private Bubble _bubbleComponent;
     private Cat _catComponent;
 
+    private Vector2 _inputVector;
+
     //private bool _isFalling = false;
 
     private void Awake()
@@ -66,6 +68,19 @@ public class Player : MonoBehaviour
         _playerStatus = status;
     }
 
+    private void Update()
+    {
+        if (_playerStatus == PlayerStatus.InGame)
+        {
+            _inputVector = GameInput.Instance.GetMovementVector();
+
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                GameManager.Instance.RestartScene();
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         switch (_playerStatus)
@@ -86,13 +101,11 @@ public class Player : MonoBehaviour
 
     private void HandleInput()
     {
-        Vector2 inputVector = GameInput.Instance.GetMovementVector();
-
         float deltaScale = _bubbleComponent.GetDeltaScale();
         float velocityY = deltaScale * _ySpeedMultiplayer;
         velocityY = Mathf.Clamp(velocityY, -_maxYSpeed, _maxYSpeed);
 
-        float newPosX = inputVector.x * (_horizontalSpeed * Time.fixedDeltaTime);
+        float newPosX = _inputVector.x * (_horizontalSpeed * Time.fixedDeltaTime);
         float newPosY = velocityY * Time.fixedDeltaTime; 
 
         _rb.MovePosition(_rb.position + new Vector2(newPosX, newPosY));
