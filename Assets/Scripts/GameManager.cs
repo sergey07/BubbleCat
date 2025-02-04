@@ -7,9 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [SerializeField] private GameObject _chestCounterPanel;
     [SerializeField] private TextMeshProUGUI _txtChestCounter;
 
-    private string _currentSceneName = "StartScene";
+    private string _currentSceneName;
 
     private void Awake()
     {
@@ -18,8 +19,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _txtChestCounter = GameObject.Find("txtChestCounter").GetComponent<TextMeshProUGUI>();
-        _txtChestCounter.text = (GameProgress.levelChestCount + GameProgress.chestCount).ToString();
+        _currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (_currentSceneName == "StartScene")
+        {
+            _chestCounterPanel.SetActive(false);
+        }
+        else
+        {
+            _chestCounterPanel.SetActive(true);
+            _txtChestCounter.text = (GameProgress.levelChestCount + GameProgress.chestCount).ToString();
+        }
     }
 
     public string GetCurrentSceneName()

@@ -153,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6443373246435607199
 RectTransform:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297c251eb5f14ce44acd419f886412ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pauseCounter: {fileID: 4461380324133155547}
+  _pauseCounter: {fileID: 0}
   _musicToggler: {fileID: 0}
   _cameraZoom: {fileID: 0}
 --- !u!1 &1015596240671314782
@@ -1307,7 +1307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2194225178668210959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1717,6 +1717,7 @@ GameObject:
   - component: {fileID: 1942319153892610726}
   - component: {fileID: 974590143916371229}
   - component: {fileID: 4461380324133155547}
+  - component: {fileID: 1780874170032353890}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1810,6 +1811,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
 --- !u!114 &4461380324133155547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6919237458333023643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb51cbac12a2df41a0f556d3213424c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _diffBtnText: {fileID: 8753696698330112276}
+  _easyDiffLvl: 1
+  _midDiffLvl: 1.5
+  _hardDiffLvl: 2
+  diffBtn: {fileID: 5077340330559064221}
+  pausePanel: {fileID: 978497907219402107}
+--- !u!114 &1780874170032353890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2421,7 +2440,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CameraZoom, Assembly-CSharp
-        m_MethodName: ZoomCamerToggle
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
