@@ -16,11 +16,20 @@ public class GameInput : MonoBehaviour
 
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Enable();
+
+        ShowJoystick();
     }
 
     public Vector2 GetMovementVector()
     {
         Vector2 inputVector = _playerInputActions.Player.Move.ReadValue<Vector2>();
+
+        if (_playerInputActions.Player.Move.ReadValue<Vector2>() != Vector2.zero &&
+        _playerInputActions.Player.Move.ReadValue<Vector2>() != null)
+        {
+            // print(_playerInputActions.Player.Move.ReadValue<Vector2>());
+            HideJoystick();
+        }
 
         string currentSceneName = GameManager.Instance.GetCurrentSceneName();
 
@@ -48,13 +57,13 @@ public class GameInput : MonoBehaviour
         return _isJoystickVisible;
     }
 
-    public void ShowJoystick()
+    private void ShowJoystick()
     {
         _fixedJoystick.gameObject.SetActive(true);
         _isJoystickVisible = true;
     }
 
-    public void HideJoystick()
+    private void HideJoystick()
     {
         _fixedJoystick.gameObject.SetActive(false);
         _isJoystickVisible = false;

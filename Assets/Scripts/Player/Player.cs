@@ -12,20 +12,20 @@ public class Player : MonoBehaviour
 {
     public static Player Instance {  get; private set; }
 
-    // Скорость по горизонтали
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private float _horizontalSpeed = 5.0f;
-    // Максимальная вертикальная скорость
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private float _maxYSpeed = 20.0f;
-    // Множитель для вертикальной скорости
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private float _ySpeedMultiplayer = 2f;
-    // Скорость падения кота
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     [SerializeField] private float _fallingSpeed = 5.0f;
 
-    // Объект кота
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     [SerializeField] private GameObject _catObject;
-    // Объект пузыря
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private GameObject _bubbleObject;
-    // Место, где поялвяется кот в сцене, где он падает в котёл
+    // пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
     //[SerializeField] private Transform _spawnPointInCatDiedScene;
 
     [SerializeField] private PlayerStatus _playerStatus = PlayerStatus.InGame;
@@ -86,10 +86,6 @@ public class Player : MonoBehaviour
         switch (_playerStatus)
         {
             case PlayerStatus.InGame:
-                if (!GameInput.Instance.IsJoystickVisible())
-                {
-                    GameInput.Instance.ShowJoystick();
-                }
                 HandleInput();
                 break;
             case PlayerStatus.BubbleBurst:
