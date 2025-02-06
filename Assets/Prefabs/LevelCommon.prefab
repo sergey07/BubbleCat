@@ -3294,7 +3294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseCounter: {fileID: 8057989270416218636}
   _musicToggler: {fileID: 0}
-  _cameraZoom: {fileID: 0}
+  cam: {fileID: 8420999793011334324}
+  zoomBtn: {fileID: 4406670903138409314}
 --- !u!1 &7754380281964989593
 GameObject:
   m_ObjectHideFlags: 0

@@ -132,6 +132,10 @@ public class Player : MonoBehaviour
     public void Reset()
     {
         gameObject.SetActive(true);
-        _bubbleComponent.ResetScale();
+
+        if (_bubbleComponent != null)
+        {
+            _bubbleComponent.ResetScale();
+        }
     }
 }

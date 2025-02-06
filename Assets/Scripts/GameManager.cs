@@ -21,14 +21,17 @@ public class GameManager : MonoBehaviour
     {
         _currentSceneName = SceneManager.GetActiveScene().name;
 
-        if (_currentSceneName == "StartScene")
+        if (_chestCounterPanel != null)
         {
-            _chestCounterPanel.SetActive(false);
-        }
-        else
-        {
-            _chestCounterPanel.SetActive(true);
-            _txtChestCounter.text = (GameProgress.levelChestCount + GameProgress.chestCount).ToString();
+            if (_currentSceneName == "StartScene")
+            {
+                _chestCounterPanel.SetActive(false);
+            }
+            else
+            {
+                _chestCounterPanel.SetActive(true);
+                _txtChestCounter.text = (GameProgress.levelChestCount + GameProgress.chestCount).ToString();
+            }
         }
     }
 
