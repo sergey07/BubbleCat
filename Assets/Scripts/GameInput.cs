@@ -20,6 +20,17 @@ public class GameInput : MonoBehaviour
         ShowJoystick();
     }
 
+    private void UpdateMaker()
+    {
+        // DisplayTime(Time.time);
+        // CheckPauseButton();
+    }
+
+    public bool GetEscapeKey()
+    {
+        return Input.GetKeyDown(KeyCode.Escape);
+    }
+
     public Vector2 GetMovementVector()
     {
         Vector2 inputVector = _playerInputActions.Player.Move.ReadValue<Vector2>();
