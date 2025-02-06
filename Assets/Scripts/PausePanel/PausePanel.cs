@@ -21,7 +21,6 @@ public class PausePanel : MonoBehaviour
 
     public void Restart()
     {
-        //_pauseCounter.RestartLevel();
         GameManager.Instance.RestartScene();
     }
 
