@@ -7,7 +7,7 @@ using TMPro;
 
 public class PausePanel : MonoBehaviour
 {
-    [SerializeField] private MusicToggler _musicToggler;
+    // [SerializeField] private MusicToggler _musicToggler;
     
     // private bool _isPaused = false;
     private float _currentSpeed = 1.0f;
@@ -45,7 +45,7 @@ public class PausePanel : MonoBehaviour
 
     public void SoundToggler()
     {
-        _musicToggler.MusicToggle();
+        // _musicToggler.MusicToggle();
     }
 
     public void ChangeDifficulty()
