@@ -1,18 +1,20 @@
-using System;
+// using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PausePanel : MonoBehaviour
 {
     [SerializeField] private PauseCounter _pauseCounter;
     [SerializeField] private MusicToggler _musicToggler;
-    [SerializeField] private CameraZoom _cameraZoom;
 
-    private void Awake()
-    {
-        
-    }
+    private TextMeshProUGUI _zoomBtnText;
+    private bool _isZoomBig = true;
+    // public
+    public Camera cam;
+    public Button zoomBtn;
 
     public void Resume()
     {
@@ -34,13 +36,41 @@ public class PausePanel : MonoBehaviour
         _pauseCounter.SpeedToggle();
     }
 
-    public void ChangeScale()
-    {
-        _cameraZoom.ZoomCamerToggle();
-    }
 
     public void Exit()
     {
+        // Application.ExternalCall("location.reload");
+    }
+    // interface
+    public void ChangeScale()
+    {
+        if (_isZoomBig)
+        {
+            ZoomMakeSmall();
+        }
+        else
+        {
+            ZoomMakeBig();
+        }
+    }
+    void Start()
+    {
+        cam = GetComponent<Camera>();
+        _zoomBtnText = zoomBtn.GetComponentInChildren<TextMeshProUGUI>();
+    }
 
+    private void ZoomMakeSmall()
+    {
+        // Set the size of the viewing volume you'd like the orthographic Camera to pick up
+        cam.orthographicSize = 6.0f;
+        _isZoomBig = false;
+        _zoomBtnText.text = "Zoom x6";
+    }
+    private void ZoomMakeBig()
+    {
+        // Set the size of the viewing volume you'd like the orthographic Camera to pick up
+        cam.orthographicSize = 8.0f;
+        _isZoomBig = true;
+        _zoomBtnText.text = "Zoom x8";
     }
 }
