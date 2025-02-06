@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,11 @@ public class PausePanel : MonoBehaviour
     [SerializeField] private MusicToggler _musicToggler;
     [SerializeField] private CameraZoom _cameraZoom;
 
+    private void Awake()
+    {
+        
+    }
+
     public void Resume()
     {
         _pauseCounter.PauseToggle();
@@ -15,7 +21,8 @@ public class PausePanel : MonoBehaviour
 
     public void Restart()
     {
-        _pauseCounter.RestartLevel();
+        //_pauseCounter.RestartLevel();
+        GameManager.Instance.RestartScene();
     }
 
     public void SoundToggler()

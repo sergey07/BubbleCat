@@ -25,6 +25,9 @@ public class Boiler : MonoBehaviour
     private void Update()
     {
         _playerStatus = Player.Instance.GetPlayerStatus();
+
+        Debug.Log(_playerStatus);
+
         if (!_isSoundTriggerAdded && _playerStatus == PlayerStatus.InCatDiedScene)
         {
             _isSoundTriggerAdded = true;
