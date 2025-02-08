@@ -8,13 +8,13 @@ public class Bubble : MonoBehaviour
     // Объект брызг лопнувшего пузыря
     [SerializeField] private GameObject _bubbleBoomObject;
 
-    // Оригинальный размер пузыря
+    // Original size of the bubble
     [SerializeField] private float _originSize = 3f;
-    // Минимальный размер пузыря
+    // Min size of the bubble
     [SerializeField] private float _minSize = 2f;
-    // Максимальный размер пузыря
+    // Max size of the bubble
     [SerializeField] private float _maxSize = 100f;
-    // Скорость изменения размера пузыря
+    // The speed of changing size of the bubble
     [SerializeField] private float _scaleSpeed = 1f;
 
     private Vector3 _originScale;

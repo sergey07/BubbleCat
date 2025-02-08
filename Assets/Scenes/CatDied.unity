@@ -8264,7 +8264,7 @@ GameObject:
   - component: {fileID: 1080015723}
   m_Layer: 0
   m_Name: SpawnPoint
-  m_TagString: Untagged
+  m_TagString: SpawnPoint
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9523,7 +9523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45325b7f886e49c4d89bb1d5faf8378e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPoint: {fileID: 1080015722}
   _player: {fileID: 1319365812}
 --- !u!4 &1948494509
 Transform:
@@ -10206,8 +10205,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297c251eb5f14ce44acd419f886412ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pauseCounter: {fileID: 296337616}
-  _musicToggler: {fileID: 0}
+  _difficultyBtnText: {fileID: 0}
+  _easyDifficultyLvl: 1
+  _midDifficultyLvl: 1.5
+  _hardDifficultyLvl: 2
+  difficultyBtn: {fileID: 0}
   cam: {fileID: 0}
   zoomBtn: {fileID: 0}
 --- !u!114 &2138625050

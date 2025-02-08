@@ -11,6 +11,8 @@ TagManager:
   - Cat
   - Bubble
   - Chest
+  - SpawnPoint
+  - EndTrigger
   layers:
   - Default
   - TransparentFX
