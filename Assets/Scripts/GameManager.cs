@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _chestCounterPanel;
     [SerializeField] private TextMeshProUGUI _txtChestCounter;
 
+    private int _sceneCount;
     private string _currentSceneName;
 
     private void Awake()
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _sceneCount = SceneManager.sceneCountInBuildSettings;
+
         _currentSceneName = SceneManager.GetActiveScene().name;
 
         if (_chestCounterPanel != null)
@@ -54,7 +57,7 @@ public class GameManager : MonoBehaviour
         GameProgress.chestCount += GameProgress.levelChestCount;
         GameProgress.levelChestCount = 0;
 
-        if (_currentSceneName != "Level3")
+        if (_currentSceneName != "Level" + (_sceneCount - 3))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
