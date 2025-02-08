@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         GameProgress.chestCount += GameProgress.levelChestCount;
         GameProgress.levelChestCount = 0;
 
-        if (_currentSceneName != "Level1")
+        if (_currentSceneName != "Level3")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
