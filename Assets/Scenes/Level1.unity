@@ -883,6 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e03f9e0830c804fae0d15dbb04c0de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pausePanel: {fileID: 1877917457}
 --- !u!1 &1459325415
 GameObject:
   m_ObjectHideFlags: 0
@@ -35470,6 +35471,11 @@ TilemapCollider2D:
 Transform:
   m_CorrespondingSourceObject: {fileID: 390991909477084213, guid: e028e4c2373eb7241be98ee9712ea24f, type: 3}
   m_PrefabInstance: {fileID: 3657124686105165076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1877917457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3941800350913238069, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+  m_PrefabInstance: {fileID: 4638007687636324158}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1948333041
 PrefabInstance:

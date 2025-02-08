@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class ButtonMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject pausePanel; 
+    public void MenuToggler()
     {
-        
+        if (pausePanel.activeSelf)
+        {
+            MenuOff();
+        }
+        else
+        {
+            MenuOn();
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    private void MenuOff()
     {
-        
+        pausePanel.SetActive(false);
+    }
+    private void MenuOn()
+    {
+        pausePanel.SetActive(true);
     }
 }
