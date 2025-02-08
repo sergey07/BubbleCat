@@ -12,12 +12,22 @@ public class GameInput : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            //transform.parent = null;
+            //DontDestroyOnLoad(gameObject);
 
-        _playerInputActions = new PlayerInputActions();
-        _playerInputActions.Enable();
+            Instance = this;
 
-        ShowJoystick();
+            _playerInputActions = new PlayerInputActions();
+            _playerInputActions.Enable();
+
+            ShowJoystick();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void UpdateMaker()

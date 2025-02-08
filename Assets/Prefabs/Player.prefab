@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122926664763048416}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -41.7, y: -22.59, z: 0}
   m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
   m_ConstrainProportionsScale: 0
@@ -393,12 +393,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56db5a0edf0299147904acc2d1686fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClipCpock: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
-  _bubbleBoomObject: {fileID: 3168124936931957454}
   _originSize: 1.2
   _minSize: 0.8
   _maxSize: 100
   _scaleSpeed: 1
+  _bubbleBoomObject: {fileID: 3168124936931957454}
+  _audioClipCpock: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
 --- !u!58 &6133909865327113649
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -629,4 +629,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _normalCat: {fileID: 21300000, guid: 382c4b9587dc78840ab70fc9f38fcf3d, type: 3}
-  _flyingCat: {fileID: 21300000, guid: 5e8183b88c03dc741a3c4a3d3774caca, type: 3}
+  _fallingCat: {fileID: 21300000, guid: 5e8183b88c03dc741a3c4a3d3774caca, type: 3}

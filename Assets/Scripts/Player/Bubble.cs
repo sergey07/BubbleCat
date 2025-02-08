@@ -3,19 +3,25 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
-    // Звук лопанья пузыря
-    [SerializeField] public AudioClip _audioClipCpock;
-    // Объект брызг лопнувшего пузыря
-    [SerializeField] private GameObject _bubbleBoomObject;
-
+    [Header("Size Configuration")]
     // Original size of the bubble
     [SerializeField] private float _originSize = 3f;
     // Min size of the bubble
     [SerializeField] private float _minSize = 2f;
     // Max size of the bubble
     [SerializeField] private float _maxSize = 100f;
+
+    [Header("Speed Configuration")]
     // The speed of changing size of the bubble
     [SerializeField] private float _scaleSpeed = 1f;
+
+    [Header("Game Objects")]
+    // Burst bubble splash object
+    [SerializeField] private GameObject _bubbleBoomObject;
+
+    [Header("Sound Configuration")]
+    // The sound of a bubble bursting
+    [SerializeField] public AudioClip _audioClipCpock;
 
     private Vector3 _originScale;
 
@@ -35,7 +41,7 @@ public class Bubble : MonoBehaviour
         }
     }
 
-    // Возвращает разницу между текущим размером пузыря и его оригинальным размером
+    // Gets different between current size of the bubble and its oroginal size
     public float GetDeltaScale()
     {
         float deltaScale = transform.localScale.x - _originSize;
@@ -73,13 +79,13 @@ public class Bubble : MonoBehaviour
         transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(_originSize, _originSize, _originSize), _scaleSpeed * Time.fixedDeltaTime);
     }
 
-    // Сбрасывает размер пузыря до его оригинального размера
+    // Resets size of the bubble to its original size
     public void ResetScale()
     {
         transform.localScale = _originScale;
     }
 
-    // Лопанье пузыря
+    // Bubble burst
     public void Boom()
     {
         if (_bubbleBoomObject != null)

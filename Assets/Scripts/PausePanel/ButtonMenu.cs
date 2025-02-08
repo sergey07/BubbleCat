@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject pausePanel; 
+    [SerializeField] private GameObject pausePanel;
     public void MenuToggler()
     {
         if (pausePanel.activeSelf)

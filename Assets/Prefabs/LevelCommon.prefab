@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _normalCat: {fileID: 21300000, guid: 382c4b9587dc78840ab70fc9f38fcf3d, type: 3}
-  _flyingCat: {fileID: 21300000, guid: 5e8183b88c03dc741a3c4a3d3774caca, type: 3}
+  _fallingCat: {fileID: 21300000, guid: 5e8183b88c03dc741a3c4a3d3774caca, type: 3}
 --- !u!1 &1303463380275674449
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,12 +468,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56db5a0edf0299147904acc2d1686fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClipCpock: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
-  _bubbleBoomObject: {fileID: 2042629547058080976}
   _originSize: 1.2
   _minSize: 0.8
   _maxSize: 100
   _scaleSpeed: 1
+  _bubbleBoomObject: {fileID: 2042629547058080976}
+  _audioClipCpock: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
 --- !u!58 &4731370083580193907
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1197,7 +1197,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6086258125858469753}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6701171545473622876}
+        m_TargetAssemblyTypeName: ButtonMenu, Assembly-CSharp
+        m_MethodName: MenuToggler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6701171545473622876
 MonoBehaviour:
   m_ObjectHideFlags: 0

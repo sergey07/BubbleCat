@@ -14,7 +14,7 @@ public class BulkSoundTrigger : MonoBehaviour
         }
     }
 
-    // Возвращает информацию о том, коснулся ли игрок триггера или нет
+    // Returns information about whether the cat touched the trigger or not
     public bool IsTriggered()
     {
         return _isTriggered;

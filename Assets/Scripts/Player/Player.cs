@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
@@ -10,24 +7,19 @@ public enum PlayerStatus { InStartGameScene, InGame, BubbleBurst, InCatDiedScene
 [SelectionBase]
 public class Player : MonoBehaviour
 {
-    public static Player Instance {  get; private set; }
+    public static Player Instance { get; private set; }
 
-    // �������� �� �����������
+    [Header("Speed Configuration")]
     [SerializeField] private float _horizontalSpeed = 5.0f;
-    // ������������ ������������ ��������
     [SerializeField] private float _maxYSpeed = 20.0f;
-    // ��������� ��� ������������ ��������
     [SerializeField] private float _ySpeedMultiplayer = 2f;
-    // �������� ������� ����
     [SerializeField] private float _fallingSpeed = 5.0f;
 
-    // ������ ����
+    [Header("Game Objects")]
     [SerializeField] private GameObject _catObject;
-    // ������ ������
     [SerializeField] private GameObject _bubbleObject;
-    // �����, ��� ���������� ��� � �����, ��� �� ������ � ����
-    //[SerializeField] private Transform _spawnPointInCatDiedScene;
 
+    [Space]
     [SerializeField] private PlayerStatus _playerStatus = PlayerStatus.InGame;
 
     private Rigidbody2D _rb;
@@ -36,15 +28,22 @@ public class Player : MonoBehaviour
 
     private Vector2 _inputVector;
 
-    //private bool _isFalling = false;
-
     private void Awake()
     {
-        Instance = this;
-        _rb = GetComponent<Rigidbody2D>();
+        if (Instance == null)
+        {
+            //transform.parent = null;
+            //DontDestroyOnLoad(gameObject);
+            Instance = this;
+            _rb = GetComponent<Rigidbody2D>();
 
-        _bubbleComponent = _bubbleObject.gameObject.GetComponent<Bubble>();
-        _catComponent = _catObject.gameObject.GetComponent<Cat>();
+            _bubbleComponent = _bubbleObject.gameObject.GetComponent<Bubble>();
+            _catComponent = _catObject.gameObject.GetComponent<Cat>();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -124,9 +123,7 @@ public class Player : MonoBehaviour
             _bubbleObject.GetComponent<Bubble>().Boom();
 
             SetPlayerStatus(PlayerStatus.BubbleBurst);
-            _catComponent.SetFalling(true);
-            //catObject.GetComponent<SpriteRenderer>().sprite.name = false;
-        }
+            _catComponent.SetFalling(true);        }
     }
 
     public void Reset()

@@ -6,10 +6,10 @@ public enum CatSprite { Normal, Flying }
 
 public class CatVisual : MonoBehaviour
 {
-    // Спрайт кота в обычном сотстоянии
+    // The cat's sprite in normal state
     [SerializeField] private Sprite _normalCat;
-    // Спрайт падающего кота
-    [SerializeField] private Sprite _flyingCat;
+    // The falling cat's sprite
+    [SerializeField] private Sprite _fallingCat;
 
     // Update is called once per frame
     void Update()
@@ -36,13 +36,12 @@ public class CatVisual : MonoBehaviour
         }
     }
 
-    // Устанавливает изображение кота
     public void SetCatSprite(CatSprite catSprite)
     {
         switch (catSprite)
         {
             case CatSprite.Flying:
-                GetComponent<SpriteRenderer>().sprite = _flyingCat;
+                GetComponent<SpriteRenderer>().sprite = _fallingCat;
                 break;
             case CatSprite.Normal:
             default:

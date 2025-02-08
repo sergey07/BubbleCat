@@ -9,7 +9,7 @@ public class StartGame : MonoBehaviour
     [SerializeField] private float _timeBeforeBubbleHasCat = 2.0f;
     [SerializeField] private float _timeBeforeLoadFirstLevel = 1.0f;
 
-    [Space]
+    [Header("Size Configuration")]
     [SerializeField] private float _catLocalScale = 1.0f;
 
     [Space]
@@ -37,14 +37,9 @@ public class StartGame : MonoBehaviour
         _playerObject.SetActive(false);
         _catObject.transform.localScale = new Vector3(_catLocalScale, _catLocalScale, _catLocalScale);
         _playerObject.transform.localScale = new Vector3(4.0f, 4.0f, 4.0f);
-        //_bubbleObject.SetActive(false);
-        //_bubbleBoomObject.SetActive(false);
 
         _playerObject.transform.position = _spawnPoint.position;
-        //_bubbleObject.transform.position = _bubbleBoomObject.transform.position;
-        //_catObject.transform.position = _bubbleBoomObject.transform.position;
 
-        //StartCoroutine(WaitForLoadFirstLevel());
         StartCoroutine(TranslateCatByWitch());
     }
 
@@ -53,7 +48,6 @@ public class StartGame : MonoBehaviour
         yield return new WaitForSeconds(_timeBeforeTranslateCatByWitch);
 
         _witchObject.transform.localScale = new Vector3(-_witchObject.transform.localScale.x, _witchObject.transform.localScale.y, _witchObject.transform.localScale.z);
-        //catObject.transform.parent = null;
 
         _animator.SetTrigger("boom");
 
@@ -70,8 +64,6 @@ public class StartGame : MonoBehaviour
         _bubbleObject.SetActive(false);
         _bubbleBoomObject.SetActive(true);
 
-        //_bubbleBoomObject.transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(_newBubbleBoomScaleX, _newBubbleBoomScaleY, 1), _scaleBubbleBoomSpeed * Time.fixedDeltaTime);
-
         StartCoroutine(BubbleHasCat());
     }
 
@@ -81,7 +73,6 @@ public class StartGame : MonoBehaviour
 
         _bubbleBoomObject.SetActive(false);
 
-        //_playerObject
         _catObject.transform.position = _bubbleObject.transform.position;
         _catObject.transform.parent = _bubbleObject.transform;
         _bubbleObject.SetActive(true);

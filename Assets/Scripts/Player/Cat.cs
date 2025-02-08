@@ -6,6 +6,7 @@ public class Cat : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private GameObject _catVisual;
 
+    [Space]
     [SerializeField] public AudioClip _audioClipMau;
 
     private AudioSource _audioSource;

@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class Boiler : MonoBehaviour
 {
-    // Звук булькания от попадания кота в котёл
+    // The gurgling sound of a cat falling into a boiler
     [SerializeField] public AudioClip _audioClipBulk;
 
-    private Rigidbody2D _rb;
     private AudioSource _audioSource;
     private GameObject _soundTrigger;
 
@@ -18,7 +17,6 @@ public class Boiler : MonoBehaviour
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource>();
     }
 
