@@ -110,21 +110,15 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            _catObject.transform.position = _bubbleObject.transform.position;
-            _bubbleObject.gameObject.SetActive(false);
-            _catObject.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+            Fall();
+        }
+    }
 
-            GameObject.Find("CollideAble").gameObject.GetComponent<TilemapCollider2D>().enabled = false;
-
-            AudioSource audioSource = _catObject.gameObject.GetComponent<AudioSource>();
-
-            audioSource.PlayOneShot(_bubbleComponent._audioClipCpock);
-            audioSource.PlayOneShot(_catComponent._audioClipMau);
-
-            _bubbleObject.GetComponent<Bubble>().Boom();
-
-            SetPlayerStatus(PlayerStatus.BubbleBurst);
-            _catComponent.SetFalling(true);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Witch"))
+        {
+            Fall();
         }
     }
 
@@ -136,5 +130,24 @@ public class Player : MonoBehaviour
         {
             _bubbleComponent.ResetScale();
         }
+    }
+
+    private void Fall()
+    {
+        _catObject.transform.position = _bubbleObject.transform.position;
+        _bubbleObject.gameObject.SetActive(false);
+        _catObject.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+
+        GameObject.Find("CollideAble").gameObject.GetComponent<TilemapCollider2D>().enabled = false;
+
+        AudioSource audioSource = _catObject.gameObject.GetComponent<AudioSource>();
+
+        audioSource.PlayOneShot(_bubbleComponent._audioClipCpock);
+        audioSource.PlayOneShot(_catComponent._audioClipMau);
+
+        _bubbleObject.GetComponent<Bubble>().Boom();
+
+        SetPlayerStatus(PlayerStatus.BubbleBurst);
+        _catComponent.SetFalling(true);
     }
 }
