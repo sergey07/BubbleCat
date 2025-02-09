@@ -110,6 +110,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
+            _catObject.transform.position = _bubbleObject.transform.position;
             _bubbleObject.gameObject.SetActive(false);
             _catObject.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
 
@@ -123,7 +124,8 @@ public class Player : MonoBehaviour
             _bubbleObject.GetComponent<Bubble>().Boom();
 
             SetPlayerStatus(PlayerStatus.BubbleBurst);
-            _catComponent.SetFalling(true);        }
+            _catComponent.SetFalling(true);
+        }
     }
 
     public void Reset()

@@ -506,9 +506,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.019235393, y: 0.11541258}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.5448829
 --- !u!1 &2141854922434492356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,7 +2190,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.83072835
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
