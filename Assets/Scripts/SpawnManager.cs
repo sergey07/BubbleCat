@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
-
+    private GameObject _player;
     private GameObject _spawnPoint;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        _player = Player.Instance.gameObject;
         _spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
         Respawn();
     }

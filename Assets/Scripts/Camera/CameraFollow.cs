@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private GameObject _targetObject;
     [SerializeField] private float _cameraOffset = -10.0f;
+    private GameObject _targetObject;
 
-    void LateUpdate()
+    private void Start()
+    {
+        _targetObject = Player.Instance.gameObject;
+    }
+
+    private void LateUpdate()
     {
         PlayerStatus playerStatus = Player.Instance.GetPlayerStatus();
 
