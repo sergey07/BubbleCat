@@ -393,10 +393,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56db5a0edf0299147904acc2d1686fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _originSize: 1.2
+  _originSize: 1.3
   _minSize: 0.8
-  _maxSize: 100
-  _scaleSpeed: 1
+  _maxSize: 2.3
+  _scaleSpeed: 2
   _bubbleBoomObject: {fileID: 3168124936931957454}
   _audioClipCpock: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
 --- !u!58 &6133909865327113649
