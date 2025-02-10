@@ -54,7 +54,7 @@ public class Cat : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Boiler"))
         {
-            SceneManager.LoadScene(GameProgress.currentSceneName);
+            SceneManager.LoadScene(GameProgress.Instance.PlayerInfo.CurrentSceneName);
         }
     }
 }

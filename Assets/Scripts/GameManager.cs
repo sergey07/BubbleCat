@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 _chestCounterPanel.SetActive(true);
-                _txtChestCounter.text = (GameProgress.levelChestCount + GameProgress.chestCount).ToString();
+                _txtChestCounter.text = (GameProgress.Instance.PlayerInfo.LevelChestCount + GameProgress.Instance.PlayerInfo.ChestCount).ToString();
             }
         }
     }
@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         _currentSceneName = SceneManager.GetActiveScene().name;
-        GameProgress.chestCount += GameProgress.levelChestCount;
-        GameProgress.levelChestCount = 0;
+        GameProgress.Instance.PlayerInfo.ChestCount += GameProgress.Instance.PlayerInfo.LevelChestCount;
+        GameProgress.Instance.PlayerInfo.LevelChestCount = 0;
 
         if (_currentSceneName != "Level" + (_sceneCount - 3))
         {
@@ -81,9 +81,9 @@ public class GameManager : MonoBehaviour
 
     public void LoadCatDiedScene()
     {
-        GameProgress.levelChestCount = 0;
+        GameProgress.Instance.PlayerInfo.LevelChestCount = 0;
 
-        GameProgress.currentSceneName = SceneManager.GetActiveScene().name;
+        GameProgress.Instance.PlayerInfo.CurrentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("CatDied");
 
         _currentSceneName = SceneManager.GetActiveScene().name;
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     public void AddReward(int reward)
     {
-        GameProgress.levelChestCount += reward;
-        _txtChestCounter.text = (GameProgress.levelChestCount + GameProgress.chestCount).ToString();
+        GameProgress.Instance.PlayerInfo.LevelChestCount += reward;
+        _txtChestCounter.text = (GameProgress.Instance.PlayerInfo.LevelChestCount + GameProgress.Instance.PlayerInfo.ChestCount).ToString();
     }
 }

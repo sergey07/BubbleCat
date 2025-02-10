@@ -1,9 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine;
 
-public static class GameProgress
+[System.Serializable]
+public class PlayerInfo
 {
-    static public string currentSceneName = "";
-    static public int chestCount = 0;
-    static public int levelChestCount = 0;
+    public string CurrentSceneName;
+    public int ChestCount;
+    public int LevelChestCount;
+}
+
+public class GameProgress: MonoBehaviour
+{
+    public PlayerInfo PlayerInfo;
+
+    public static GameProgress Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            transform.parent = null;
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }
