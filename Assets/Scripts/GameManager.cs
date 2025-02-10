@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
             else
             {
                 _chestCounterPanel.SetActive(true);
-                _txtChestCounter.text = (GameProgress.Instance.PlayerInfo.LevelChestCount + GameProgress.Instance.PlayerInfo.ChestCount).ToString();
+                int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
+                _txtChestCounter.text = allChestCount.ToString();
             }
         }
     }
@@ -63,8 +64,8 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         _currentSceneName = SceneManager.GetActiveScene().name;
-        GameProgress.Instance.PlayerInfo.ChestCount += GameProgress.Instance.PlayerInfo.LevelChestCount;
-        GameProgress.Instance.PlayerInfo.LevelChestCount = 0;
+        Progress.Instance.PlayerInfo.ChestCount += Progress.Instance.PlayerInfo.LevelChestCount;
+        Progress.Instance.PlayerInfo.LevelChestCount = 0;
 
         if (_currentSceneName != "Level" + (_sceneCount - 3))
         {
@@ -81,9 +82,9 @@ public class GameManager : MonoBehaviour
 
     public void LoadCatDiedScene()
     {
-        GameProgress.Instance.PlayerInfo.LevelChestCount = 0;
+        Progress.Instance.PlayerInfo.LevelChestCount = 0;
 
-        GameProgress.Instance.PlayerInfo.CurrentSceneName = SceneManager.GetActiveScene().name;
+        Progress.Instance.PlayerInfo.CurrentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("CatDied");
 
         _currentSceneName = SceneManager.GetActiveScene().name;
@@ -96,7 +97,8 @@ public class GameManager : MonoBehaviour
 
     public void AddReward(int reward)
     {
-        GameProgress.Instance.PlayerInfo.LevelChestCount += reward;
-        _txtChestCounter.text = (GameProgress.Instance.PlayerInfo.LevelChestCount + GameProgress.Instance.PlayerInfo.ChestCount).ToString();
+        Progress.Instance.PlayerInfo.LevelChestCount += reward;
+        int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
+        _txtChestCounter.text = allChestCount.ToString();
     }
 }

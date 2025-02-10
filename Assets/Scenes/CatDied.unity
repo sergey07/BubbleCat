@@ -7888,6 +7888,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919238782}
   m_CullTransparentMesh: 1
+--- !u!1 &1001088409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001088411}
+  - component: {fileID: 1001088410}
+  m_Layer: 0
+  m_Name: Progress
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1001088410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001088409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d349a84ae77204ab7c8c07c93910e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerInfo:
+    CurrentSceneName: 
+    ChestCount: 0
+    LevelChestCount: 0
+--- !u!4 &1001088411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001088409}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1080015722
 GameObject:
   m_ObjectHideFlags: 0
@@ -8367,11 +8415,6 @@ Transform:
   - {fileID: 1682500766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1319365812 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 122926664763048416, guid: 038454a1aa6ddeb47931235cd3f0f8c8, type: 3}
-  m_PrefabInstance: {fileID: 7512373101912057226}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1422370309
 GameObject:
   m_ObjectHideFlags: 0
@@ -9102,7 +9145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45325b7f886e49c4d89bb1d5faf8378e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1319365812}
 --- !u!4 &1948494509
 Transform:
   m_ObjectHideFlags: 0
@@ -10132,3 +10174,4 @@ SceneRoots:
   - {fileID: 8342523975381851785}
   - {fileID: 1780136229}
   - {fileID: 296337620}
+  - {fileID: 1001088411}

@@ -8,11 +8,11 @@ public class PlayerInfo
     public int LevelChestCount;
 }
 
-public class GameProgress: MonoBehaviour
+public class Progress: MonoBehaviour
 {
     public PlayerInfo PlayerInfo;
 
-    public static GameProgress Instance;
+    public static Progress Instance { get; private set; }
 
     private void Awake()
     {
