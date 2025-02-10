@@ -1220,7 +1220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45325b7f886e49c4d89bb1d5faf8378e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
 --- !u!1 &3865838846731847556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,9 +1290,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 34
+  field of view: 70
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1469,7 +1468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ef04e99ef2be946b0caa8e65128335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetObject: {fileID: 0}
   _cameraOffset: -10
 --- !u!1 &3941800350913238069
 GameObject:
