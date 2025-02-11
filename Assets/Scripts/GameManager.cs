@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [SerializeField] private TextMeshProUGUI _txtLevel;
+
     [SerializeField] private GameObject _chestCounterPanel;
     [SerializeField] private TextMeshProUGUI _txtChestCounter;
 
@@ -37,8 +39,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _sceneCount = SceneManager.sceneCountInBuildSettings;
-
         _currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (_txtLevel != null)
+        {
+            int levelNumber = GetCurrentLevelNumber();
+            _txtLevel.text = "Level " + levelNumber;
+        }
 
         if (_chestCounterPanel != null)
         {
@@ -115,5 +122,10 @@ public class GameManager : MonoBehaviour
         }
 
         _currentSceneName = SceneManager.GetActiveScene().name;
+    }
+
+    private int GetCurrentLevelNumber()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
     }
 }
