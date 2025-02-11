@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _reward: 1
   _audioClipCollectChest: {fileID: 8300000, guid: 245b41130172f234d935625e3aa339b4, type: 3}
+  _chestVisual: {fileID: 3780333704058419322}
 --- !u!82 &9027117562091704152
 AudioSource:
   m_ObjectHideFlags: 0

@@ -7,7 +7,10 @@ public class Chest : MonoBehaviour
     [SerializeField] private int _reward = 1;
 
     [Header("Sound Configuration")]
-    [SerializeField] public AudioClip _audioClipCollectChest;
+    [SerializeField] private AudioClip _audioClipCollectChest;
+
+    [Header("Game Objects")]
+    [SerializeField] private GameObject _chestVisual;
 
     private AudioSource _audioSource;
 
@@ -20,6 +23,7 @@ public class Chest : MonoBehaviour
     {
         _audioSource.PlayOneShot(_audioClipCollectChest);
         GameManager.Instance.AddReward(_reward);
+        _chestVisual.GetComponent<SpriteRenderer>().enabled = false;
         //_audioClipCollectChest.length
         //Destroy(gameObject);
         StartCoroutine(DestroyChest(_audioClipCollectChest.length));

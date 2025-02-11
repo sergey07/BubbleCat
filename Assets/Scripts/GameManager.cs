@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,8 +11,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _chestCounterPanel;
     [SerializeField] private TextMeshProUGUI _txtChestCounter;
 
+    [Header("Sound Configuration")]
+    [SerializeField] public AudioClip _audioClipFinishLevel;
+
     private int _sceneCount;
     private string _currentSceneName;
+
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -20,6 +26,7 @@ public class GameManager : MonoBehaviour
             //transform.parent = null;
             //DontDestroyOnLoad(gameObject);
             Instance = this;
+            _audioSource = GetComponent<AudioSource>();
         }
         else
         {
@@ -61,23 +68,10 @@ public class GameManager : MonoBehaviour
         _currentSceneName = SceneManager.GetActiveScene().name;
     }
 
-    public void LoadNextLevel()
+    public void FinishLevel()
     {
-        _currentSceneName = SceneManager.GetActiveScene().name;
-        Progress.Instance.PlayerInfo.ChestCount += Progress.Instance.PlayerInfo.LevelChestCount;
-        Progress.Instance.PlayerInfo.LevelChestCount = 0;
-
-        if (_currentSceneName != "Level" + (_sceneCount - 3))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        else
-        {
-            Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
-            SceneManager.LoadScene("FinishGame");
-        }
-
-        _currentSceneName = SceneManager.GetActiveScene().name;
+        _audioSource.PlayOneShot(_audioClipFinishLevel);
+        StartCoroutine(LoadNextLevel(_audioClipFinishLevel.length));
     }
 
     public void LoadCatDiedScene()
@@ -100,5 +94,26 @@ public class GameManager : MonoBehaviour
         Progress.Instance.PlayerInfo.LevelChestCount += reward;
         int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
         _txtChestCounter.text = allChestCount.ToString();
+    }
+
+    IEnumerator LoadNextLevel(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        _currentSceneName = SceneManager.GetActiveScene().name;
+        Progress.Instance.PlayerInfo.ChestCount += Progress.Instance.PlayerInfo.LevelChestCount;
+        Progress.Instance.PlayerInfo.LevelChestCount = 0;
+
+        if (_currentSceneName != "Level" + (_sceneCount - 3))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
+            SceneManager.LoadScene("FinishGame");
+        }
+
+        _currentSceneName = SceneManager.GetActiveScene().name;
     }
 }
