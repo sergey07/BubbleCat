@@ -6,7 +6,7 @@ public class Cat : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private GameObject _catVisual;
 
-    [Space]
+    [Header("Sound Configuration")]
     [SerializeField] public AudioClip _audioClipMau;
 
     private AudioSource _audioSource;
@@ -14,23 +14,6 @@ public class Cat : MonoBehaviour
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    private void LateUpdate()
-    {
-
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
     }
 
     public void SetFalling(bool isFalling)
