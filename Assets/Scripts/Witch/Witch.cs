@@ -14,16 +14,25 @@ public class Witch : MonoBehaviour
     [SerializeField] private WitchMoveDirection _startMoveDirection;
     [SerializeField] private float _speed;
 
+    [Header("Sound Configuration")]
+    [SerializeField] private AudioClip _audioClipLaughter;
+    [SerializeField] private float _delay = 0;
+    [SerializeField] private float _repeatRate = 5;
+
     private Rigidbody2D _rb;
+    private AudioSource _audioSource;
     private Vector2 _movementVector;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
+        InvokeRepeating("PlayLaughter", _delay, _repeatRate);
+
         _movementVector = new Vector2(0, 0);
 
         switch (_startMoveDirection)
@@ -43,6 +52,11 @@ public class Witch : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void PlayLaughter()
+    {
+        _audioSource.PlayOneShot(_audioClipLaughter);
     }
 
     private void FixedUpdate()
