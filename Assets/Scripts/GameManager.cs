@@ -8,13 +8,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private TextMeshProUGUI _txtLevel;
+    [Header("Sprites")]
+    [SerializeField] Sprite _doorToFinish;
 
+    [Header("Game Objects")]
+    [SerializeField] private GameObject _finishTrigger;
+    [SerializeField] private TextMeshProUGUI _txtLevel;
     [SerializeField] private GameObject _chestCounterPanel;
     [SerializeField] private TextMeshProUGUI _txtChestCounter;
 
     [Header("Sound Configuration")]
-    [SerializeField] public AudioClip _audioClipFinishLevel;
+    [SerializeField] private AudioClip _audioClipFinishLevel;
 
     private int _sceneCount;
     private string _currentSceneName;
@@ -71,6 +75,11 @@ public class GameManager : MonoBehaviour
                 int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
                 _txtChestCounter.text = allChestCount.ToString();
             }
+        }
+
+        if (_currentSceneName == "Level" + (_sceneCount - 3))
+        {
+            _finishTrigger.GetComponent<SpriteRenderer>().sprite = _doorToFinish;
         }
     }
 

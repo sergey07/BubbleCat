@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1ad1c1a5936994caca7f935a847ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doorToFinish: {fileID: 21300000, guid: 47f2ce8f03f51b34b8fb6d6774c81210, type: 3}
+  _finishTrigger: {fileID: 0}
   _txtLevel: {fileID: 1775916595441122083}
   _chestCounterPanel: {fileID: 8117502276300417606}
   _txtChestCounter: {fileID: 8427515136717713621}
