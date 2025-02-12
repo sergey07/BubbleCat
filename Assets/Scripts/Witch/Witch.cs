@@ -19,6 +19,8 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _delay = 0;
     [SerializeField] private float _repeatRate = 5;
 
+    [SerializeField] private GameObject _witchVisual;
+
     private Rigidbody2D _rb;
     private AudioSource _audioSource;
     private Vector2 _movementVector;
@@ -61,6 +63,15 @@ public class Witch : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_movementVector.x > 0)
+        {
+            _witchVisual.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            _witchVisual.GetComponent<SpriteRenderer>().flipX = false;
+        }
+
         _rb.MovePosition(_rb.position + (_movementVector * _speed * Time.fixedDeltaTime));
     }
 

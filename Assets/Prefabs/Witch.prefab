@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75f1f9fb3520952488952adc2edd66f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -192,8 +192,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.0698841, y: 1.0698841}
+  m_Offset: {x: 0.111044645, y: 0.017084599}
+  m_Size: {x: 2.0778298, y: 3.939969}
   m_Direction: 0
 --- !u!82 &3245852419666463327
 AudioSource:
@@ -308,3 +308,4 @@ MonoBehaviour:
   _audioClipLaughter: {fileID: 8300000, guid: 12bcb0bd1dd9a9b4c9316e75b0156a91, type: 3}
   _delay: 0
   _repeatRate: 5
+  _witchVisual: {fileID: 1549536017619442574}
