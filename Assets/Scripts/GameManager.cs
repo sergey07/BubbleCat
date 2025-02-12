@@ -44,7 +44,19 @@ public class GameManager : MonoBehaviour
         if (_txtLevel != null)
         {
             int levelNumber = GetCurrentLevelNumber();
-            _txtLevel.text = "Level " + levelNumber;
+
+            if (Language.Instance.CurrentLanguage == "en")
+            {
+                _txtLevel.text = "Level " + levelNumber;
+            }
+            else if(Language.Instance.CurrentLanguage == "ru")
+            {
+                _txtLevel.text = "Уровень " + levelNumber;
+            }
+            else
+            {
+                _txtLevel.text = "Level " + levelNumber;
+            }
         }
 
         if (_chestCounterPanel != null)

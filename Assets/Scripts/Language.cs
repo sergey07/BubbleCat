@@ -1,18 +1,10 @@
 using UnityEngine;
 
-[System.Serializable]
-public class PlayerInfo
+public class Language : MonoBehaviour
 {
-    public string CurrentSceneName;
-    public int ChestCount;
-    public int LevelChestCount;
-}
+    public static Language Instance;
 
-public class Progress: MonoBehaviour
-{
-    public PlayerInfo PlayerInfo;
-
-    public static Progress Instance { get; private set; }
+    public string CurrentLanguage {  get; set; } // ru en
 
     private void Awake()
     {
@@ -22,6 +14,9 @@ public class Progress: MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
+
+            // TODO: change "ru" to value from Yandex SDK
+            CurrentLanguage = "ru";
         }
         else
         {
