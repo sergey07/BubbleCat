@@ -41822,15 +41822,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 570969919551907847, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 570969919551907847, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 570969919551907847, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 80
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1755254242116204452, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
       propertyPath: m_LocalPosition.x
