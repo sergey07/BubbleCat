@@ -21,12 +21,13 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _audioSource.PlayOneShot(_audioClipCollectChest);
-        GameManager.Instance.AddReward(_reward);
-        _chestVisual.GetComponent<SpriteRenderer>().enabled = false;
-        //_audioClipCollectChest.length
-        //Destroy(gameObject);
-        StartCoroutine(DestroyChest(_audioClipCollectChest.length));
+        if (collision.gameObject.CompareTag("Bubble"))
+        {
+            _audioSource.PlayOneShot(_audioClipCollectChest);
+            GameManager.Instance.AddReward(_reward);
+            _chestVisual.GetComponent<SpriteRenderer>().enabled = false;
+            StartCoroutine(DestroyChest(_audioClipCollectChest.length));
+        }
     }
 
     IEnumerator DestroyChest(float delay)
