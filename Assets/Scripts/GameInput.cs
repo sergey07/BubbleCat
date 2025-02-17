@@ -23,12 +23,25 @@ public class GameInput : MonoBehaviour
             //_playerInputActions = new PlayerInputActions();
             //_playerInputActions.Enable();
 
-            ShowJoystick();
+            //ShowJoystick();
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Update()
+    {
+        if (!_isJoystickVisible && Input.touchCount > 0)
+        {
+            ShowJoystick();
+        }
+
+        //if (!_isJoystickVisible && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
+        //{
+        //    ShowJoystick();
+        //}
     }
 
     private void UpdateMaker()
@@ -67,11 +80,11 @@ public class GameInput : MonoBehaviour
             inputVector.x = 1;
         }
 
-        if (inputVector != null && inputVector != Vector2.zero)
-        {
+        //if (inputVector != null && inputVector != Vector2.zero)
+        //{
             // print(_playerInputActions.Player.Move.ReadValue<Vector2>());
-            HideJoystick();
-        }
+            //HideJoystick();
+        //}
 
         string currentSceneName = GameManager.Instance.GetCurrentSceneName();
 
