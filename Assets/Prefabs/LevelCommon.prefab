@@ -623,7 +623,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7804843109201395984}
         m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: ChangeDifficulty
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -632,7 +632,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!1 &3007675432072217608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,7 +2080,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7804843109201395984}
         m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2089,7 +2089,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!1 &4682919010659569628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,9 +2341,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11500000, guid: 297c251eb5f14ce44acd419f886412ce, type: 3}
         m_TargetAssemblyTypeName: MusicToggler, Assembly-CSharp
-        m_MethodName: MusicToggle
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3176,9 +3176,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11500000, guid: 297c251eb5f14ce44acd419f886412ce, type: 3}
         m_TargetAssemblyTypeName: CameraZoom, Assembly-CSharp
-        m_MethodName: ZoomCamerToggle
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
