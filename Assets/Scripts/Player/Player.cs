@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private Cat _catComponent;
 
     private Vector2 _inputVector;
+    private bool _isFinish;
 
     private void Awake()
     {
@@ -48,6 +49,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        _isFinish = false;
+
         if (SceneManager.GetActiveScene().name == "CatDied")
         {
             SetPlayerStatus(PlayerStatus.InCatDiedScene);
@@ -55,16 +58,6 @@ public class Player : MonoBehaviour
             _catObject.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
             _bubbleObject.gameObject.SetActive(false);
         }
-    }
-
-    public PlayerStatus GetPlayerStatus()
-    {
-        return _playerStatus;
-    }
-
-    public void SetPlayerStatus(PlayerStatus status)
-    {
-        _playerStatus = status;
     }
 
     private void Update()
@@ -94,8 +87,49 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Freeze()
+    {
+        Destroy(_rb);
+    }    
+
+    public bool IsFinish()
+    {
+        return _isFinish;
+    }
+
+    public void SetFinish(bool isFinish)
+    {
+        _isFinish = isFinish;
+        Freeze();
+    }
+
+    public void Reset()
+    {
+        gameObject.SetActive(true);
+
+        if (_bubbleComponent != null)
+        {
+            _bubbleComponent.ResetScale();
+        }
+    }
+
+    public PlayerStatus GetPlayerStatus()
+    {
+        return _playerStatus;
+    }
+
+    public void SetPlayerStatus(PlayerStatus status)
+    {
+        _playerStatus = status;
+    }
+
     private void HandleInput()
     {
+        if (_rb == null)
+        {
+            return;
+        }
+
         float deltaScale = _bubbleComponent.GetDeltaScale();
         float velocityY = deltaScale * _ySpeedMultiplayer;
         velocityY = Mathf.Clamp(velocityY, -_maxYSpeed, _maxYSpeed);
@@ -116,19 +150,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Witch"))
+        if (collision.gameObject.CompareTag("Witch") && !_isFinish)
         {
             Fall();
-        }
-    }
-
-    public void Reset()
-    {
-        gameObject.SetActive(true);
-
-        if (_bubbleComponent != null)
-        {
-            _bubbleComponent.ResetScale();
         }
     }
 
