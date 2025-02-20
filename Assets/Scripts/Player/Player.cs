@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
     public void Freeze()
     {
         Destroy(_rb);
-    }    
+    }
 
     public bool IsFinish()
     {

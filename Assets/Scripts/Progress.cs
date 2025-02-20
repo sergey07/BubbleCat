@@ -6,6 +6,9 @@ public class PlayerInfo
     public string CurrentSceneName;
     public int ChestCount;
     public int LevelChestCount;
+    public bool IsSoundOn = true;
+    public bool IsMusicOn = true;
+    public int DifficultyLvl = 1;
 }
 
 public class Progress: MonoBehaviour
