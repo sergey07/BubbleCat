@@ -41586,21 +41586,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelCommon
       objectReference: {fileID: 0}
-    - target: {fileID: 8117502276300417606, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+    - target: {fileID: 5495227140745032024, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8427515136717713621, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
-      propertyPath: m_text
+    - target: {fileID: 8117502276300417606, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9081919605815284754, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 130
-      objectReference: {fileID: 0}
-    - target: {fileID: 9081919605815284754, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
