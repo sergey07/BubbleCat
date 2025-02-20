@@ -104,6 +104,10 @@ public class PausePanel : MonoBehaviour
         _currentSpeed = _easyDifficultyLvl;
         _difficultyLvl = 1;
         _difficultyBtnText.text = "Easy";
+        if (Language.Instance.CurrentLanguage == "ru")
+        {
+            _difficultyBtnText.text = "Легко";
+        }
     }
 
     private void MidDifficultyLvl()
@@ -111,6 +115,10 @@ public class PausePanel : MonoBehaviour
         _currentSpeed = _midDifficultyLvl;
         _difficultyLvl = 2;
         _difficultyBtnText.text = "Medium";
+        if (Language.Instance.CurrentLanguage == "ru")
+        {
+            _difficultyBtnText.text = "Норально";
+        }
     }
 
     private void HardDifficultyLvl()
@@ -118,6 +126,10 @@ public class PausePanel : MonoBehaviour
         _currentSpeed = _hardDifficultyLvl;
         _difficultyLvl = 3;
         _difficultyBtnText.text = "Hard";
+        if (Language.Instance.CurrentLanguage == "ru")
+        {
+            _difficultyBtnText.text = "Сложно";
+        }
     }
     
     public void ChangeScale()
