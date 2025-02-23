@@ -33,14 +33,33 @@ public class GameInput : MonoBehaviour
 
     private void Update()
     {
-        if (!_isJoystickVisible && Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
-            ShowJoystick();
+            if (!_isJoystickVisible)
+            {
+                ShowJoystick();
+            }
+
+            // Placing joystick on touch position
+            Vector2 touchPos = Input.GetTouch(0).position;
+            float joystickHeight = _fixedJoystick.gameObject.GetComponent<RectTransform>().rect.height;
+
+            _fixedJoystick.transform.position = new Vector3(touchPos.x, touchPos.y - joystickHeight / 4, 0);
         }
 
-        //if (!_isJoystickVisible && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
+        //if (/*!_isJoystickVisible && */(Input.GetMouseButtonDown(0) || Input.touchCount > 0))
         //{
-        //    ShowJoystick();
+        //    if (!_isJoystickVisible)
+        //    {
+        //        ShowJoystick();
+        //    }
+
+        //    // Placing joystick on click position
+        //    Vector3 mousePos = Mouse.current.position.ReadValue();
+        //    float joystickHeight = _fixedJoystick.gameObject.GetComponent<RectTransform>().rect.height;
+
+        //    _fixedJoystick.transform.position = new Vector3(mousePos.x, mousePos.y - joystickHeight / 4, mousePos.z);
+            
         //}
     }
 
