@@ -4,7 +4,6 @@ using TMPro;
 public class PausePanel : MonoBehaviour
 {
     [Header("Required Components")]
-    //[SerializeField] private MusicToggler _musicToggler;
     [SerializeField] private TextMeshProUGUI _soundBtnText;
     [SerializeField] private TextMeshProUGUI _zoomBtnText;
     [SerializeField] private TextMeshProUGUI _difficultyBtnText;
@@ -16,9 +15,17 @@ public class PausePanel : MonoBehaviour
 
     private float _currentSpeed = 1.0f;
     private int _difficultyLvl = 1;
+    private bool _isZoom = false;
 
-    
-    private bool _isZoomBig = true;
+    private void Start()
+    {
+        AudioListener.pause = !Progress.Instance.PlayerInfo.IsSoundOn;
+        UpdateSoundButton();
+        _difficultyLvl = Progress.Instance.PlayerInfo.DifficultyLvl;
+        UpdateDifficultyButton();
+        _isZoom = Progress.Instance.PlayerInfo.IsZoom;
+        UpdateZoomState();
+    }
 
     public void ToggleMenu()
     {
@@ -35,15 +42,8 @@ public class PausePanel : MonoBehaviour
     public void SwitchSound()
     {
         AudioListener.pause = !AudioListener.pause;
-
-        if (AudioListener.pause)
-        {
-            _soundBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Вкл. звук" : "Sound On";
-        }
-        else
-        {
-            _soundBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Выкл. звук" : "Sound Off";
-        }
+        Progress.Instance.PlayerInfo.IsSoundOn = !AudioListener.pause;
+        UpdateSoundButton();
     }
 
     public void ChangeDifficulty()
@@ -55,6 +55,31 @@ public class PausePanel : MonoBehaviour
             _difficultyLvl = 1;
         }
 
+        Progress.Instance.PlayerInfo.DifficultyLvl = _difficultyLvl;
+        UpdateDifficultyButton();
+    }
+    
+    public void ChangeScale()
+    {
+        _isZoom = !_isZoom;
+        Progress.Instance.PlayerInfo.IsZoom = _isZoom;
+        UpdateZoomState();
+    }
+
+    private void UpdateSoundButton()
+    {
+        if (AudioListener.pause)
+        {
+            _soundBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Вкл. звук" : "Sound On";
+        }
+        else
+        {
+            _soundBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Выкл. звук" : "Sound Off";
+        }
+    }
+
+    private void UpdateDifficultyButton()
+    {
         switch (_difficultyLvl)
         {
             case 1:
@@ -71,21 +96,19 @@ public class PausePanel : MonoBehaviour
                 break;
         }
     }
-    
-    public void ChangeScale()
+
+    private void UpdateZoomState()
     {
-        if (_isZoomBig)
+        if (_isZoom)
         {
             // Set the size of the viewing volume you'd like the orthographic Camera to pick up
             Camera.main.orthographicSize = 6.0f;
-            _isZoomBig = false;
             _zoomBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Дальше" : "Zoom Out";
         }
         else
         {
             // Set the size of the viewing volume you'd like the orthographic Camera to pick up
             Camera.main.orthographicSize = 10.0f;
-            _isZoomBig = true;
             _zoomBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Ближе" : "Zoom In";
         }
     }

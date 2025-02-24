@@ -7,7 +7,7 @@ public class PlayerInfo
     public int ChestCount;
     public int LevelChestCount;
     public bool IsSoundOn = true;
-    public bool IsMusicOn = true;
+    public bool IsZoom = false;
     public int DifficultyLvl = 1;
 }
 
