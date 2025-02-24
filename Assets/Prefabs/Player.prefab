@@ -75,10 +75,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484ab42290fcc524d842573375e059a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _horizontalSpeed: 6
-  _maxYSpeed: 5
-  _ySpeedMultiplayer: 6
-  _fallingSpeed: 10
+  _horizontalSpeed: 8
+  _maxYSpeed: 8
+  _ySpeedMultiplayer: 15
+  _fallingSpeed: 15
   _catObject: {fileID: 132074649906313055}
   _bubbleObject: {fileID: 3168124936931957454}
   _playerStatus: 1

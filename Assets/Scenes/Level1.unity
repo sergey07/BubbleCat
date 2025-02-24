@@ -576,7 +576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Use WASD\n\u2190, \u2192, \u2191, \u2193"
+  m_text: "Find an exit.\nFor movement:\nWASD\nor\n\u2190\u2191\u2193\u2192"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -35086,7 +35086,7 @@ MonoBehaviour:
     ChestCount: 0
     LevelChestCount: 0
     IsSoundOn: 1
-    IsMusicOn: 1
+    IsZoom: 0
     DifficultyLvl: 1
 --- !u!4 &2064464985
 Transform:
