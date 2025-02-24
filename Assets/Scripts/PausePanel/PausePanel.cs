@@ -1,134 +1,74 @@
-// using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class PausePanel : MonoBehaviour
 {
-    // [SerializeField] private MusicToggler _musicToggler;
-    
-    // private bool _isPaused = false;
+    [Header("Required Components")]
+    //[SerializeField] private MusicToggler _musicToggler;
+    [SerializeField] private TextMeshProUGUI _soundBtnText;
+    [SerializeField] private TextMeshProUGUI _zoomBtnText;
+    [SerializeField] private TextMeshProUGUI _difficultyBtnText;
+
+    [Header("Difficulty Configuration")]
+    [SerializeField] private float _slowSpeed = 1.0f;
+    [SerializeField] private float _middleSpeed = 1.5f;
+    [SerializeField] private float _fastSpeed = 2.0f;
+
     private float _currentSpeed = 1.0f;
     private int _difficultyLvl = 1;
 
-    [SerializeField] private TextMeshProUGUI _difficultyBtnText;
-
-    [SerializeField] private float _easyDifficultyLvl = 1.0f;
-    [SerializeField] private float _midDifficultyLvl = 1.5f;
-    [SerializeField] private float _hardDifficultyLvl = 2.0f;
-
-    //[SerializeField] private TextMeshProUGUI timeText;
-    [SerializeField] private Button difficultyBtn;
-
-    private TextMeshProUGUI _zoomBtnText;
+    
     private bool _isZoomBig = true;
-    // public
-    public Camera cam;
-    public Button zoomBtn;
 
-    void Start()
+    public void ToggleMenu()
     {
-        // _zoomBtnText = zoomBtn.GetComponentInChildren<TextMeshProUGUI>();
+        gameObject.SetActive(!gameObject.activeSelf);
+        Time.timeScale = gameObject.activeSelf ? 0.0f : _currentSpeed;
     }
-
-    // public void Resume()
-    // {
-    //     ResumeMake();
-    // }
 
     public void Restart()
     {
+        Time.timeScale = _currentSpeed;
         GameManager.Instance.RestartScene();
     }
 
-    public void SoundToggler()
+    public void SwitchSound()
     {
-        // _musicToggler.MusicToggle();
+        AudioListener.pause = !AudioListener.pause;
+
+        if (AudioListener.pause)
+        {
+            _soundBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Вкл. звук" : "Sound On";
+        }
+        else
+        {
+            _soundBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Выкл. звук" : "Sound Off";
+        }
     }
 
     public void ChangeDifficulty()
     {
-        if (_difficultyLvl == 1)
+        _difficultyLvl++;
+
+        if (_difficultyLvl > 3)
         {
-            MidDifficultyLvl();
+            _difficultyLvl = 1;
         }
-        else if (_difficultyLvl == 2)
+
+        switch (_difficultyLvl)
         {
-            HardDifficultyLvl();
-        }
-        else if (_difficultyLvl == 3)
-        {
-            EasyDifficultyLvl();
-        }
-    }
-
-    public void Exit()
-    {
-        // Application.ExternalCall("location.reload");
-    }
-
-    // public void PauseToggle()
-    // {
-    //     if (_isPaused)
-    //     {
-    //         ResumeMake();
-    //     }
-    //     else
-    //     {
-    //         PauseMake();
-    //     }
-    // }
-
-    // private void ResumeMake()
-    // {
-    //     //Debug.Log("ResumeMake");
-    //     if (pausePanel != null)
-    //     {
-    //         pausePanel.SetActive(false);
-    //     }
-    //     Time.timeScale = _currentSpeed;
-    //     _isPaused = false;
-    // }
-
-    // private void PauseMake()
-    // {
-    //     pausePanel.SetActive(true);
-    //     Time.timeScale = 0.0f;
-    //     _isPaused = true;
-    // }
-
-    private void EasyDifficultyLvl()
-    {
-        _currentSpeed = _easyDifficultyLvl;
-        _difficultyLvl = 1;
-        _difficultyBtnText.text = "Easy";
-        if (Language.Instance.CurrentLanguage == "ru")
-        {
-            _difficultyBtnText.text = "Легко";
-        }
-    }
-
-    private void MidDifficultyLvl()
-    {
-        _currentSpeed = _midDifficultyLvl;
-        _difficultyLvl = 2;
-        _difficultyBtnText.text = "Medium";
-        if (Language.Instance.CurrentLanguage == "ru")
-        {
-            _difficultyBtnText.text = "Норально";
-        }
-    }
-
-    private void HardDifficultyLvl()
-    {
-        _currentSpeed = _hardDifficultyLvl;
-        _difficultyLvl = 3;
-        _difficultyBtnText.text = "Hard";
-        if (Language.Instance.CurrentLanguage == "ru")
-        {
-            _difficultyBtnText.text = "Сложно";
+            case 1:
+                _currentSpeed = _slowSpeed;
+                _difficultyBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Легко" : "Easy";
+                break;
+            case 2:
+                _currentSpeed = _middleSpeed;
+                _difficultyBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Норально" : "Medium";
+                break;
+            case 3:
+                _currentSpeed = _fastSpeed;
+                _difficultyBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Сложно" : "Hard";
+                break;
         }
     }
     
@@ -136,34 +76,17 @@ public class PausePanel : MonoBehaviour
     {
         if (_isZoomBig)
         {
-            ZoomMakeSmall();
+            // Set the size of the viewing volume you'd like the orthographic Camera to pick up
+            Camera.main.orthographicSize = 6.0f;
+            _isZoomBig = false;
+            _zoomBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Дальше" : "Zoom Out";
         }
         else
         {
-            ZoomMakeBig();
+            // Set the size of the viewing volume you'd like the orthographic Camera to pick up
+            Camera.main.orthographicSize = 10.0f;
+            _isZoomBig = true;
+            _zoomBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Ближе" : "Zoom In";
         }
-    }
-
-    private void ZoomMakeSmall()
-    {
-        // Set the size of the viewing volume you'd like the orthographic Camera to pick up
-        cam.orthographicSize = 6.0f;
-        _isZoomBig = false;
-        _zoomBtnText.text = "Zoom x6";
-    }
-    private void ZoomMakeBig()
-    {
-        // Set the size of the viewing volume you'd like the orthographic Camera to pick up
-        cam.orthographicSize = 8.0f;
-        _isZoomBig = true;
-        _zoomBtnText.text = "Zoom x8";
-    }
-
-    private void DisplayTime(float timeToDisplay)
-    {
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        // Debug.Log(minutes+""+seconds);
-        //timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
