@@ -6,10 +6,12 @@ public class GameInput : MonoBehaviour
     public static GameInput Instance { get; private set; }
 
     [SerializeField] private FixedJoystick _fixedJoystick;
+    [SerializeField] private float _deltaPos = 1f;
 
     //private PlayerInputActions _playerInputActions;
 
     private bool _isJoystickVisible = false;
+    private Vector2 _oldTouchPos = new Vector2(0, 0);
 
     private void Awake()
     {
@@ -42,9 +44,13 @@ public class GameInput : MonoBehaviour
 
             // Placing joystick on touch position
             Vector2 touchPos = Input.GetTouch(0).position;
-            float joystickHeight = _fixedJoystick.gameObject.GetComponent<RectTransform>().rect.height;
 
-            _fixedJoystick.transform.position = new Vector3(touchPos.x, touchPos.y - joystickHeight / 4, 0);
+            if (CheckDeltaPosition(touchPos))
+            {
+                _oldTouchPos = touchPos;
+                float joystickHeight = _fixedJoystick.gameObject.GetComponent<RectTransform>().rect.height;
+                _fixedJoystick.transform.position = new Vector3(touchPos.x, touchPos.y + joystickHeight / 2, 0);
+            }
         }
 
         //if (/*!_isJoystickVisible && */(Input.GetMouseButtonDown(0) || Input.touchCount > 0))
@@ -59,14 +65,8 @@ public class GameInput : MonoBehaviour
         //    float joystickHeight = _fixedJoystick.gameObject.GetComponent<RectTransform>().rect.height;
 
         //    _fixedJoystick.transform.position = new Vector3(mousePos.x, mousePos.y - joystickHeight / 4, mousePos.z);
-            
-        //}
-    }
 
-    private void UpdateMaker()
-    {
-        // DisplayTime(Time.time);
-        // CheckPauseButton();
+        //}
     }
 
     public bool GetEscapeKey()
@@ -80,20 +80,21 @@ public class GameInput : MonoBehaviour
 
         Vector2 inputVector = new Vector2(0, 0);
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
             inputVector.y = 1;
         }
-        
+
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             inputVector.y = -1;
         }
-        
+
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             inputVector.x = -1;
         }
-        
+
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             inputVector.x = 1;
@@ -101,8 +102,8 @@ public class GameInput : MonoBehaviour
 
         //if (inputVector != null && inputVector != Vector2.zero)
         //{
-            // print(_playerInputActions.Player.Move.ReadValue<Vector2>());
-            //HideJoystick();
+        // print(_playerInputActions.Player.Move.ReadValue<Vector2>());
+        //HideJoystick();
         //}
 
         string currentSceneName = GameManager.Instance.GetCurrentSceneName();
@@ -139,5 +140,14 @@ public class GameInput : MonoBehaviour
     {
         _fixedJoystick.gameObject.SetActive(false);
         _isJoystickVisible = false;
+    }
+
+    // Is this delta enough for moving the joystick? 
+    private bool CheckDeltaPosition(Vector2 touchPos)
+    {
+        return touchPos.x < _oldTouchPos.x - _deltaPos &&
+                touchPos.x > _oldTouchPos.x + _deltaPos &&
+                touchPos.y < _oldTouchPos.y - _deltaPos &&
+                touchPos.y > _oldTouchPos.y + _deltaPos;
     }
 }
