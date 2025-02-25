@@ -6,7 +6,7 @@ public class GameInput : MonoBehaviour
     public static GameInput Instance { get; private set; }
 
     [SerializeField] private FixedJoystick _fixedJoystick;
-    [SerializeField] private float _deltaPos = 1f;
+    [SerializeField] private float _deltaPos = 300f;
 
     //private PlayerInputActions _playerInputActions;
 
@@ -49,7 +49,7 @@ public class GameInput : MonoBehaviour
             {
                 _oldTouchPos = touchPos;
                 float joystickHeight = _fixedJoystick.gameObject.GetComponent<RectTransform>().rect.height;
-                _fixedJoystick.transform.position = new Vector3(touchPos.x, touchPos.y + joystickHeight / 2, 0);
+                _fixedJoystick.transform.position = new Vector3(touchPos.x, touchPos.y - joystickHeight / 2, 0);
             }
         }
 
@@ -145,9 +145,11 @@ public class GameInput : MonoBehaviour
     // Is this delta enough for moving the joystick? 
     private bool CheckDeltaPosition(Vector2 touchPos)
     {
-        return touchPos.x < _oldTouchPos.x - _deltaPos &&
-                touchPos.x > _oldTouchPos.x + _deltaPos &&
-                touchPos.y < _oldTouchPos.y - _deltaPos &&
-                touchPos.y > _oldTouchPos.y + _deltaPos;
+        float xMin = _oldTouchPos.x - _deltaPos;
+        float xMax = _oldTouchPos.x + _deltaPos;
+        float yMin = _oldTouchPos.y - _deltaPos;
+        float yMax = _oldTouchPos.y + _deltaPos;
+
+        return touchPos.x < xMin || touchPos.x > xMax || touchPos.y < yMin || touchPos.y > yMax;
     }
 }

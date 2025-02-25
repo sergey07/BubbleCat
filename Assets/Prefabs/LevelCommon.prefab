@@ -809,7 +809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &124964078733334908
@@ -1300,7 +1300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ef04e99ef2be946b0caa8e65128335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraOffset: -10
+  _cameraOffsetX: 0
+  _cameraOffsetY: 0
+  _cameraOffsetZ: -10
 --- !u!1 &3941800350913238069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,7 +1596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fixedJoystick: {fileID: 8151915062909379391}
-  _deltaPos: 1
+  _deltaPos: 300
 --- !u!1 &4662875082232673790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,6 +2949,18 @@ PrefabInstance:
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_SizeDelta.y
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_LocalPosition.x
