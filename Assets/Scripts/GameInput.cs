@@ -8,8 +8,6 @@ public class GameInput : MonoBehaviour
     [SerializeField] private FixedJoystick _fixedJoystick;
     [SerializeField] private float _deltaPos = 300f;
 
-    //private PlayerInputActions _playerInputActions;
-
     private bool _isJoystickVisible = false;
     private Vector2 _oldTouchPos = new Vector2(0, 0);
 
@@ -17,15 +15,7 @@ public class GameInput : MonoBehaviour
     {
         if (Instance == null)
         {
-            //transform.parent = null;
-            //DontDestroyOnLoad(gameObject);
-
             Instance = this;
-
-            //_playerInputActions = new PlayerInputActions();
-            //_playerInputActions.Enable();
-
-            //ShowJoystick();
         }
         else
         {
@@ -52,21 +42,6 @@ public class GameInput : MonoBehaviour
                 _fixedJoystick.transform.position = new Vector3(touchPos.x, touchPos.y - joystickHeight / 2, 0);
             }
         }
-
-        //if (/*!_isJoystickVisible && */(Input.GetMouseButtonDown(0) || Input.touchCount > 0))
-        //{
-        //    if (!_isJoystickVisible)
-        //    {
-        //        ShowJoystick();
-        //    }
-
-        //    // Placing joystick on click position
-        //    Vector3 mousePos = Mouse.current.position.ReadValue();
-        //    float joystickHeight = _fixedJoystick.gameObject.GetComponent<RectTransform>().rect.height;
-
-        //    _fixedJoystick.transform.position = new Vector3(mousePos.x, mousePos.y - joystickHeight / 4, mousePos.z);
-
-        //}
     }
 
     public bool GetEscapeKey()
@@ -76,8 +51,6 @@ public class GameInput : MonoBehaviour
 
     public Vector2 GetMovementVector()
     {
-        //Vector2 inputVector = _playerInputActions.Player.Move.ReadValue<Vector2
-
         Vector2 inputVector = new Vector2(0, 0);
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -99,12 +72,6 @@ public class GameInput : MonoBehaviour
         {
             inputVector.x = 1;
         }
-
-        //if (inputVector != null && inputVector != Vector2.zero)
-        //{
-        // print(_playerInputActions.Player.Move.ReadValue<Vector2>());
-        //HideJoystick();
-        //}
 
         string currentSceneName = GameManager.Instance.GetCurrentSceneName();
 

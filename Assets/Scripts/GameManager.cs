@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,9 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Objects")]
     [SerializeField] private GameObject _finishTrigger;
     [SerializeField] private TextMeshProUGUI _txtLevel;
-    [SerializeField] private GameObject _chestCounterPanel;
-    [SerializeField] private TextMeshProUGUI _txtChestCounter;
-
+    
     [Header("Sound Configuration")]
     [SerializeField] private AudioClip _audioClipFinishLevel;
 
@@ -29,8 +26,6 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            //transform.parent = null;
-            //DontDestroyOnLoad(gameObject);
             Instance = this;
             _audioSource = GetComponent<AudioSource>();
         }
@@ -60,20 +55,6 @@ public class GameManager : MonoBehaviour
             else
             {
                 _txtLevel.text = "Level " + levelNumber;
-            }
-        }
-
-        if (_chestCounterPanel != null)
-        {
-            if (_currentSceneName == "StartScene")
-            {
-                _chestCounterPanel.SetActive(false);
-            }
-            else
-            {
-                _chestCounterPanel.SetActive(true);
-                int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
-                _txtChestCounter.text = allChestCount.ToString();
             }
         }
 
@@ -117,13 +98,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void AddReward(int reward)
-    {
-        Progress.Instance.PlayerInfo.LevelChestCount += reward;
-        int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
-        _txtChestCounter.text = allChestCount.ToString();
-    }
-
     IEnumerator LoadNextLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -147,6 +121,6 @@ public class GameManager : MonoBehaviour
 
     private int GetCurrentLevelNumber()
     {
-        return SceneManager.GetActiveScene().buildIndex;
+        return SceneManager.GetActiveScene().buildIndex + 1;
     }
 }

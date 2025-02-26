@@ -24,7 +24,7 @@ public class Chest : MonoBehaviour
         if (collision.gameObject.CompareTag("Bubble"))
         {
             _audioSource.PlayOneShot(_audioClipCollectChest);
-            GameManager.Instance.AddReward(_reward);
+            ChestManager.Instance.AddReward(_reward);
             _chestVisual.GetComponent<SpriteRenderer>().enabled = false;
             StartCoroutine(DestroyChest(_audioClipCollectChest.length));
         }
