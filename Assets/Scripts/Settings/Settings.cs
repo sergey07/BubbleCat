@@ -1,12 +1,10 @@
 using UnityEngine;
 using TMPro;
 
-public class PausePanel : MonoBehaviour
+public class Settings : MonoBehaviour
 {
     [Header("Required Components")]
-    [SerializeField] private TextMeshProUGUI _soundBtnText;
-    [SerializeField] private TextMeshProUGUI _zoomBtnText;
-    [SerializeField] private TextMeshProUGUI _difficultyBtnText;
+    [SerializeField] private GameObject _pausePanel;
 
     [Header("Difficulty Configuration")]
     [SerializeField] private float _slowSpeed = 1.0f;
@@ -17,20 +15,28 @@ public class PausePanel : MonoBehaviour
     private int _difficultyLvl = 1;
     private bool _isZoom = false;
 
+    private PausePanel _ppComponent;
+
     private void Start()
     {
-        AudioListener.pause = !Progress.Instance.PlayerInfo.IsSoundOn;
-        UpdateSoundButton();
+        _ppComponent = _pausePanel.GetComponent<PausePanel>();
+        Init();
+    }
+
+    public void Init()
+    {
+        AudioListener.pause = !Progress.Instance.PlayerInfo.IsSoundOn;;
         _difficultyLvl = Progress.Instance.PlayerInfo.DifficultyLvl;
-        UpdateDifficultyButton();
+        UpdateSpeed(_difficultyLvl);
         _isZoom = Progress.Instance.PlayerInfo.IsZoom;
-        UpdateZoomState();
+        UpdateCamera(_isZoom);
     }
 
     public void ToggleMenu()
     {
-        gameObject.SetActive(!gameObject.activeSelf);
-        Time.timeScale = gameObject.activeSelf ? 0.0f : _currentSpeed;
+        _pausePanel.SetActive(!_pausePanel.activeSelf);
+        Time.timeScale = _pausePanel.activeSelf ? 0.0f : _currentSpeed;
+        UpdatePausePanelButtons();
     }
 
     public void Restart()
@@ -43,7 +49,7 @@ public class PausePanel : MonoBehaviour
     {
         AudioListener.pause = !AudioListener.pause;
         Progress.Instance.PlayerInfo.IsSoundOn = !AudioListener.pause;
-        UpdateSoundButton();
+        _ppComponent.UpdateSoundButton(Progress.Instance.PlayerInfo.IsSoundOn);
     }
 
     public void ChangeDifficulty()
@@ -56,60 +62,52 @@ public class PausePanel : MonoBehaviour
         }
 
         Progress.Instance.PlayerInfo.DifficultyLvl = _difficultyLvl;
-        UpdateDifficultyButton();
+        UpdateSpeed(_difficultyLvl);
+        _ppComponent.UpdateDifficultyButton(_difficultyLvl);
     }
-    
+
     public void ChangeScale()
     {
         _isZoom = !_isZoom;
         Progress.Instance.PlayerInfo.IsZoom = _isZoom;
-        UpdateZoomState();
+        UpdateCamera(_isZoom);
+        _ppComponent.UpdateZoomButton(_isZoom);
     }
 
-    private void UpdateSoundButton()
+    private void UpdateSpeed(int difficultyLvl)
     {
-        if (AudioListener.pause)
-        {
-            _soundBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Вкл. звук" : "Sound On";
-        }
-        else
-        {
-            _soundBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Выкл. звук" : "Sound Off";
-        }
-    }
-
-    private void UpdateDifficultyButton()
-    {
-        switch (_difficultyLvl)
+        switch (difficultyLvl)
         {
             case 1:
                 _currentSpeed = _slowSpeed;
-                _difficultyBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Легко" : "Easy";
                 break;
             case 2:
                 _currentSpeed = _middleSpeed;
-                _difficultyBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Норально" : "Medium";
                 break;
             case 3:
                 _currentSpeed = _fastSpeed;
-                _difficultyBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Сложно" : "Hard";
                 break;
         }
     }
 
-    private void UpdateZoomState()
+    private void UpdateCamera(bool isZoom)
     {
         if (_isZoom)
         {
             // Set the size of the viewing volume you'd like the orthographic Camera to pick up
             Camera.main.orthographicSize = 6.0f;
-            _zoomBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Дальше" : "Zoom Out";
         }
         else
         {
             // Set the size of the viewing volume you'd like the orthographic Camera to pick up
             Camera.main.orthographicSize = 10.0f;
-            _zoomBtnText.text = Language.Instance.CurrentLanguage == "ru" ? "Ближе" : "Zoom In";
         }
+    }
+
+    private void UpdatePausePanelButtons()
+    {
+        _ppComponent.UpdateSoundButton(Progress.Instance.PlayerInfo.IsSoundOn);
+        _ppComponent.UpdateDifficultyButton(_difficultyLvl);
+        _ppComponent.UpdateZoomButton(_isZoom);
     }
 }
