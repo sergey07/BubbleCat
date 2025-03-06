@@ -721,12 +721,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297c251eb5f14ce44acd419f886412ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundBtnText: {fileID: 0}
-  _zoomBtnText: {fileID: 0}
-  _difficultyBtnText: {fileID: 290286859}
-  _slowSpeed: 1
-  _middleSpeed: 1.5
-  _fastSpeed: 2
+  _txtSoundOff: {fileID: 0}
+  _txtSoundOn: {fileID: 0}
+  _txtZoomIn: {fileID: 0}
+  _txtZoomOut: {fileID: 0}
+  _txtLevelEasy: {fileID: 0}
+  _txtLevelMedium: {fileID: 0}
+  _txtLevelHard: {fileID: 0}
 --- !u!114 &405538368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,6 +766,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405538365}
   m_CullTransparentMesh: 1
+--- !u!1 &471286163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 471286165}
+  - component: {fileID: 471286164}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &471286164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471286163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaad7d4d6127de4cb7f9bdee65c72f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &471286165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471286163}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &576281417 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 122926664763048416, guid: 038454a1aa6ddeb47931235cd3f0f8c8, type: 3}
@@ -3373,3 +3418,4 @@ SceneRoots:
   - {fileID: 243777686}
   - {fileID: 642479497}
   - {fileID: 1460847733}
+  - {fileID: 471286165}

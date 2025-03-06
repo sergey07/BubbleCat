@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 public class Settings : MonoBehaviour
 {
@@ -25,7 +24,6 @@ public class Settings : MonoBehaviour
 
     public void Init()
     {
-        AudioListener.pause = !Progress.Instance.PlayerInfo.IsSoundOn;;
         _difficultyLvl = Progress.Instance.PlayerInfo.DifficultyLvl;
         UpdateSpeed(_difficultyLvl);
         _isZoom = Progress.Instance.PlayerInfo.IsZoom;
@@ -47,9 +45,8 @@ public class Settings : MonoBehaviour
 
     public void SwitchSound()
     {
-        AudioListener.pause = !AudioListener.pause;
-        Progress.Instance.PlayerInfo.IsSoundOn = !AudioListener.pause;
-        _ppComponent.UpdateSoundButton(Progress.Instance.PlayerInfo.IsSoundOn);
+        SoundManager.Instance.Mute(!SoundManager.Instance.IsMute());;
+        _ppComponent.UpdateSoundButton(!SoundManager.Instance.IsMute());
     }
 
     public void ChangeDifficulty()
