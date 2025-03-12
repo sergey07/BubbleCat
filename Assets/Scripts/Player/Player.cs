@@ -33,8 +33,6 @@ public class Player : MonoBehaviour
     {
         if (Instance == null)
         {
-            //transform.parent = null;
-            //DontDestroyOnLoad(gameObject);
             Instance = this;
             _rb = GetComponent<Rigidbody2D>();
 

@@ -397,7 +397,7 @@ MonoBehaviour:
   _minSize: 0.8
   _maxSize: 2.3
   _scaleSpeed: 2
-  _bubbleBoomObject: {fileID: 3168124936931957454}
+  _bubbleBoomObject: {fileID: 1237189655066794581}
   _audioClipCpock: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
 --- !u!58 &6133909865327113649
 CircleCollider2D:
