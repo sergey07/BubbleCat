@@ -96,14 +96,6 @@ public class Bubble : MonoBehaviour
         }
 
         _bubbleBoomObject.SetActive(true);
-
-        StartCoroutine(DestroyBubbleBoom());
-    }
-
-    IEnumerator DestroyBubbleBoom()
-    {
-        yield return new WaitForSeconds(0.1f);
-        _bubbleBoomObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
