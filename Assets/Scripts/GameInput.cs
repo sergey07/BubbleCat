@@ -38,8 +38,7 @@ public class GameInput : MonoBehaviour
             if (CheckDeltaPosition(touchPos))
             {
                 _oldTouchPos = touchPos;
-                float joystickHeight = _fixedJoystick.gameObject.GetComponent<RectTransform>().rect.height;
-                _fixedJoystick.transform.position = new Vector3(touchPos.x, touchPos.y - joystickHeight / 2, 0);
+                _fixedJoystick.transform.position = new Vector3(touchPos.x, touchPos.y, 0);
             }
         }
     }
