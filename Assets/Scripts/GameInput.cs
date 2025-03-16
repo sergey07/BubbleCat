@@ -90,7 +90,6 @@ public class GameInput : MonoBehaviour
         RectTransform rt = _joystick.GetComponent<RectTransform>();
         rt.anchorMin = new Vector2(1.0f, 0.0f);
         rt.anchorMax = new Vector2(1.0f, 0.0f);
-        rt.pivot = new Vector2(1.0f, 0.0f);
         rt.anchoredPosition = _joystickPos;
     }
 
@@ -101,7 +100,6 @@ public class GameInput : MonoBehaviour
         RectTransform rt = _joystick.GetComponent<RectTransform>();
         rt.anchorMin = new Vector2(0.0f, 0.0f);
         rt.anchorMax = new Vector2(0.0f, 0.0f);
-        rt.pivot = new Vector2(0.0f, 0.0f);
         rt.anchoredPosition = _joystickPos;
     }
 

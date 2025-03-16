@@ -35138,7 +35138,7 @@ MonoBehaviour:
     IsSoundOn: 1
     IsZoom: 0
     DifficultyLvl: 1
-    JoystickPosition: 1
+    JoystickPos: 2
 --- !u!4 &2064464985
 Transform:
   m_ObjectHideFlags: 0
@@ -41563,6 +41563,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 174440341867976910, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: _joystickPosY
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 174440341867976910, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: _joystickOffsetX
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1755254242116204452, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -41610,6 +41618,22 @@ PrefabInstance:
     - target: {fileID: 5495227140745032024, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
       propertyPath: m_Name
       value: LevelCommon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151915062909379378, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151915062909379378, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151915062909379378, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151915062909379378, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
