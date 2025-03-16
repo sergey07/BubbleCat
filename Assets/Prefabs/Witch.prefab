@@ -207,16 +207,16 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.099
+  m_Volume: 0.125
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 100
-  DopplerLevel: 1
-  MinDistance: 0.2
-  MaxDistance: 0.5
+  DopplerLevel: 0
+  MinDistance: 0.990099
+  MaxDistance: 1
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -281,7 +281,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.376
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -306,6 +306,6 @@ MonoBehaviour:
   _startMoveDirection: 0
   _speed: 4
   _audioClipLaughter: {fileID: 8300000, guid: 12bcb0bd1dd9a9b4c9316e75b0156a91, type: 3}
-  _delay: 0
+  _delay: -2.37
   _repeatRate: 6
   _witchVisual: {fileID: 1549536017619442574}
