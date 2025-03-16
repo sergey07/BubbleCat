@@ -5,11 +5,12 @@ public class GameInput : MonoBehaviour
 {
     public static GameInput Instance { get; private set; }
 
-    [SerializeField] private FixedJoystick _fixedJoystick;
-    [SerializeField] private float _deltaPos = 300f;
-
+    [SerializeField] private FixedJoystick _joystick;
+    [SerializeField] private float _joystickOffsetX = 80.0f;
+    [SerializeField] private float _joystickPosY = 80.0f;
+    
+    private Vector3 _joystickPos;
     private bool _isJoystickVisible = false;
-    private Vector2 _oldTouchPos = new Vector2(0, 0);
 
     private void Awake()
     {
@@ -30,15 +31,7 @@ public class GameInput : MonoBehaviour
             if (!_isJoystickVisible)
             {
                 ShowJoystick();
-            }
-
-            // Placing joystick on touch position
-            Vector2 touchPos = Input.GetTouch(0).position;
-
-            if (CheckDeltaPosition(touchPos))
-            {
-                _oldTouchPos = touchPos;
-                _fixedJoystick.transform.position = new Vector3(touchPos.x, touchPos.y, 0);
+                SetJoystickRight();
             }
         }
     }
@@ -75,9 +68,9 @@ public class GameInput : MonoBehaviour
         string currentSceneName = GameManager.Instance.GetCurrentSceneName();
 
         // Если схватил за джойстик, то он перезапишет значения - OnlyMeRus
-        if (_fixedJoystick != null && (_fixedJoystick.Vertical != 0 || _fixedJoystick.Horizontal != 0))
+        if (_joystick != null && (_joystick.Vertical != 0 || _joystick.Horizontal != 0))
         {
-            inputVector = new Vector2(_fixedJoystick.Horizontal, _fixedJoystick.Vertical);
+            inputVector = new Vector2(_joystick.Horizontal, _joystick.Vertical);
         }
 
         inputVector.Normalize();
@@ -91,6 +84,28 @@ public class GameInput : MonoBehaviour
         return mousePos;
     }
 
+    public void SetJoystickRight()
+    {
+        _joystickPos = new Vector3(-_joystickOffsetX, _joystickPosY, 0);
+
+        RectTransform rt = _joystick.GetComponent<RectTransform>();
+        rt.anchorMin = new Vector2(1.0f, 0.0f);
+        rt.anchorMax = new Vector2(1.0f, 0.0f);
+        rt.pivot = new Vector2(1.0f, 0.0f);
+        rt.anchoredPosition = _joystickPos;
+    }
+
+    public void SetJoystickLeft()
+    {
+        _joystickPos = new Vector3(_joystickOffsetX, _joystickPosY, 0);
+
+        RectTransform rt = _joystick.GetComponent<RectTransform>();
+        rt.anchorMin = new Vector2(0.0f, 0.0f);
+        rt.anchorMax = new Vector2(0.0f, 0.0f);
+        rt.pivot = new Vector2(0.0f, 0.0f);
+        rt.anchoredPosition = _joystickPos;
+    }
+
     public bool IsJoystickVisible()
     {
         return _isJoystickVisible;
@@ -98,24 +113,13 @@ public class GameInput : MonoBehaviour
 
     private void ShowJoystick()
     {
-        _fixedJoystick.gameObject.SetActive(true);
+        _joystick.gameObject.SetActive(true);
         _isJoystickVisible = true;
     }
 
     private void HideJoystick()
     {
-        _fixedJoystick.gameObject.SetActive(false);
+        _joystick.gameObject.SetActive(false);
         _isJoystickVisible = false;
-    }
-
-    // Is this delta enough for moving the joystick? 
-    private bool CheckDeltaPosition(Vector2 touchPos)
-    {
-        float xMin = _oldTouchPos.x - _deltaPos;
-        float xMax = _oldTouchPos.x + _deltaPos;
-        float yMin = _oldTouchPos.y - _deltaPos;
-        float yMax = _oldTouchPos.y + _deltaPos;
-
-        return touchPos.x < xMin || touchPos.x > xMax || touchPos.y < yMin || touchPos.y > yMax;
     }
 }
