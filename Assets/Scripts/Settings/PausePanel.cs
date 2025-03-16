@@ -11,6 +11,8 @@ public class PausePanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtLevelEasy;
     [SerializeField] private TextMeshProUGUI _txtLevelMedium;
     [SerializeField] private TextMeshProUGUI _txtLevelHard;
+    [SerializeField] private TextMeshProUGUI _txtJoystickPosLeft;
+    [SerializeField] private TextMeshProUGUI _txtJoystickPosRight;
 
     public void UpdateSoundButton(bool isSoundOn)
     {
@@ -58,6 +60,21 @@ public class PausePanel : MonoBehaviour
                 _txtLevelEasy.gameObject.SetActive(false);
                 _txtLevelMedium.gameObject.SetActive(false);
                 _txtLevelHard.gameObject.SetActive(true);
+                break;
+        }
+    }
+
+    public void UpdateJoystickPositionButton(int _joystickPosition)
+    {
+        switch (_joystickPosition)
+        {
+            case 1:
+                _txtJoystickPosLeft.gameObject.SetActive(true);
+                _txtJoystickPosRight.gameObject.SetActive(false);
+                break;
+            case 2:
+                _txtJoystickPosLeft.gameObject.SetActive(false);
+                _txtJoystickPosRight.gameObject.SetActive(true);
                 break;
         }
     }

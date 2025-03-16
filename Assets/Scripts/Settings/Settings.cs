@@ -11,8 +11,9 @@ public class Settings : MonoBehaviour
     [SerializeField] private float _fastSpeed = 2.0f;
 
     private float _currentSpeed = 1.0f;
-    private int _difficultyLvl = 1;
-    private bool _isZoom = false;
+    private int _difficultyLvl;
+    private bool _isZoom ;
+    private int _joystickPosition;
 
     private PausePanel _ppComponent;
 
@@ -28,6 +29,8 @@ public class Settings : MonoBehaviour
         UpdateSpeed(_difficultyLvl);
         _isZoom = Progress.Instance.PlayerInfo.IsZoom;
         UpdateCamera(_isZoom);
+        _joystickPosition = Progress.Instance.PlayerInfo.JoystickPos;
+        UpdateJoystickPosition(_joystickPosition);
     }
 
     public void ToggleMenu()
@@ -71,6 +74,14 @@ public class Settings : MonoBehaviour
         _ppComponent.UpdateZoomButton(_isZoom);
     }
 
+    public void ChangeJoystickPosition()
+    {
+        _joystickPosition = _joystickPosition == 1 ? 2 : 1;
+        Progress.Instance.PlayerInfo.JoystickPos = _joystickPosition;
+        UpdateJoystickPosition(_joystickPosition);
+        _ppComponent.UpdateJoystickPositionButton(_joystickPosition);
+    }
+
     private void UpdateSpeed(int difficultyLvl)
     {
         switch (difficultyLvl)
@@ -89,7 +100,7 @@ public class Settings : MonoBehaviour
 
     private void UpdateCamera(bool isZoom)
     {
-        if (_isZoom)
+        if (isZoom)
         {
             // Set the size of the viewing volume you'd like the orthographic Camera to pick up
             Camera.main.orthographicSize = 6.0f;
@@ -101,10 +112,23 @@ public class Settings : MonoBehaviour
         }
     }
 
+    private void UpdateJoystickPosition(int joystickPosition)
+    {
+        if (joystickPosition == 1)
+        {
+            GameInput.Instance.SetJoystickLeft();
+        }
+        else if (joystickPosition == 2)
+        {
+            GameInput.Instance.SetJoystickRight();
+        }
+    }
+
     private void UpdatePausePanelButtons()
     {
         _ppComponent.UpdateSoundButton(Progress.Instance.PlayerInfo.IsSoundOn);
         _ppComponent.UpdateDifficultyButton(_difficultyLvl);
         _ppComponent.UpdateZoomButton(_isZoom);
+        _ppComponent.UpdateJoystickPositionButton(_joystickPosition);
     }
 }

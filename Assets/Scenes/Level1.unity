@@ -35138,6 +35138,7 @@ MonoBehaviour:
     IsSoundOn: 1
     IsZoom: 0
     DifficultyLvl: 1
+    JoystickPosition: 1
 --- !u!4 &2064464985
 Transform:
   m_ObjectHideFlags: 0

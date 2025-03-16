@@ -31,7 +31,6 @@ public class GameInput : MonoBehaviour
             if (!_isJoystickVisible)
             {
                 ShowJoystick();
-                SetJoystickRight();
             }
         }
     }
