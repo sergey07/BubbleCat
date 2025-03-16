@@ -9,6 +9,7 @@ public class PlayerInfo
     public bool IsSoundOn = true;
     public bool IsZoom = false;
     public int DifficultyLvl = 1;
+    public int JoystickPos = 2;
 }
 
 public class Progress: MonoBehaviour

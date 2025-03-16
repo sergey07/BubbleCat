@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PausePanel : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PausePanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtLevelEasy;
     [SerializeField] private TextMeshProUGUI _txtLevelMedium;
     [SerializeField] private TextMeshProUGUI _txtLevelHard;
+    [SerializeField] private Button _btnJoystickPos;
+    [SerializeField] private TextMeshProUGUI _txtJoystickPosLeft;
+    [SerializeField] private TextMeshProUGUI _txtJoystickPosRight;
 
     public void UpdateSoundButton(bool isSoundOn)
     {
@@ -59,6 +63,28 @@ public class PausePanel : MonoBehaviour
                 _txtLevelMedium.gameObject.SetActive(false);
                 _txtLevelHard.gameObject.SetActive(true);
                 break;
+        }
+    }
+
+    public void UpdateJoystickPositionButton(int _joystickPosition, bool isJoystickVisible)
+    {
+        if (isJoystickVisible)
+        {
+            switch (_joystickPosition)
+            {
+                case 1:
+                    _txtJoystickPosLeft.gameObject.SetActive(true);
+                    _txtJoystickPosRight.gameObject.SetActive(false);
+                    break;
+                case 2:
+                    _txtJoystickPosLeft.gameObject.SetActive(false);
+                    _txtJoystickPosRight.gameObject.SetActive(true);
+                    break;
+            }
+        }
+        else
+        {
+            _btnJoystickPos.gameObject.SetActive(false);
         }
     }
 }
