@@ -2089,6 +2089,7 @@ MonoBehaviour:
   _txtLevelEasy: {fileID: 5683385122798830039}
   _txtLevelMedium: {fileID: 3070009753408552627}
   _txtLevelHard: {fileID: 3989728080108999259}
+  _btnJoystickPos: {fileID: 8334443056056552917}
   _txtJoystickPosLeft: {fileID: 7538343525305275827}
   _txtJoystickPosRight: {fileID: 201551839832119268}
 --- !u!1 &4557876393615442255
@@ -2286,8 +2287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _joystick: {fileID: 8151915062909379391}
-  _joystickOffsetX: 80
-  _joystickPosY: 80
+  _joystickOffsetX: 100
+  _joystickPosY: 160
 --- !u!1 &4662875082232673790
 GameObject:
   m_ObjectHideFlags: 0
@@ -4458,11 +4459,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4530,11 +4531,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -80
+      value: -128
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 80
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

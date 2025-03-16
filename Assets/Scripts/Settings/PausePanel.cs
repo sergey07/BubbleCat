@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PausePanel : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PausePanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtLevelEasy;
     [SerializeField] private TextMeshProUGUI _txtLevelMedium;
     [SerializeField] private TextMeshProUGUI _txtLevelHard;
+    [SerializeField] private Button _btnJoystickPos;
     [SerializeField] private TextMeshProUGUI _txtJoystickPosLeft;
     [SerializeField] private TextMeshProUGUI _txtJoystickPosRight;
 
@@ -64,18 +66,25 @@ public class PausePanel : MonoBehaviour
         }
     }
 
-    public void UpdateJoystickPositionButton(int _joystickPosition)
+    public void UpdateJoystickPositionButton(int _joystickPosition, bool isJoystickVisible)
     {
-        switch (_joystickPosition)
+        if (isJoystickVisible)
         {
-            case 1:
-                _txtJoystickPosLeft.gameObject.SetActive(true);
-                _txtJoystickPosRight.gameObject.SetActive(false);
-                break;
-            case 2:
-                _txtJoystickPosLeft.gameObject.SetActive(false);
-                _txtJoystickPosRight.gameObject.SetActive(true);
-                break;
+            switch (_joystickPosition)
+            {
+                case 1:
+                    _txtJoystickPosLeft.gameObject.SetActive(true);
+                    _txtJoystickPosRight.gameObject.SetActive(false);
+                    break;
+                case 2:
+                    _txtJoystickPosLeft.gameObject.SetActive(false);
+                    _txtJoystickPosRight.gameObject.SetActive(true);
+                    break;
+            }
+        }
+        else
+        {
+            _btnJoystickPos.gameObject.SetActive(false);
         }
     }
 }

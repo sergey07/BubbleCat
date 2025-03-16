@@ -79,7 +79,7 @@ public class Settings : MonoBehaviour
         _joystickPosition = _joystickPosition == 1 ? 2 : 1;
         Progress.Instance.PlayerInfo.JoystickPos = _joystickPosition;
         UpdateJoystickPosition(_joystickPosition);
-        _ppComponent.UpdateJoystickPositionButton(_joystickPosition);
+        _ppComponent.UpdateJoystickPositionButton(_joystickPosition, GameInput.Instance.IsJoystickVisible());
     }
 
     private void UpdateSpeed(int difficultyLvl)
@@ -129,6 +129,6 @@ public class Settings : MonoBehaviour
         _ppComponent.UpdateSoundButton(Progress.Instance.PlayerInfo.IsSoundOn);
         _ppComponent.UpdateDifficultyButton(_difficultyLvl);
         _ppComponent.UpdateZoomButton(_isZoom);
-        _ppComponent.UpdateJoystickPositionButton(_joystickPosition);
+        _ppComponent.UpdateJoystickPositionButton(_joystickPosition, GameInput.Instance.IsJoystickVisible());
     }
 }
