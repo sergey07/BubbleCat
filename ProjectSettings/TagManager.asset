@@ -14,6 +14,7 @@ TagManager:
   - SpawnPoint
   - EndTrigger
   - Witch
+  - WinLevelPanel
   layers:
   - Default
   - TransparentFX

@@ -4,41 +4,34 @@ using UnityEngine;
 
 public class TutorialToggler : MonoBehaviour
 {
-    [SerializeField] private GameObject _tutorPanel;
+    [SerializeField] private GameObject _tutorPanel1;
+    [SerializeField] private GameObject _tutorPanel2;
+    [SerializeField] private float _delay = 0.1f;
 
-    // start
+    private float _currentDelay = 0.0f;
+
     void Start()
     {
-        tutorPanelEnable();
+        _tutorPanel1.SetActive(true);
     }
 
-    // Update
     void Update()
     {
-        UpdateMaker();
-    }
+        _currentDelay += Time.deltaTime;
 
-    private void UpdateMaker()
-    {
-        // DisplayTime(Time.time);
-        CheckAnyButton();
-    }
-
-    private void tutorPanelEnable()
-    {
-        _tutorPanel.SetActive(true);
-    }
-
-    private void CheckAnyButton()
-    {
-        if (Input.anyKey)
+        if (Input.anyKey && _currentDelay >= _delay)
         {
-            tutorPanelDisable();
-        }
-    }
+            _currentDelay = 0.0f;
 
-    private void tutorPanelDisable()
-    {
-        _tutorPanel.SetActive(false);
+            if (_tutorPanel1.activeInHierarchy)
+            {
+                _tutorPanel1.SetActive(false);
+                _tutorPanel2.SetActive(true);
+            }
+            else if (_tutorPanel2.activeInHierarchy)
+            {
+                _tutorPanel2.SetActive(false);
+            }
+        }
     }
 }

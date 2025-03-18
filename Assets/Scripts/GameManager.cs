@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Objects")]
     [SerializeField] private GameObject _finishTrigger;
+    [SerializeField] private GameObject _finishLevelPanel;
     [SerializeField] private TextMeshProUGUI _txtLevel;
     
     [Header("Sound Configuration")]
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishLevel()
     {
+        _finishLevelPanel.SetActive(true);
         _audioSource.PlayOneShot(_audioClipFinishLevel);
         StartCoroutine(LoadNextLevel(_audioClipFinishLevel.length));
     }
