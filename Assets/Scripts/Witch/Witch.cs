@@ -16,6 +16,7 @@ public class Witch : MonoBehaviour
 
     [Header("Sound Configuration")]
     [SerializeField] private AudioClip _audioClipLaughter;
+    [SerializeField] private float _maxSoundDistance = 20.0f;
     [SerializeField] private float _delay = 0;
     [SerializeField] private float _repeatRate = 5;
 
@@ -24,6 +25,7 @@ public class Witch : MonoBehaviour
     private Rigidbody2D _rb;
     private AudioSource _audioSource;
     private Vector2 _movementVector;
+    private Transform _playerTransform;
 
     private void Awake()
     {
@@ -33,6 +35,8 @@ public class Witch : MonoBehaviour
 
     private void Start()
     {
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
         InvokeRepeating("PlayLaughter", _delay, _repeatRate);
 
         _movementVector = new Vector2(0, 0);
@@ -58,7 +62,12 @@ public class Witch : MonoBehaviour
 
     private void PlayLaughter()
     {
-        _audioSource.PlayOneShot(_audioClipLaughter);
+        float distance = Vector3.Distance(transform.position, _playerTransform.position);
+
+        if (distance <= _maxSoundDistance)
+        {
+            _audioSource.PlayOneShot(_audioClipLaughter);
+        }
     }
 
     private void FixedUpdate()

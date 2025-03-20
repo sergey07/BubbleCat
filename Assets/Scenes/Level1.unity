@@ -1036,7 +1036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tutorPanel1: {fileID: 558755387}
   _tutorPanel2: {fileID: 133293670}
-  _delay: 0.1
+  _delay: 0.6
 --- !u!4 &740541321
 Transform:
   m_ObjectHideFlags: 0

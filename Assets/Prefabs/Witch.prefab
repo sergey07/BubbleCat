@@ -306,6 +306,7 @@ MonoBehaviour:
   _startMoveDirection: 0
   _speed: 4
   _audioClipLaughter: {fileID: 8300000, guid: 12bcb0bd1dd9a9b4c9316e75b0156a91, type: 3}
+  _maxSoundDistance: 20
   _delay: -2.37
   _repeatRate: 6
   _witchVisual: {fileID: 1549536017619442574}
