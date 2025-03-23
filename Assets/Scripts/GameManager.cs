@@ -81,13 +81,18 @@ public class GameManager : MonoBehaviour
     public void FinishLevel()
     {
         _finishLevelPanel.SetActive(true);
+        int chestCount = Progress.Instance.PlayerInfo.ChestCount;
+        int scoreForChest = ChestManager.Instance.GetScoreForChest();
+        int remainingTime = 100;
+        _finishLevelPanel.GetComponent<FinishLevel>().UpdatePanel(chestCount, scoreForChest, remainingTime);
         _audioSource.PlayOneShot(_audioClipFinishLevel);
         StartCoroutine(LoadNextLevel(_audioClipFinishLevel.length));
     }
 
     public void LoadCatDiedScene()
     {
-        Progress.Instance.PlayerInfo.LevelChestCount = 0;
+        //Progress.Instance.PlayerInfo.LevelChestCount = 0;
+        Progress.Instance.PlayerInfo.ChestCount = 0;
 
         Progress.Instance.PlayerInfo.CurrentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("CatDied");
@@ -105,8 +110,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         _currentSceneName = SceneManager.GetActiveScene().name;
-        Progress.Instance.PlayerInfo.ChestCount += Progress.Instance.PlayerInfo.LevelChestCount;
-        Progress.Instance.PlayerInfo.LevelChestCount = 0;
+        //Progress.Instance.PlayerInfo.ChestCount += Progress.Instance.PlayerInfo.LevelChestCount;
+        //Progress.Instance.PlayerInfo.LevelChestCount = 0;
+        Progress.Instance.PlayerInfo.ChestCount = 0;
 
         if (_currentSceneName != "Level" + (_sceneCount - 3))
         {

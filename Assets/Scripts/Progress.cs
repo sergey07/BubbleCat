@@ -4,8 +4,9 @@ using UnityEngine;
 public class PlayerInfo
 {
     public string CurrentSceneName;
+    public int Score;
     public int ChestCount;
-    public int LevelChestCount;
+    //public int LevelChestCount;
     public bool IsSoundOn = true;
     public bool IsZoom = false;
     public int DifficultyLvl = 1;

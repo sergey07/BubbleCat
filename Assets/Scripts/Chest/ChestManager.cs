@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +9,9 @@ public class ChestManager : MonoBehaviour
     [Header("Game Objects")]
     [SerializeField] private GameObject _chestCounterPanel;
     [SerializeField] private TextMeshProUGUI _txtChestCounter;
+
+    [Header("Parametrs")]
+    [SerializeField] private int _scoreForChest = 10;
 
     private void Awake()
     {
@@ -35,16 +36,21 @@ public class ChestManager : MonoBehaviour
             else
             {
                 _chestCounterPanel.SetActive(true);
-                int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
-                _txtChestCounter.text = allChestCount.ToString();
+                //int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
+                _txtChestCounter.text = Progress.Instance.PlayerInfo.ChestCount.ToString();
             }
         }
     }
 
+    public int GetScoreForChest()
+    {
+        return _scoreForChest;
+    }
+
     public void AddReward(int reward)
     {
-        Progress.Instance.PlayerInfo.LevelChestCount += reward;
-        int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
-        _txtChestCounter.text = allChestCount.ToString();
+        Progress.Instance.PlayerInfo.ChestCount += reward;
+        //int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
+        _txtChestCounter.text = Progress.Instance.PlayerInfo.ChestCount.ToString();
     }
 }
