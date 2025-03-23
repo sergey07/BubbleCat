@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialToggler : MonoBehaviour
@@ -8,20 +6,25 @@ public class TutorialToggler : MonoBehaviour
     [SerializeField] private GameObject _tutorPanel2;
     [SerializeField] private float _delay = 0.1f;
 
-    private float _currentDelay = 0.0f;
+    //private float _currentDelay = 0.0f;
 
-    void Start()
+    private void Awake()
+    {
+        GameManager.Instance.Pause();
+    }
+
+    private void Start()
     {
         _tutorPanel1.SetActive(true);
     }
 
-    void Update()
+    private void Update()
     {
-        _currentDelay += Time.deltaTime;
+        //_currentDelay += Time.deltaTime;
 
-        if (Input.anyKey && _currentDelay >= _delay)
+        if (Input.anyKey/* && _currentDelay >= _delay*/)
         {
-            _currentDelay = 0.0f;
+            //_currentDelay = 0.0f;
 
             if (_tutorPanel1.activeInHierarchy)
             {
@@ -31,6 +34,7 @@ public class TutorialToggler : MonoBehaviour
             else if (_tutorPanel2.activeInHierarchy)
             {
                 _tutorPanel2.SetActive(false);
+                GameManager.Instance.Resume();
             }
         }
     }

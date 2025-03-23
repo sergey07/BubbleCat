@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    private float _oldTimeScale;
+
     private void Awake()
     {
         if (Instance == null)
@@ -65,6 +67,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Pause()
+    {
+        _oldTimeScale = Time.timeScale;
+        Time.timeScale = 0;
+        TimerManager.Instance.StopTimer();
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = _oldTimeScale;
+        TimerManager.Instance.ResumeTimer();
+    }
+
     public string GetCurrentSceneName()
     {
         return _currentSceneName;
@@ -80,10 +95,11 @@ public class GameManager : MonoBehaviour
 
     public void FinishLevel()
     {
+        TimerManager.Instance.StopTimer();
         _finishLevelPanel.SetActive(true);
         int chestCount = Progress.Instance.PlayerInfo.ChestCount;
         int scoreForChest = ChestManager.Instance.GetScoreForChest();
-        int remainingTime = 100;
+        int remainingTime = TimerManager.Instance.GetRemainingSeconds();
         _finishLevelPanel.GetComponent<FinishLevel>().UpdatePanel(chestCount, scoreForChest, remainingTime);
         _audioSource.PlayOneShot(_audioClipFinishLevel);
         StartCoroutine(LoadNextLevel(_audioClipFinishLevel.length));
