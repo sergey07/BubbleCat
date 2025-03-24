@@ -22,7 +22,8 @@ public class FinishGame : MonoBehaviour
         _rb.MovePosition(_rb.position + new Vector2(_speed * Time.fixedDeltaTime, 0));
 
         if (_playerObject.transform.position.x > _endTriggerTransform.position.x)
-        {;
+        {
+            // TODO: need to add finish panel
             GameManager.Instance.LoadFirstLevel();
         }
     }

@@ -4,9 +4,6 @@ public class TutorialToggler : MonoBehaviour
 {
     [SerializeField] private GameObject _tutorPanel1;
     [SerializeField] private GameObject _tutorPanel2;
-    [SerializeField] private float _delay = 0.1f;
-
-    //private float _currentDelay = 0.0f;
 
     private void Awake()
     {
@@ -18,24 +15,15 @@ public class TutorialToggler : MonoBehaviour
         _tutorPanel1.SetActive(true);
     }
 
-    private void Update()
+    public void NextTutorial()
     {
-        //_currentDelay += Time.deltaTime;
+        _tutorPanel1.SetActive(false);
+        _tutorPanel2.SetActive(true);
+    }
 
-        if (Input.anyKey/* && _currentDelay >= _delay*/)
-        {
-            //_currentDelay = 0.0f;
-
-            if (_tutorPanel1.activeInHierarchy)
-            {
-                _tutorPanel1.SetActive(false);
-                _tutorPanel2.SetActive(true);
-            }
-            else if (_tutorPanel2.activeInHierarchy)
-            {
-                _tutorPanel2.SetActive(false);
-                GameManager.Instance.Resume();
-            }
-        }
+    public void StartGame()
+    {
+        _tutorPanel2.SetActive(false);
+        GameManager.Instance.Resume();
     }
 }

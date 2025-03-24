@@ -84,12 +84,13 @@ public class TimerManager : MonoBehaviour
 
     private void UpdateTimerView()
     {
-        _remainingSeconds = Mathf.FloorToInt(_remainingTime);
+        // Added 1 because FloorToInt returns the largest integer smaller to or equal to argument
+        _remainingSeconds = Mathf.FloorToInt(_remainingTime + 1);
         _txtRemainingSeconds.text = _txtPrefix.text + _remainingSeconds.ToString();
     }
 
     private void TimerEnded()
     {
-        // TODO: what we do when time over?
+        Player.Instance.Fall();
     }
 }
