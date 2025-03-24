@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    private bool _isPaused = false;
     private float _oldTimeScale;
 
     private void Awake()
@@ -69,6 +70,12 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
+        if (_isPaused)
+        {
+            return;
+        }
+
+        _isPaused = true;
         _oldTimeScale = Time.timeScale;
         Time.timeScale = 0;
         TimerManager.Instance.StopTimer();
@@ -76,6 +83,12 @@ public class GameManager : MonoBehaviour
 
     public void Resume()
     {
+        if (!_isPaused)
+        {
+            return;
+        }
+
+        _isPaused = false;
         Time.timeScale = _oldTimeScale;
         TimerManager.Instance.ResumeTimer();
     }

@@ -5,13 +5,9 @@ public class TutorialToggler : MonoBehaviour
     [SerializeField] private GameObject _tutorPanel1;
     [SerializeField] private GameObject _tutorPanel2;
 
-    private void Awake()
-    {
-        GameManager.Instance.Pause();
-    }
-
     private void Start()
     {
+        GameManager.Instance.Pause();
         _tutorPanel1.SetActive(true);
     }
 
