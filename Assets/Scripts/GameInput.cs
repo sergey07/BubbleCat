@@ -10,7 +10,7 @@ public class GameInput : MonoBehaviour
     [SerializeField] private float _joystickPosY = 80.0f;
     
     private Vector3 _joystickPos;
-    private bool _isJoystickVisible = false;
+    private bool _isJoystickVisible = true;
 
     private void Awake()
     {
@@ -21,17 +21,6 @@ public class GameInput : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.touchCount > 0)
-        {
-            if (!_isJoystickVisible)
-            {
-                ShowJoystick();
-            }
         }
     }
 
@@ -46,21 +35,37 @@ public class GameInput : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
+            if (_isJoystickVisible)
+            {
+                HideJoystick();
+            }
             inputVector.y = 1;
         }
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
+            if (_isJoystickVisible)
+            {
+                HideJoystick();
+            }
             inputVector.y = -1;
         }
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
+            if (_isJoystickVisible)
+            {
+                HideJoystick();
+            }
             inputVector.x = -1;
         }
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
+            if (_isJoystickVisible)
+            {
+                HideJoystick();
+            }
             inputVector.x = 1;
         }
 
