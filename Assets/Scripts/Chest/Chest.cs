@@ -6,14 +6,13 @@ public class Chest : MonoBehaviour
 {
     [SerializeField] private int _reward = 1;
 
-    private bool _isHit = false;
-
     [Header("Sound Configuration")]
     [SerializeField] private AudioClip _audioClipCollectChest;
 
     [Header("Game Objects")]
     [SerializeField] private GameObject _chestVisual;
 
+    private bool _isHit = false;
     private AudioSource _audioSource;
 
     private void Awake()

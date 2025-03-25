@@ -6,6 +6,7 @@ public class FinishGame : MonoBehaviour
     [SerializeField] private float _speed = 10.0f;
     [Header("Game Objects")]
     [SerializeField] private GameObject _playerObject;
+    [SerializeField] private GameObject _finishGamePanel;
     [Space]
     [SerializeField] private Transform _endTriggerTransform;
 
@@ -23,8 +24,7 @@ public class FinishGame : MonoBehaviour
 
         if (_playerObject.transform.position.x > _endTriggerTransform.position.x)
         {
-            // TODO: need to add finish panel
-            GameManager.Instance.LoadFirstLevel();
+            _finishGamePanel.SetActive(true);
         }
     }
 }
