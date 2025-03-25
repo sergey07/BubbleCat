@@ -6,6 +6,8 @@ public class Chest : MonoBehaviour
 {
     [SerializeField] private int _reward = 1;
 
+    private bool _isHit = false;
+
     [Header("Sound Configuration")]
     [SerializeField] private AudioClip _audioClipCollectChest;
 
@@ -21,8 +23,9 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bubble"))
+        if (collision.gameObject.CompareTag("Bubble") && !_isHit)
         {
+            _isHit = true;
             _audioSource.PlayOneShot(_audioClipCollectChest);
             ChestManager.Instance.AddReward(_reward);
             _chestVisual.GetComponent<SpriteRenderer>().enabled = false;
