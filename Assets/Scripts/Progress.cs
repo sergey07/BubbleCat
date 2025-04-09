@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 [System.Serializable]
@@ -6,7 +7,6 @@ public class PlayerInfo
     public string CurrentSceneName;
     public int Score;
     public int ChestCount;
-    //public int LevelChestCount;
     public bool IsSoundOn = true;
     public bool IsZoom = false;
     public int DifficultyLvl = 1;
@@ -16,6 +16,13 @@ public class PlayerInfo
 public class Progress: MonoBehaviour
 {
     public PlayerInfo PlayerInfo;
+
+    [DllImport("__Internal")]
+    private static extern void SaveExtern(string data);
+    [DllImport("__Internal")]
+    private static extern void LoadExtern();
+    [DllImport("__Internal")]
+    private static extern void SetToLeaderboard(int value);
 
     public static Progress Instance { get; private set; }
 
@@ -27,10 +34,29 @@ public class Progress: MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
+#if UNITY_WEBGL
+            LoadExtern();
+#endif
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Save()
+    {
+#if UNITY_WEBGL
+        string jsonString = JsonUtility.ToJson(PlayerInfo);
+        SaveExtern(jsonString);
+        SetToLeaderboard(PlayerInfo.Score);
+#endif
+    }
+
+    public void SetPlayerInfo(string value)
+    {
+#if UNITY_WEBGL
+        PlayerInfo = JsonUtility.FromJson<PlayerInfo>(value);
+#endif
     }
 }

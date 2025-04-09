@@ -77366,11 +77366,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerInfo:
     CurrentSceneName: 
+    Score: 0
     ChestCount: 0
-    LevelChestCount: 0
     IsSoundOn: 1
     IsZoom: 0
     DifficultyLvl: 1
+    JoystickPos: 2
 --- !u!4 &2064464985
 Transform:
   m_ObjectHideFlags: 0

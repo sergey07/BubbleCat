@@ -64,6 +64,9 @@ public class Settings : MonoBehaviour
         Progress.Instance.PlayerInfo.DifficultyLvl = _difficultyLvl;
         UpdateSpeed(_difficultyLvl);
         _ppComponent.UpdateDifficultyButton(_difficultyLvl);
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
     }
 
     public void ChangeScale()
@@ -72,6 +75,9 @@ public class Settings : MonoBehaviour
         Progress.Instance.PlayerInfo.IsZoom = _isZoom;
         UpdateCamera(_isZoom);
         _ppComponent.UpdateZoomButton(_isZoom);
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
     }
 
     public void ChangeJoystickPosition()
@@ -80,6 +86,9 @@ public class Settings : MonoBehaviour
         Progress.Instance.PlayerInfo.JoystickPos = _joystickPosition;
         UpdateJoystickPosition(_joystickPosition);
         _ppComponent.UpdateJoystickPositionButton(_joystickPosition, GameInput.Instance.IsJoystickVisible());
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
     }
 
     private void UpdateSpeed(int difficultyLvl)
