@@ -1,15 +1,21 @@
 mergeInto(LibraryManager.library, {
 
 	FetchPlayerDataExtern: function() {
-    console.log(player.getName());
-    console.log(player.getPhoto("medium"));
+		if (player == undefined)
+		{
+			console.log("FetchPlayerDataExtern: player is undefined");
+			return;
+		}
 		
+		console.log(player.getName());
+		console.log(player.getPhoto("medium"));
+
 		myGameInstance.SendMessage("Yandex", "SetPlayerName", player.getName());
 		myGameInstance.SendMessage("Yandex", "SetAvatar", player.getPhoto("medium"));
-  },
+  	},
 	
 	RateGameExtern: function() {
-    ysdk.feedback.canReview()
+    	ysdk.feedback.canReview()
 			.then(({ value, reason }) => {
 				if (value) {
 					ysdk.feedback.requestReview()
@@ -23,17 +29,23 @@ mergeInto(LibraryManager.library, {
   },
 	
 	SaveExtern: function(data) {
-    var dataString = UTF8ToString(data);
+    	var dataString = UTF8ToString(data);
 		var myObj = JSON.parse(dataString);
 		player.setData(myObj);
-  },
+  	},
 	
 	LoadExtern: function() {
-    player.getData().then(_data => {
+		if (player == undefined)
+		{
+			console.log("LoadExtern: player is undefined");
+			return;
+		}
+	
+    	player.getData().then(_data => {
 			const myJSON = JSON.stringify(_data);
 			myGameInstance.SendMessage("Progress", "SetPlayerInfo", myJSON);
 		});
-  },
+  	},
 	
 	SetToLeaderboard: function(value) {
 		ysdk.getLeaderboards()

@@ -18,11 +18,14 @@ public class Yandex : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerName;
     [SerializeField] private RawImage _avatar;
 
+    private void Awake()
+    {
+        transform.parent = null;
+    }
+
     private void Start()
     {
-#if !UNITY_EDITOR && UNITY_WEBGL
         InitPlayerData();
-#endif
     }
 
     public void InitPlayerData()

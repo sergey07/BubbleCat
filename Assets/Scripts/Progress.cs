@@ -36,14 +36,18 @@ public class Progress: MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
-#if !UNITY_EDITOR && UNITY_WEBGL
-            LoadExtern();
-#endif
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+        LoadExtern();
+#endif
     }
 
     public void Save()
