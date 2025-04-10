@@ -17,12 +17,14 @@ public class Progress: MonoBehaviour
 {
     public PlayerInfo PlayerInfo;
 
+#if !UNITY_EDITOR && UNITY_WEBGL
     [DllImport("__Internal")]
     private static extern void SaveExtern(string data);
     [DllImport("__Internal")]
     private static extern void LoadExtern();
     [DllImport("__Internal")]
     private static extern void SetToLeaderboard(int value);
+#endif
 
     public static Progress Instance { get; private set; }
 
@@ -34,7 +36,7 @@ public class Progress: MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
-#if UNITY_WEBGL
+#if !UNITY_EDITOR && UNITY_WEBGL
             LoadExtern();
 #endif
         }
@@ -46,7 +48,7 @@ public class Progress: MonoBehaviour
 
     public void Save()
     {
-#if UNITY_WEBGL
+#if !UNITY_EDITOR && UNITY_WEBGL
         string jsonString = JsonUtility.ToJson(PlayerInfo);
         SaveExtern(jsonString);
         SetToLeaderboard(PlayerInfo.Score);
@@ -55,7 +57,7 @@ public class Progress: MonoBehaviour
 
     public void SetPlayerInfo(string value)
     {
-#if UNITY_WEBGL
+#if !UNITY_EDITOR && UNITY_WEBGL
         PlayerInfo = JsonUtility.FromJson<PlayerInfo>(value);
 #endif
     }

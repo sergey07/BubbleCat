@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
     {
         Progress.Instance.PlayerInfo.Score = 0;
         Progress.Instance.PlayerInfo.ChestCount = 0;
-#if UNITY_WEBGL
+#if !UNITY_EDITOR && UNITY_WEBGL
         Progress.Instance.Save();
 #endif
         SceneManager.LoadScene("Level1");
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         Progress.Instance.PlayerInfo.CurrentSceneName = _currentSceneName;
         Progress.Instance.PlayerInfo.ChestCount = 0;
 
-#if UNITY_WEBGL
+#if !UNITY_EDITOR && UNITY_WEBGL
         Progress.Instance.Save();
 #endif
 

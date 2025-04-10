@@ -1,7 +1,13 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Language : MonoBehaviour
 {
+#if UNITY_WEBGL
+    [DllImport("__Internal")]
+    private static extern string GetLang();
+#endif
+
     public static Language Instance;
 
     public string CurrentLanguage {  get; set; } // ru en
@@ -14,9 +20,11 @@ public class Language : MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
-
-            // TODO: change "ru" to value from Yandex SDK
+#if !UNITY_EDITOR && UNITY_WEBGL
+            CurrentLanguage = GetLang();
+#else
             CurrentLanguage = "ru";
+#endif
         }
         else
         {

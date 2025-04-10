@@ -7,25 +7,29 @@ using UnityEngine.UI;
 
 public class Yandex : MonoBehaviour
 {
+#if !UNITY_EDITOR && UNITY_WEBGL
     [DllImport("__Internal")]
     private static extern void FetchPlayerDataExtern();
 
     [DllImport("__Internal")]
     private static extern void RateGameExtern();
+#endif
 
     [SerializeField] private TextMeshProUGUI _playerName;
     [SerializeField] private RawImage _avatar;
 
     private void Start()
     {
-#if UNITY_WEBGL
+#if !UNITY_EDITOR && UNITY_WEBGL
         InitPlayerData();
 #endif
     }
 
     public void InitPlayerData()
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
         FetchPlayerDataExtern();
+#endif
     }
 
     public void SetPlayerName(string playerName)
@@ -40,7 +44,7 @@ public class Yandex : MonoBehaviour
 
     public void RateGameButton()
     {
-#if UNITY_WEBGL
+#if !UNITY_EDITOR && UNITY_WEBGL
         RateGameExtern();
 #endif
     }
