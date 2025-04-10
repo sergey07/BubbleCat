@@ -140,6 +140,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void Resurrect()
+    {
+        SceneManager.LoadScene(Progress.Instance.PlayerInfo.CurrentSceneName);
+    }
+
     IEnumerator LoadNextLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
