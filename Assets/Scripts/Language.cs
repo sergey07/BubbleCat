@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Language : MonoBehaviour
 {
-#if UNITY_WEBGL
+#if !UNITY_EDITOR && UNITY_WEBGL
     [DllImport("__Internal")]
     private static extern string GetLang();
 #endif
