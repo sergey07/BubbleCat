@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             _audioSource = GetComponent<AudioSource>();
+            transform.parent = null;
         }
         else
         {

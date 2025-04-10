@@ -48,6 +48,27 @@ mergeInto(LibraryManager.library, {
 		var buffer = _malloc(bufferSize);
 		stringToUTF8(lang, buffer, bufferSize);
 		return buffer;
+	},
+	
+	ResurrectExtern: function() {
+		ysdk.adv.showRewardedVideo({
+			callbacks: {
+				onOpen: () => {
+					console.log('Video ad open.');
+				},
+				onRewarded: () => {
+					console.log('Rewarded!');
+					myGameInstance.SendMessage("GameManager", "Resurrect");
+				},
+				onClose: () => {
+					console.log('Video ad closed.');
+					myGameInstance.SendMessage("GameManager", "LoadFirstLevel");
+				},
+				onError: (e) => {
+					console.log('Error while open video ad:', e);
+				}
+			}
+		})
 	}
 	
 });
