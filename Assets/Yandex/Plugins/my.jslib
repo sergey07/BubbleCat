@@ -9,8 +9,11 @@ mergeInto(LibraryManager.library, {
 			return;
 		}
 		
-		console.log(player.getName());
-		console.log(player.getPhoto("medium"));
+		var playerName = player.getName();
+		var photoMedium = player.getPhoto("medium");
+		
+		console.log("playerName: " + playerName);
+		console.log("photoMedium: " + photoMedium);
 		
 		if (myGameInstance === undefined)
 		{
@@ -18,8 +21,8 @@ mergeInto(LibraryManager.library, {
 			return;
 		}
 
-		myGameInstance.SendMessage("Yandex", "SetPlayerName", player.getName());
-		myGameInstance.SendMessage("Yandex", "SetAvatar", player.getPhoto("medium"));
+		myGameInstance.SendMessage("Yandex", "SetPlayerName", playerName);
+		myGameInstance.SendMessage("Yandex", "SetAvatar", photoMedium);
   },
 	
 	RateGameExtern: function() {
