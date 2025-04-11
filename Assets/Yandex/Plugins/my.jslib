@@ -112,6 +112,8 @@ mergeInto(LibraryManager.library, {
 			return;
 		}
 		
+		var isRewarded = false;
+		
 		ysdk.adv.showRewardedVideo({
 			callbacks: {
 				onOpen: () => {
@@ -119,11 +121,16 @@ mergeInto(LibraryManager.library, {
 				},
 				onRewarded: () => {
 					console.log('Rewarded!');
-					myGameInstance.SendMessage("GameManager", "Resurrect");
+					isRewarded = true;
 				},
 				onClose: () => {
 					console.log('Video ad closed.');
-					myGameInstance.SendMessage("GameManager", "LoadFirstLevel");
+					if (isRewarded) {
+						myGameInstance.SendMessage("GameManager", "Resurrect");
+					}
+					else {
+						myGameInstance.SendMessage("GameManager", "LoadFirstLevel");
+					}
 				},
 				onError: (e) => {
 					console.log('Error while open video ad:', e);

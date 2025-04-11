@@ -15,19 +15,4 @@ public class FinishGamePanel : MonoBehaviour
     {
         GameManager.Instance.LoadFirstLevel();
     }
-
-    //private int CalculateScoreForChests(int scoreForChest, int chestCount)
-    //{
-    //    return scoreForChest * chestCount;
-    //}
-
-    //private int CalculateTotal(int scoreForChests, int remainingSeconds)
-    //{
-    //    return scoreForChests + remainingSeconds;
-    //}
-
-    //private void SaveScore(int levelTotalScore)
-    //{
-    //    Progress.Instance.PlayerInfo.Score += levelTotalScore;
-    //}
 }
