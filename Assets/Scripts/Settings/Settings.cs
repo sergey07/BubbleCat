@@ -48,7 +48,14 @@ public class Settings : MonoBehaviour
 
     public void SwitchSound()
     {
-        SoundManager.Instance.Mute(!SoundManager.Instance.IsMute());;
+        bool isMute = !SoundManager.Instance.IsMute();
+        SoundManager.Instance.Mute(isMute);
+
+        Progress.Instance.PlayerInfo.IsSoundOn = !isMute;
+#if UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
+
         _ppComponent.UpdateSoundButton(!SoundManager.Instance.IsMute());
     }
 

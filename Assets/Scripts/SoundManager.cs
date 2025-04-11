@@ -27,10 +27,10 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
         _isMute = isMute;
-        Progress.Instance.PlayerInfo.IsSoundOn = !_isMute;
-#if UNITY_WEBGL
-        Progress.Instance.Save();
-#endif
+//        Progress.Instance.PlayerInfo.IsSoundOn = !_isMute;
+//#if UNITY_WEBGL
+//        Progress.Instance.Save();
+//#endif
 
         foreach (AudioSource audioSource in audioSources)
         {

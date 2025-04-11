@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        SoundManager.Instance.Mute(true);
+
         _isPaused = true;
         _oldTimeScale = Time.timeScale;
         Time.timeScale = 0;

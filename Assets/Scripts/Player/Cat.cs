@@ -1,14 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Runtime.InteropServices;
 
 public class Cat : MonoBehaviour
 {
-#if !UNITY_EDITOR && UNITY_WEBGL
-    [DllImport("__Internal")]
-    private static extern void ResurrectExtern();
-#endif
-
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private GameObject _catVisual;
 
@@ -34,13 +28,6 @@ public class Cat : MonoBehaviour
         }
     }
 
-    public void ShowAdvButton()
-    {
-#if !UNITY_EDITOR && UNITY_WEBGL
-        ResurrectExtern();
-#endif
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("FalledCatTrigger"))
@@ -50,8 +37,8 @@ public class Cat : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Boiler"))
         {
-            // TODO: show panel with button Resurrect (the event click binds with Cat.ShowAdvButton())
-            // and StartGame (the event click binds with GameManager.LoadFirstLevel())
+            GameObject yandexAdv = GameObject.FindGameObjectWithTag("YandexAdv");
+            yandexAdv.GetComponent<YandexAdv>().ShowResurrectPanel();
         }
     }
 }

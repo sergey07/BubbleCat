@@ -15,6 +15,7 @@ TagManager:
   - EndTrigger
   - Witch
   - WinLevelPanel
+  - YandexAdv
   layers:
   - Default
   - TransparentFX
