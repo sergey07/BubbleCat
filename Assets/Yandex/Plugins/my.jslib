@@ -1,53 +1,81 @@
 mergeInto(LibraryManager.library, {
 
 	FetchPlayerDataExtern: function() {
-		if (player == undefined)
+		console.log("FetchPlayerDataExtern() started");
+		
+		if (player === undefined)
 		{
-			console.log("FetchPlayerDataExtern: player is undefined");
+			console.log("FetchPlayerDataExtern: player is undefined!");
 			return;
 		}
 		
 		console.log(player.getName());
 		console.log(player.getPhoto("medium"));
+		
+		if (myGameInstance === undefined)
+		{
+			console.log("FetchPlayerDataExtern: myGameInstance is undefined!");
+			return;
+		}
 
 		myGameInstance.SendMessage("Yandex", "SetPlayerName", player.getName());
 		myGameInstance.SendMessage("Yandex", "SetAvatar", player.getPhoto("medium"));
-  	},
+  },
 	
 	RateGameExtern: function() {
-    	ysdk.feedback.canReview()
-			.then(({ value, reason }) => {
-				if (value) {
-					ysdk.feedback.requestReview()
-						.then(({ feedbackSent }) => {
-							console.log(feedbackSent);
-						})
-			} else {
-					console.log(reason)
-				}
-			})
+		console.log("RateGameExtern() started")
+		
+		if (ysdk === undefined)
+		{
+			console.log("RateGameExtern: ysdk is undefined!");
+			return;
+		}
+		
+		ysdk.feedback.canReview().then(({ value, reason }) => {
+			if (value) {
+				ysdk.feedback.requestReview()
+					.then(({ feedbackSent }) => {
+						console.log(feedbackSent);
+					})
+		} else {
+				console.log(reason)
+			}
+		})
   },
 	
 	SaveExtern: function(data) {
-    	var dataString = UTF8ToString(data);
+		console.log("SaveExtern(data) started");
+		
+    var dataString = UTF8ToString(data);
 		var myObj = JSON.parse(dataString);
+		console.log(myObj);
 		player.setData(myObj);
-  	},
+  },
 	
 	LoadExtern: function() {
+		console.log("LoadExtern() started");
+		
 		if (player == undefined)
 		{
-			console.log("LoadExtern: player is undefined");
+			console.log("LoadExtern: player is undefined!");
 			return;
 		}
 	
-    	player.getData().then(_data => {
+    player.getData().then(_data => {
 			const myJSON = JSON.stringify(_data);
 			myGameInstance.SendMessage("Progress", "SetPlayerInfo", myJSON);
 		});
-  	},
+  },
 	
 	SetToLeaderboard: function(value) {
+		console.log("SetToLeaderboard(value) started");
+		
+		if (ysdk === undefined)
+		{
+			console.log("SetToLeaderboard: ysdk is undefined!");
+			return;
+		}
+		
 		ysdk.getLeaderboards()
 			.then(lb => {
 				lb.setLeaderboardScore('Score', value);
@@ -55,6 +83,14 @@ mergeInto(LibraryManager.library, {
 	},
 	
 	GetLang: function() {
+		console.log("GetLang() started");
+		
+		if (ysdk === undefined)
+		{
+			console.log("GetLang: ysdk is undefined!");
+			return;
+		}
+		
 		var lang = ysdk.environment.i18n.lang;
 		var bufferSize = lengthBytesUTF8(lang) + 1;
 		var buffer = _malloc(bufferSize);
@@ -63,6 +99,14 @@ mergeInto(LibraryManager.library, {
 	},
 	
 	ResurrectExtern: function() {
+		console.log("ResurrectExtern() started");
+		
+		if (ysdk === undefined)
+		{
+			console.log("ResurrectExtern: ysdk is undefined!");
+			return;
+		}
+		
 		ysdk.adv.showRewardedVideo({
 			callbacks: {
 				onOpen: () => {
