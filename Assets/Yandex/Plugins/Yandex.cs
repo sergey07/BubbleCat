@@ -37,12 +37,18 @@ public class Yandex : MonoBehaviour
 
     public void SetPlayerName(string playerName)
     {
-        _playerName.text = playerName;
+        if (_playerName != null)
+        {
+            _playerName.text = playerName;
+        }
     }
 
     public void SetAvatar(string url)
     {
-        StartCoroutine(DownloadImage(url));
+        if (_avatar != null)
+        {
+            StartCoroutine(DownloadImage(url));
+        }
     }
 
     public void RateGameButton()

@@ -82,6 +82,6 @@ public class ScoreManager : MonoBehaviour
             strZeroList = "";
         }
 
-        _txtScore.text = _txtPrefix.text + strZeroList + score.ToString();
+        _txtScore.text = strZeroList + score.ToString();
     }
 }

@@ -86,7 +86,7 @@ public class TimerManager : MonoBehaviour
     {
         // Added 1 because FloorToInt returns the largest integer smaller to or equal to argument
         _remainingSeconds = Mathf.FloorToInt(_remainingTime + 1);
-        _txtRemainingSeconds.text = _txtPrefix.text + _remainingSeconds.ToString();
+        _txtRemainingSeconds.text = _remainingSeconds.ToString();
     }
 
     private void TimerEnded()
