@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
+        
+
         _sceneCount = SceneManager.sceneCountInBuildSettings;
         _currentSceneName = SceneManager.GetActiveScene().name;
 
@@ -149,6 +151,7 @@ public class GameManager : MonoBehaviour
 
     public void Resurrect()
     {
+        Resume();
         SceneManager.LoadScene(Progress.Instance.PlayerInfo.CurrentSceneName);
     }
 

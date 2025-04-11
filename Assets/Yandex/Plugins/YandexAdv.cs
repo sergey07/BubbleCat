@@ -13,7 +13,7 @@ public class YandexAdv : MonoBehaviour
     public void ShowResurrectPanel()
     {
         GameManager.Instance.Pause();
-        _resurrectPanel.SetActive(true);
+        _resurrectPanel.gameObject.SetActive(true);
     }
 
     public void ShowAdvButton()
