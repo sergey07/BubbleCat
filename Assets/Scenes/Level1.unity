@@ -43113,6 +43113,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelCommon
       objectReference: {fileID: 0}
+    - target: {fileID: 8151915062909379378, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151915062909379378, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151915062909379378, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151915062909379378, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

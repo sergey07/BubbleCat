@@ -68,13 +68,15 @@ mergeInto(LibraryManager.library, {
   },
 	
 	SetToLeaderboard: function(value) {
-		console.log("SetToLeaderboard(value) started");
+		console.info("SetToLeaderboard(value) started");
 		
 		if (ysdk === undefined)
 		{
 			console.log("SetToLeaderboard: ysdk is undefined!");
 			return;
 		}
+		
+		console.info("SetToLeaderboard: value: " + value);
 		
 		ysdk.getLeaderboards()
 			.then(lb => {

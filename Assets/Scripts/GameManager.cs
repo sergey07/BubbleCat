@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         _sceneCount = SceneManager.sceneCountInBuildSettings;
         _currentSceneName = SceneManager.GetActiveScene().name;
 
@@ -54,7 +59,7 @@ public class GameManager : MonoBehaviour
             {
                 _txtLevel.text = "Level " + levelNumber;
             }
-            else if(Language.Instance.CurrentLanguage == "ru")
+            else if (Language.Instance.CurrentLanguage == "ru")
             {
                 _txtLevel.text = "Уровень " + levelNumber;
             }
@@ -154,10 +159,6 @@ public class GameManager : MonoBehaviour
         Progress.Instance.PlayerInfo.CurrentSceneName = _currentSceneName;
         Progress.Instance.PlayerInfo.ChestCount = 0;
 
-#if !UNITY_EDITOR && UNITY_WEBGL
-        Progress.Instance.Save();
-#endif
-
         if (_currentSceneName != "Level" + (_sceneCount - 3))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -169,6 +170,10 @@ public class GameManager : MonoBehaviour
         }
 
         _currentSceneName = SceneManager.GetActiveScene().name;
+
+#if !UNITY_EDITOR && UNITY_WEBGL
+        Progress.Instance.Save();
+#endif
     }
 
     private int GetCurrentLevelNumber()
