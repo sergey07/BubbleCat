@@ -49,7 +49,38 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         _sceneCount = SceneManager.sceneCountInBuildSettings;
+
+#if !UNITY_EDITOR && UNITY_WEBGL
+        _currentSceneName = Progress.Instance.PlayerInfo.CurrentSceneName;
+        string activeSceneName = SceneManager.GetActiveScene().name;
+
+        if (_currentSceneName == "")
+        {
+            _currentSceneName = activeSceneName;
+        }
+
+        if (activeSceneName != _currentSceneName)
+        {
+            SceneManager.LoadScene(_currentSceneName);
+            return;
+        }
+#else
         _currentSceneName = SceneManager.GetActiveScene().name;
+#endif
+
+        // string activeSceneName = SceneManager.GetActiveScene().name;
+        //_currentSceneName = Progress.Instance.PlayerInfo.CurrentSceneName;
+
+        //if (_currentSceneName == "")
+        //{
+        //    _currentSceneName = _activeSceneName;
+        //}
+
+        //if (_activeSceneName != _currentSceneName)
+        //{
+        //    SceneManager.LoadScene(_currentSceneName);
+        //    return;
+        //}
 
         if (_txtLevel != null)
         {
@@ -144,6 +175,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartScene()
     {
+        Progress.Instance.PlayerInfo.ChestCount = 0;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

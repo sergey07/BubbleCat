@@ -20,6 +20,8 @@ public class YandexAdv : MonoBehaviour
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
         ResurrectExtern();
+#else
+        Debug.Log("ResurrectExtern");
 #endif
     }
 }

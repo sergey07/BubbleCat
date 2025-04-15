@@ -8,8 +8,6 @@ public class PlayerInfo
     public int Score;
     public int ChestCount;
     public bool IsSoundOn = true;
-    public bool IsZoom = false;
-    public int DifficultyLvl = 1;
     public int JoystickPos = 2;
 }
 
@@ -47,6 +45,8 @@ public class Progress: MonoBehaviour
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
         LoadExtern();
+#else
+        Debug.Log("LoadExtern");
 #endif
     }
 
@@ -56,6 +56,9 @@ public class Progress: MonoBehaviour
         string jsonString = JsonUtility.ToJson(PlayerInfo);
         SaveExtern(jsonString);
         SetToLeaderboard(PlayerInfo.Score);
+#else
+        Debug.Log("SaveExtern");
+        Debug.Log("SetToLeaderboard");
 #endif
     }
 
