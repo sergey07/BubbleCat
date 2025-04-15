@@ -20,15 +20,19 @@ public class Language : MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
-#if !UNITY_EDITOR && UNITY_WEBGL
-            CurrentLanguage = GetLang();
-#else
-            CurrentLanguage = "ru";
-#endif
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+        CurrentLanguage = GetLang();
+#else
+        CurrentLanguage = "ru";
+#endif
     }
 }

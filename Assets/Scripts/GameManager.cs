@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+#if !UNITY_EDITOR && UNITY_WEBGL
+    //[DllImport("__Internal")]
+    //private static extern void GameplayApiStart();
+#endif
+
     [Header("Sprites")]
     [SerializeField] Sprite _doorToFinish;
 
