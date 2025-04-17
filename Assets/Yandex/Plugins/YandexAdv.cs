@@ -22,6 +22,7 @@ public class YandexAdv : MonoBehaviour
         ResurrectExtern();
 #else
         Debug.Log("ResurrectExtern");
+        GameManager.Instance.Resurrect();
 #endif
     }
 }

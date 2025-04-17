@@ -25,12 +25,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip _audioClipFinishLevel;
 
     private int _sceneCount;
+    private int _levelBuildIndex;
     private string _currentSceneName;
 
     private AudioSource _audioSource;
 
     private bool _isPaused = false;
-    private float _oldTimeScale;
 
     private void Awake()
     {
@@ -55,41 +55,25 @@ public class GameManager : MonoBehaviour
     {
         _sceneCount = SceneManager.sceneCountInBuildSettings;
 
-#if !UNITY_EDITOR && UNITY_WEBGL
         _currentSceneName = Progress.Instance.PlayerInfo.CurrentSceneName;
+        int currentBuildLevel = SceneManager.GetActiveScene().buildIndex;
+        _levelBuildIndex = Progress.Instance.PlayerInfo.LevelBuildIndex;
         string activeSceneName = SceneManager.GetActiveScene().name;
 
-        if (_currentSceneName == "")
+        if (currentBuildLevel != _levelBuildIndex
+            && activeSceneName != "CatDied"
+            && activeSceneName != "StartScene"
+            && activeSceneName != "FinishGame")
         {
-            _currentSceneName = activeSceneName;
-        }
-
-        if (activeSceneName != _currentSceneName)
-        {
-            SceneManager.LoadScene(_currentSceneName);
+            SceneManager.LoadScene(_levelBuildIndex);
             return;
         }
-#else
-        _currentSceneName = SceneManager.GetActiveScene().name;
-#endif
 
-        // string activeSceneName = SceneManager.GetActiveScene().name;
-        //_currentSceneName = Progress.Instance.PlayerInfo.CurrentSceneName;
-
-        //if (_currentSceneName == "")
-        //{
-        //    _currentSceneName = _activeSceneName;
-        //}
-
-        //if (_activeSceneName != _currentSceneName)
-        //{
-        //    SceneManager.LoadScene(_currentSceneName);
-        //    return;
-        //}
+        Resume();
 
         if (_txtLevel != null)
         {
-            int levelNumber = GetCurrentLevelNumber();
+            int levelNumber = _levelBuildIndex + 1;//GetCurrentLevelNumber();
 
             if (Language.Instance.CurrentLanguage == "en")
             {
@@ -121,7 +105,6 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.Mute(true);
 
         _isPaused = true;
-        _oldTimeScale = Time.timeScale;
         Time.timeScale = 0;
         TimerManager.Instance.StopTimer();
     }
@@ -133,8 +116,10 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        SoundManager.Instance.Mute(!Progress.Instance.PlayerInfo.IsSoundOn);
+
         _isPaused = false;
-        Time.timeScale = _oldTimeScale;
+        Time.timeScale = 1.0f;
         TimerManager.Instance.ResumeTimer();
     }
 
@@ -147,9 +132,10 @@ public class GameManager : MonoBehaviour
     {
         Progress.Instance.PlayerInfo.Score = 0;
         Progress.Instance.PlayerInfo.ChestCount = 0;
-#if !UNITY_EDITOR && UNITY_WEBGL
+        _levelBuildIndex = 0;
+        Progress.Instance.PlayerInfo.LevelBuildIndex = _levelBuildIndex;
         Progress.Instance.Save();
-#endif
+
         SceneManager.LoadScene("Level1");
         Player.Instance.SetPlayerStatus(PlayerStatus.InGame);
 
@@ -181,14 +167,14 @@ public class GameManager : MonoBehaviour
     public void RestartScene()
     {
         Progress.Instance.PlayerInfo.ChestCount = 0;
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Resurrect()
     {
         Resume();
-        SceneManager.LoadScene(Progress.Instance.PlayerInfo.CurrentSceneName);
+        //SceneManager.LoadScene(Progress.Instance.PlayerInfo.CurrentSceneName);
+        SceneManager.LoadScene(Progress.Instance.PlayerInfo.LevelBuildIndex);
     }
 
     IEnumerator LoadNextLevel(float delay)
@@ -202,7 +188,10 @@ public class GameManager : MonoBehaviour
 
         if (_currentSceneName != "Level" + (_sceneCount - 3))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            _levelBuildIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            Progress.Instance.PlayerInfo.LevelBuildIndex = _levelBuildIndex;
+            Progress.Instance.Save();
+            SceneManager.LoadScene(_levelBuildIndex);
         }
         else
         {
@@ -212,13 +201,11 @@ public class GameManager : MonoBehaviour
 
         _currentSceneName = SceneManager.GetActiveScene().name;
 
-#if !UNITY_EDITOR && UNITY_WEBGL
         Progress.Instance.Save();
-#endif
     }
 
-    private int GetCurrentLevelNumber()
-    {
-        return SceneManager.GetActiveScene().buildIndex + 1;
-    }
+    //private int GetCurrentLevelNumber()
+    //{
+    //    return SceneManager.GetActiveScene().buildIndex + 1;
+    //}
 }
