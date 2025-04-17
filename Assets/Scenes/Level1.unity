@@ -689,11 +689,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187926690}
   m_CullTransparentMesh: 1
---- !u!1 &221606260 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 740382013254989908, guid: e028e4c2373eb7241be98ee9712ea24f, type: 3}
-  m_PrefabInstance: {fileID: 3657124686105165076}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &352692638
 GameObject:
   m_ObjectHideFlags: 0
@@ -36415,7 +36410,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 960, y: 540}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -43129,10 +43124,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2311387404994134583, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
-      propertyPath: _finishTrigger
-      value: 
-      objectReference: {fileID: 221606260}
     - target: {fileID: 5495227140745032024, guid: 546297cf82803c14ca3bfedbe5e029f9, type: 3}
       propertyPath: m_Name
       value: LevelCommon
