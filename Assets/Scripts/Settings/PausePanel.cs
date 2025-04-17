@@ -7,6 +7,7 @@ public class PausePanel : MonoBehaviour
     [Header("Required Components")]
     [SerializeField] private TextMeshProUGUI _txtSoundOff;
     [SerializeField] private TextMeshProUGUI _txtSoundOn;
+    [SerializeField] private TextMeshProUGUI _txtJoystickPositionLabel;
     [SerializeField] private Button _btnJoystickPos;
     [SerializeField] private TextMeshProUGUI _txtJoystickPosLeft;
     [SerializeField] private TextMeshProUGUI _txtJoystickPosRight;
@@ -43,6 +44,7 @@ public class PausePanel : MonoBehaviour
         }
         else
         {
+            _txtJoystickPositionLabel.gameObject.SetActive(false);
             _btnJoystickPos.gameObject.SetActive(false);
         }
     }

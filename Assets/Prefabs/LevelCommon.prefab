@@ -1911,6 +1911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerInfo:
     CurrentSceneName: 
+    LevelBuildIndex: 0
     Score: 0
     ChestCount: 0
     IsSoundOn: 1
@@ -2396,6 +2397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _txtSoundOff: {fileID: 5789367132952626375}
   _txtSoundOn: {fileID: 5508287580802037244}
+  _txtJoystickPositionLabel: {fileID: 8278330086819268444}
   _btnJoystickPos: {fileID: 8334443056056552917}
   _txtJoystickPosLeft: {fileID: 7538343525305275827}
   _txtJoystickPosRight: {fileID: 201551839832119268}
@@ -5424,7 +5426,7 @@ GameObject:
   - component: {fileID: 8278330086819268444}
   - component: {fileID: 650878749125673813}
   m_Layer: 5
-  m_Name: TxtJoystickPosition
+  m_Name: TxtJoystickPositionLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
