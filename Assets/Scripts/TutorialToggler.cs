@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialToggler : MonoBehaviour
 {
@@ -7,7 +8,6 @@ public class TutorialToggler : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.Pause();
         _tutorPanel1.SetActive(true);
     }
 
@@ -19,7 +19,6 @@ public class TutorialToggler : MonoBehaviour
 
     public void StartGame()
     {
-        _tutorPanel2.SetActive(false);
-        GameManager.Instance.Resume();
+        SceneManager.LoadScene("Level1");
     }
 }
