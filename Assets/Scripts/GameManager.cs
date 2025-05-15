@@ -130,6 +130,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadFirstLevel()
     {
+        Resume();
+
         Progress.Instance.PlayerInfo.Score = 0;
         Progress.Instance.PlayerInfo.ChestCount = 0;
         _levelBuildIndex = 0;
