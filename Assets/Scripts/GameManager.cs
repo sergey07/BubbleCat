@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
 #if !UNITY_EDITOR && UNITY_WEBGL
-    //[DllImport("__Internal")]
-    //private static extern void GameplayApiStart();
+    [DllImport("__Internal")]
+    private static extern void GameplayApiStart();
+    private static extern void GameplayApiStop();
 #endif
 
     [Header("Sprites")]
@@ -97,6 +98,10 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
+    GameplayApiStop();
+#endif
+
         if (_isPaused)
         {
             return;
@@ -111,6 +116,10 @@ public class GameManager : MonoBehaviour
 
     public void Resume()
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
+    GameplayApiStart();
+#endif
+
         if (!_isPaused)
         {
             return;

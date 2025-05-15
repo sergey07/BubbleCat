@@ -1,4 +1,33 @@
 mergeInto(LibraryManager.library, {
+	LoadingApiReady: function() {
+		if (ysdk === undefined)
+		{
+			console.log("RateGameExtern: ysdk is undefined!");
+			return;
+		}
+		
+		ysdk.features.LoadingAPI?.ready();
+	},
+	
+	GameplayApiStart: function() {
+		if (ysdk === undefined)
+		{
+			console.log("RateGameExtern: ysdk is undefined!");
+			return;
+		}
+		
+		ysdk.features.GameplayAPI?.start();
+	},
+	
+	GameplayApiStop: function() {
+		if (ysdk === undefined)
+		{
+			console.log("RateGameExtern: ysdk is undefined!");
+			return;
+		}
+		
+		ysdk.features.GameplayAPI?.stop();
+	},
 
 	FetchPlayerDataExtern: function() {
 		console.log("FetchPlayerDataExtern() started");
