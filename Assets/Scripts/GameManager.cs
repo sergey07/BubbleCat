@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (_currentSceneName == "Level" + (_sceneCount - 3))
+        if (_currentSceneName == "Level" + (_sceneCount - 4))
         {
             _finishTrigger.GetComponent<SpriteRenderer>().sprite = _doorToFinish;
         }
