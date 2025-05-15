@@ -29,6 +29,7 @@ public class TutorialToggler : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Level1");
+        int levelBuildIndex = Progress.Instance.PlayerInfo.LevelBuildIndex;
+        SceneManager.LoadScene(levelBuildIndex);
     }
 }
