@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
+        Yandex.Instance.OnAuthStatusUpdated += OnAuthStatusUpdated;
+        Yandex.Instance.OnAuthSuccess += OnAuthSuccess;
+
+
         _sceneCount = SceneManager.sceneCountInBuildSettings;
 
         _currentSceneName = Progress.Instance.PlayerInfo.CurrentSceneName;
@@ -219,4 +223,22 @@ public class GameManager : MonoBehaviour
     //{
     //    return SceneManager.GetActiveScene().buildIndex + 1;
     //}
+
+    private void OnAuthStatusUpdated()
+    {
+        if (Yandex.Instance.IsAuthorized)
+        {
+            Debug.Log("User is authorized");
+        }
+        else
+        {
+            Debug.Log("User is not authorized (guest mode)");
+        }
+    }
+
+    private void OnAuthSuccess()
+    {
+        Debug.Log($"User authorized: {Yandex.Instance.PlayerName}");
+    }
+
 }

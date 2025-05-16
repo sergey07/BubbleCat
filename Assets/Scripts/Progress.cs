@@ -59,11 +59,6 @@ public class Progress: MonoBehaviour
 
     public void Save()
     {
-#if !UNITY_EDITOR && UNITY_WEBGL
-        string jsonString = JsonUtility.ToJson(PlayerInfo);
-        SaveExtern(jsonString);
-        SetToLeaderboard(PlayerInfo.Score);
-#else
         Debug.Log("SaveExtern");
         PlayerPrefs.SetString("CurrentSceneName", PlayerInfo.CurrentSceneName);
         PlayerPrefs.SetInt("LevelBuildIndex", PlayerInfo.LevelBuildIndex);
@@ -72,8 +67,25 @@ public class Progress: MonoBehaviour
         PlayerPrefs.SetInt("IsSoundOn", PlayerInfo.IsSoundOn ? 1 : 0);
         PlayerPrefs.SetInt("JoystickPos", PlayerInfo.JoystickPos);
         PlayerPrefs.Save();
+
+#if !UNITY_EDITOR && UNITY_WEBGL
+        // Пытаемся отправить в лидерборд, если авторизованы
+        if (Yandex.Instance.IsAuthorized)
+        {
+            string jsonString = JsonUtility.ToJson(PlayerInfo);
+            SaveExtern(jsonString);
+            SetToLeaderboard(PlayerInfo.Score);
+            Debug.Log("Score submitted to leaderboard");
+        }
+        else
+        {
+            Debug.Log("Score not submitted to leaderboard (not authorized)");
+            // Можно показать кнопку "Авторизоваться для сохранения в лидерборд"
+        }
+#else
         Debug.Log("SetToLeaderboard");
 #endif
+
     }
 
     public void SetPlayerInfo(string value)
