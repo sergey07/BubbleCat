@@ -49,7 +49,8 @@ public class LevelManager : MonoBehaviour
         Yandex.Instance.OnAuthStatusUpdated += OnAuthStatusUpdated;
         Yandex.Instance.OnAuthSuccess += OnAuthSuccess;
 
-        //_currentSceneName = Progress.Instance.PlayerInfo.CurrentSceneName;
+        Language.Instance.Init();
+
         string activeSceneName = SceneManager.GetActiveScene().name;
 
         LoadLevel(Progress.Instance.PlayerInfo.Level);        
@@ -92,7 +93,7 @@ public class LevelManager : MonoBehaviour
         int scoreForChest = ChestManager.Instance.GetScoreForChest();
         int remainingTime = TimerManager.Instance.GetRemainingSeconds();
         _finishLevelPanel.GetComponent<FinishLevel>().UpdatePanel(chestCount, scoreForChest, remainingTime);
-        //_audioSource.PlayOneShot(_audioClipFinishLevel);
+        SoundManager.Instance.PlayLevelFinishMusic();
         StartCoroutine(LoadNextLevel(SoundManager.Instance.GetLevelFinishMusicDuration()));
     }
 
@@ -115,23 +116,9 @@ public class LevelManager : MonoBehaviour
 
         GameManager.Instance.Resume();
 
-        if (_txtLevel != null)
-        {
-            string strCurrentLevel = (Progress.Instance.PlayerInfo.Level + 1).ToString();//GetCurrentLevelNumber();
+        string strCurrentLevel = (Progress.Instance.PlayerInfo.Level + 1).ToString();//GetCurrentLevelNumber();
 
-            if (Language.Instance.CurrentLanguage == "en")
-            {
-                _txtLevel.text = "Level " + strCurrentLevel;
-            }
-            else if (Language.Instance.CurrentLanguage == "ru")
-            {
-                _txtLevel.text = "Уровень " + strCurrentLevel;
-            }
-            else
-            {
-                _txtLevel.text = "Level " + strCurrentLevel;
-            }
-        }
+        UpdateLevelTitle(strCurrentLevel);
 
         if (IsLastLevel())
         {
@@ -155,7 +142,6 @@ public class LevelManager : MonoBehaviour
     public void Resurrect()
     {
         GameManager.Instance.Resume();
-        //SceneManager.LoadScene(Progress.Instance.PlayerInfo.Level);
         LoadLevel(Progress.Instance.PlayerInfo.Level);
     }
 
@@ -225,6 +211,26 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void UpdateLevelTitle(string strCurrentLevel)
+    {
+        if (_txtLevel == null)
+        {
+            return;
+        }
+
+        if (Language.Instance.CurrentLanguage == "en")
+        {
+            _txtLevel.text = "Level " + strCurrentLevel;
+        }
+        else if (Language.Instance.CurrentLanguage == "ru")
+        {
+            _txtLevel.text = "Уровень " + strCurrentLevel;
+        }
+        else
+        {
+            _txtLevel.text = "Level " + strCurrentLevel;
+        }
+    }
     private void OnAuthStatusUpdated()
     {
         if (Yandex.Instance.IsAuthorized)
@@ -246,10 +252,7 @@ public class LevelManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        //_currentSceneName = SceneManager.GetActiveScene().name;
-
-        //Progress.Instance.PlayerInfo.CurrentSceneName = _currentSceneName;
-        Progress.Instance.PlayerInfo.ChestCount = 0;
+        _finishLevelPanel.SetActive(false);
 
         if (!LevelManager.Instance.IsLastLevel())
         {
@@ -260,25 +263,11 @@ public class LevelManager : MonoBehaviour
         else
         {
             Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
-            //SceneManager.LoadScene("FinishGame");
             LoadFinishGameScene();
         }
 
-        //if (_currentSceneName != "Level" + (_sceneCount - 3))
-        //{
-        //    _levelBuildIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        //    Progress.Instance.PlayerInfo.LevelBuildIndex = _levelBuildIndex;
-        //    Progress.Instance.Save();
-        //    SceneManager.LoadScene(_levelBuildIndex);
-        //}
-        //else
-        //{
-        //    Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
-        //    SceneManager.LoadScene("FinishGame");
-        //}
-
-        //_currentSceneName = SceneManager.GetActiveScene().name;
-
         Progress.Instance.Save();
+        UpdateLevelTitle((_curLevel + 1).ToString());
+        Player.Instance.Unfreeze();
     }
 }

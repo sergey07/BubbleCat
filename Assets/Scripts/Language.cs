@@ -27,7 +27,7 @@ public class Language : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Init()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
         CurrentLanguage = GetLang();

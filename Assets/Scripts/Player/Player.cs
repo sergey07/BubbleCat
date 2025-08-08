@@ -78,7 +78,10 @@ public class Player : MonoBehaviour
         switch (_playerStatus)
         {
             case PlayerStatus.InGame:
-                HandleInput();
+                if (!_isFinish)
+                {
+                    HandleInput();
+                }
                 break;
             case PlayerStatus.BubbleBurst:
             case PlayerStatus.InCatDiedScene:
@@ -103,6 +106,7 @@ public class Player : MonoBehaviour
     public void Unfreeze()
     {
         _rb.bodyType = RigidbodyType2D.Dynamic;
+        _isFinish = false;
     }
     public bool IsFinish()
     {
