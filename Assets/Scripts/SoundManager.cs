@@ -4,6 +4,9 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
+    [SerializeField] private AudioClip _audioClipFinishLevel;
+
+    private AudioSource _audioSource;
     private bool _isMute = false;
 
     private void Awake()
@@ -11,6 +14,8 @@ public class SoundManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            _audioSource = GetComponent<AudioSource>();
+            transform.parent = null;
         }
         else
         {
@@ -41,5 +46,15 @@ public class SoundManager : MonoBehaviour
     public bool IsMute()
     {
         return _isMute;
+    }
+
+    public void PlayLevelFinishMusic()
+    {
+        _audioSource.PlayOneShot(_audioClipFinishLevel);
+    }
+
+    public float GetLevelFinishMusicDuration()
+    {
+        return _audioClipFinishLevel.length;
     }
 }

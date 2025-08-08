@@ -16,13 +16,19 @@ public class YandexAdv : MonoBehaviour
         _resurrectPanel.gameObject.SetActive(true);
     }
 
+    public void HideResurrectPanel()
+    {
+        _resurrectPanel.gameObject.SetActive(false);
+    }
     public void ShowAdvButton()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
         ResurrectExtern();
 #else
         Debug.Log("ResurrectExtern");
-        GameManager.Instance.Resurrect();
+        //GameManager.Instance.Resurrect();
+        HideResurrectPanel();
+        LevelManager.Instance.RestartLevel();
 #endif
     }
 }

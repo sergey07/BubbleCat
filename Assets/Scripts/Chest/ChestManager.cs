@@ -37,6 +37,17 @@ public class ChestManager : MonoBehaviour
             {
                 _chestCounterPanel.SetActive(true);
                 //int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
+
+                if (Progress.Instance == null)
+                {
+                    Debug.Log("Progress.Instance is null!");
+                }
+
+                if (_txtChestCounter == null)
+                {
+                    Debug.Log("_txtChestCounter is null!");
+                }
+
                 _txtChestCounter.text = Progress.Instance.PlayerInfo.ChestCount.ToString();
             }
         }

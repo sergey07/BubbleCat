@@ -31,7 +31,8 @@ public class Settings : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1.0f;
-        GameManager.Instance.RestartScene();
+        //GameManager.Instance.RestartScene();
+        LevelManager.Instance.RestartLevel();
     }
 
     public void SwitchSound()

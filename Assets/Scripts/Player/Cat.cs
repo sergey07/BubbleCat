@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class Cat : MonoBehaviour
 {
@@ -30,10 +30,11 @@ public class Cat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("FalledCatTrigger"))
+        if (collision.gameObject.CompareTag("FalledCatTrigger") && Player.Instance.GetPlayerStatus() != PlayerStatus.InCatDiedScene)
         {
             Player.Instance.SetPlayerStatus(PlayerStatus.InCatDiedScene);
-            GameManager.Instance.LoadCatDiedScene();
+            //GameManager.Instance.LoadCatDiedScene();
+            LevelManager.Instance.LoadCatDiedScene();
         }
         else if (collision.gameObject.CompareTag("Boiler"))
         {

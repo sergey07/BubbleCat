@@ -4,10 +4,10 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerInfo
 {
-    public string CurrentSceneName;
-    public int LevelBuildIndex = 0;
-    public int Score;
-    public int ChestCount;
+    public string CurrentSceneName = "";
+    public int Level = 0;
+    public int Score = 0;
+    public int ChestCount = 0;
     public bool IsSoundOn = true;
     public int JoystickPos = 2;
 }
@@ -35,33 +35,29 @@ public class Progress: MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
+
+#if !UNITY_EDITOR && UNITY_WEBGL
+        LoadExtern();
+#else
+            Debug.Log("LoadExtern");
+            PlayerInfo.CurrentSceneName = PlayerPrefs.GetString("LoadExtern");
+            PlayerInfo.Level = PlayerPrefs.GetInt("Level");
+            PlayerInfo.Score = PlayerPrefs.GetInt("Score");
+            PlayerInfo.ChestCount = PlayerPrefs.GetInt("ChestCount");
+            PlayerInfo.IsSoundOn = PlayerPrefs.GetInt("IsSoundOn") == 1;
+            PlayerInfo.JoystickPos = PlayerPrefs.GetInt("JoystickPos");
+#endif
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
-    private void Start()
-    {
-#if !UNITY_EDITOR && UNITY_WEBGL
-        LoadExtern();
-#else
-        Debug.Log("LoadExtern");
-        PlayerInfo.CurrentSceneName = PlayerPrefs.GetString("LoadExtern");
-        PlayerInfo.LevelBuildIndex = PlayerPrefs.GetInt("LevelBuildIndex");
-        PlayerInfo.Score = PlayerPrefs.GetInt("Score");
-        PlayerInfo.ChestCount = PlayerPrefs.GetInt("ChestCount");
-        PlayerInfo.IsSoundOn = PlayerPrefs.GetInt("IsSoundOn") == 1;
-        PlayerInfo.JoystickPos = PlayerPrefs.GetInt("JoystickPos");
-#endif
-    }
-
     public void Save()
     {
         Debug.Log("SaveExtern");
         PlayerPrefs.SetString("CurrentSceneName", PlayerInfo.CurrentSceneName);
-        PlayerPrefs.SetInt("LevelBuildIndex", PlayerInfo.LevelBuildIndex);
+        PlayerPrefs.SetInt("LevelBuildIndex", PlayerInfo.Level);
         PlayerPrefs.SetInt("Score", PlayerInfo.Score);
         PlayerPrefs.SetInt("ChestCount", PlayerInfo.ChestCount);
         PlayerPrefs.SetInt("IsSoundOn", PlayerInfo.IsSoundOn ? 1 : 0);

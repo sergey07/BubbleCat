@@ -85,6 +85,7 @@ public class StartGame : MonoBehaviour
     {
         yield return new WaitForSeconds(_timeBeforeLoadFirstLevel);
 
-        GameManager.Instance.LoadFirstLevel();
+        //GameManager.Instance.LoadFirstLevel();
+        LevelManager.Instance.LoadFirstLevel();
     }
 }

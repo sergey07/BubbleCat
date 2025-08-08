@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public enum PlayerStatus { InStartGameScene, InGame, BubbleBurst, InCatDiedScene, InFinishGameScene }
 
@@ -66,7 +67,8 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                GameManager.Instance.RestartScene();
+                //GameManager.Instance.RestartScene();
+                LevelManager.Instance.RestartLevel();
             }
         }
     }
@@ -85,11 +87,23 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Freeze()
+    public void ResetPhisic()
     {
-        Destroy(_rb);
+        _rb.isKinematic = true;
+        _rb.isKinematic = false;
     }
 
+    public void Freeze()
+    {
+        //Destroy(_rb);
+        //_rb.isKinematic = true;
+        _rb.bodyType = RigidbodyType2D.Static;
+    }
+
+    public void Unfreeze()
+    {
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+    }
     public bool IsFinish()
     {
         return _isFinish;
@@ -109,6 +123,8 @@ public class Player : MonoBehaviour
         {
             _bubbleComponent.ResetScale();
         }
+
+        Unfreeze();
     }
 
     public PlayerStatus GetPlayerStatus()

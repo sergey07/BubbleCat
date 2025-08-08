@@ -105,7 +105,8 @@ public class Bubble : MonoBehaviour
         if (!isFinish && collision.gameObject.CompareTag("FinishTrigger"))
         {
             Player.Instance.SetFinish(true);
-            GameManager.Instance.FinishLevel();
+            //GameManager.Instance.FinishLevel();
+            LevelManager.Instance.FinishLevel();
         }
     }
 }
