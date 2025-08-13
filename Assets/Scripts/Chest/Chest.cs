@@ -26,7 +26,7 @@ public class Chest : MonoBehaviour
         {
             _isHit = true;
             _audioSource.PlayOneShot(_audioClipCollectChest);
-            ChestManager.Instance.AddReward(_reward);
+            ChestManager.Instance.CollectChest();
             _chestVisual.GetComponent<SpriteRenderer>().enabled = false;
             StartCoroutine(DestroyChest(_audioClipCollectChest.length));
         }

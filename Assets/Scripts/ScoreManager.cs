@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -29,27 +30,42 @@ public class ScoreManager : MonoBehaviour
     {
         if (_scorePanel != null)
         {
-            if (SceneManager.GetActiveScene().name == "StartScene")
-            {
-                _scorePanel.SetActive(false);
-            }
-            else
+            if (Player.Instance.GetPlayerStatus() == PlayerStatus.InGame)
             {
                 _scorePanel.SetActive(true);
                 _score = Progress.Instance.PlayerInfo.Score;
                 UpdateView(_score);
             }
+            else
+            {
+                _scorePanel.SetActive(false);
+            }
         }
+    }
+
+    public void ResetScore()
+    {
+        _score = 0;
+        Progress.Instance.PlayerInfo.Score = _score;
+        Progress.Instance.Save();
+        UpdateView(_score);
     }
 
     public void AddScore(int score)
     {
         _score += score;
         Progress.Instance.PlayerInfo.Score = _score;
+        Progress.Instance.Save();
         UpdateView(_score);
     }
 
-    public void UpdateView(int score)
+    public void UpdateScore()
+    {
+        _score = Progress.Instance.PlayerInfo.Score;
+        UpdateView(_score);
+    }
+
+    private void UpdateView(int score)
     {
         string strZeroList;
 

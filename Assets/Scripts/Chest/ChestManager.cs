@@ -29,14 +29,9 @@ public class ChestManager : MonoBehaviour
     {
         if (_chestCounterPanel != null)
         {
-            if (SceneManager.GetActiveScene().name == "StartScene")
-            {
-                _chestCounterPanel.SetActive(false);
-            }
-            else
+            if (Player.Instance.GetPlayerStatus() == PlayerStatus.InGame)
             {
                 _chestCounterPanel.SetActive(true);
-                //int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
 
                 if (Progress.Instance == null)
                 {
@@ -48,9 +43,20 @@ public class ChestManager : MonoBehaviour
                     Debug.Log("_txtChestCounter is null!");
                 }
 
-                _txtChestCounter.text = Progress.Instance.PlayerInfo.ChestCount.ToString();
+                UpdateChestCounterText();
+            }
+            else
+            {
+                _chestCounterPanel.SetActive(false);
             }
         }
+    }
+
+    public void ResetChestCount()
+    {
+        Progress.Instance.PlayerInfo.ChestCount = 0;
+        Progress.Instance.Save();
+        UpdateChestCounterText();
     }
 
     public int GetScoreForChest()
@@ -58,10 +64,14 @@ public class ChestManager : MonoBehaviour
         return _scoreForChest;
     }
 
-    public void AddReward(int reward)
+    public void CollectChest()
     {
-        Progress.Instance.PlayerInfo.ChestCount += reward;
-        //int allChestCount = Progress.Instance.PlayerInfo.LevelChestCount + Progress.Instance.PlayerInfo.ChestCount;
+        Progress.Instance.PlayerInfo.ChestCount += 1;
+        UpdateChestCounterText();
+    }
+
+    private void UpdateChestCounterText()
+    {
         _txtChestCounter.text = Progress.Instance.PlayerInfo.ChestCount.ToString();
     }
 }

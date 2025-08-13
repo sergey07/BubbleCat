@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInfo
 {
     public string CurrentSceneName = "";
-    public int Level = 0;
+    public int SavedLevel = 0;
     public int Score = 0;
     public int ChestCount = 0;
     public bool IsSoundOn = true;
@@ -41,7 +41,7 @@ public class Progress: MonoBehaviour
 #else
             Debug.Log("LoadExtern");
             PlayerInfo.CurrentSceneName = PlayerPrefs.GetString("LoadExtern");
-            PlayerInfo.Level = PlayerPrefs.GetInt("Level");
+            PlayerInfo.SavedLevel = PlayerPrefs.GetInt("SavedLevel");
             PlayerInfo.Score = PlayerPrefs.GetInt("Score");
             PlayerInfo.ChestCount = PlayerPrefs.GetInt("ChestCount");
             PlayerInfo.IsSoundOn = PlayerPrefs.GetInt("IsSoundOn") == 1;
@@ -57,7 +57,7 @@ public class Progress: MonoBehaviour
     {
         Debug.Log("SaveExtern");
         PlayerPrefs.SetString("CurrentSceneName", PlayerInfo.CurrentSceneName);
-        PlayerPrefs.SetInt("LevelBuildIndex", PlayerInfo.Level);
+        PlayerPrefs.SetInt("LevelBuildIndex", PlayerInfo.SavedLevel);
         PlayerPrefs.SetInt("Score", PlayerInfo.Score);
         PlayerPrefs.SetInt("ChestCount", PlayerInfo.ChestCount);
         PlayerPrefs.SetInt("IsSoundOn", PlayerInfo.IsSoundOn ? 1 : 0);

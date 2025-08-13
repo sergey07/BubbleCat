@@ -21,8 +21,12 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _levelTitlePanel;
 
     private TextMeshProUGUI _txtLevel;
-    private GameObject _currentLevelPrefab;
+    private GameObject _currentLevelGO;
     private int _curLevel = 0;
+
+    private GameObject _startCutSceneGO;
+    private GameObject _catDiedSceneGO;
+    private GameObject _finishGameSceneGO;
 
     private void Awake()
     {
@@ -51,9 +55,14 @@ public class LevelManager : MonoBehaviour
 
         Language.Instance.Init();
 
-        string activeSceneName = SceneManager.GetActiveScene().name;
+        //string activeSceneName = SceneManager.GetActiveScene().name;
 
-        LoadLevel(Progress.Instance.PlayerInfo.Level);        
+        if (_curLevel == 0)
+        {
+            LoadFirstLevel();
+        }
+
+        LoadLevel(Progress.Instance.PlayerInfo.SavedLevel);        
     }
 
     private void Update()
@@ -73,8 +82,8 @@ public class LevelManager : MonoBehaviour
     {
         Progress.Instance.PlayerInfo.Score = 0;
         Progress.Instance.PlayerInfo.ChestCount = 0;
-        Progress.Instance.PlayerInfo.Level = 0;
-        Progress.Instance.PlayerInfo.Level = LevelManager.Instance.GetCurrentLevel();
+        Progress.Instance.PlayerInfo.SavedLevel = 0;
+        Progress.Instance.PlayerInfo.SavedLevel = _curLevel;
         Progress.Instance.Save();
 
         _curLevel = 0;
@@ -102,7 +111,8 @@ public class LevelManager : MonoBehaviour
         if (IsLastLevel())
         {
             Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
-            SceneManager.LoadScene("FinishGame");
+            //SceneManager.LoadScene("FinishGame");
+            _finishGameSceneGO = Instantiate(_finishGameScenePrefab);
         }
         else
         {
@@ -116,7 +126,7 @@ public class LevelManager : MonoBehaviour
 
         GameManager.Instance.Resume();
 
-        string strCurrentLevel = (Progress.Instance.PlayerInfo.Level + 1).ToString();//GetCurrentLevelNumber();
+        string strCurrentLevel = (Progress.Instance.PlayerInfo.SavedLevel + 1).ToString();//GetCurrentLevelNumber();
 
         UpdateLevelTitle(strCurrentLevel);
 
@@ -142,38 +152,57 @@ public class LevelManager : MonoBehaviour
     public void Resurrect()
     {
         GameManager.Instance.Resume();
-        LoadLevel(Progress.Instance.PlayerInfo.Level);
+        LoadLevel(Progress.Instance.PlayerInfo.SavedLevel);
+    }
+
+    public void LoadStartCutScene()
+    {
+        if (_currentLevelGO != null)
+        {
+            //_currentLevelPrefab = null;
+            Destroy(_currentLevelGO);
+        }
+
+        if (_startCutScenePrefab != null)
+        {
+            Progress.Instance.PlayerInfo.ChestCount = 0;
+
+            _startCutSceneGO = Instantiate(_startCutScenePrefab);
+            Player.Instance.Spawn();
+        }
     }
 
     public void LoadCatDiedScene()
     {
-        if (_currentLevelPrefab != null)
+        if (_currentLevelGO != null)
         {
-            Destroy(_currentLevelPrefab);
+            //_currentLevelPrefab = null;
+            Destroy(_currentLevelGO);
         }
 
         if (_catDiedScenePrefab != null)
         {
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
-            Instantiate(_catDiedScenePrefab);
-            SpawnManager.Instance.Spawn();
+            _catDiedSceneGO = Instantiate(_catDiedScenePrefab);
+            Player.Instance.Spawn();
         }
     }
 
     public void LoadFinishGameScene()
     {
-        if (_currentLevelPrefab != null)
+        if (_currentLevelGO != null)
         {
-            Destroy(_currentLevelPrefab);
+            //_currentLevelPrefab = null;
+            Destroy(_currentLevelGO);
         }
 
         if (_finishGameScenePrefab != null)
         {
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
-            Instantiate(_finishGameScenePrefab);
-            SpawnManager.Instance.Spawn();
+            _finishGameSceneGO = Instantiate(_finishGameScenePrefab);
+            Player.Instance.Spawn();
         }
     }
 
@@ -181,34 +210,43 @@ public class LevelManager : MonoBehaviour
     {
         Player.Instance.ResetPhisic();
 
-        if (_startCutScenePrefab != null)
+        if (_startCutSceneGO != null)
         {
-            Destroy(_startCutScenePrefab.gameObject);
+            //_startCutScenePrefab = null;
+            Destroy(_startCutSceneGO);
         }
 
-        if (_catDiedScenePrefab != null)
+        if (_catDiedSceneGO != null)
         {
-            Destroy(_catDiedScenePrefab.gameObject);
+            //_catDiedScenePrefab = null;
+            Destroy(_catDiedScenePrefab);
         }
 
-        if (_finishGameScenePrefab != null)
+        if (_finishGameSceneGO != null)
         {
-            Destroy(_finishGameScenePrefab);
+            //_finishGameScenePrefab = null;
+            Destroy(_finishGameSceneGO);
         }
 
-        if (_currentLevelPrefab != null)
+        if (_currentLevelGO != null)
         {
-            Destroy(_currentLevelPrefab);
+            //_currentLevelPrefab = null;
+            Destroy(_currentLevelGO);
         }
 
         for (int i = 0; i < _levelPrefabs.Length; i++)
         {
             if (i == curLevel)
             {
-                _currentLevelPrefab = Instantiate(_levelPrefabs[i]);
-                SpawnManager.Instance.Spawn();
+                _currentLevelGO = Instantiate(_levelPrefabs[i]);
+                Player.Instance.Spawn();
             }
         }
+
+        ChestManager.Instance.ResetChestCount();
+        TimerManager.Instance.ResetTimer();
+        TimerManager.Instance.ResumeTimer();
+        ScoreManager.Instance.UpdateScore();
     }
 
     private void UpdateLevelTitle(string strCurrentLevel)
@@ -253,10 +291,11 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         _finishLevelPanel.SetActive(false);
+        Progress.Instance.PlayerInfo.ChestCount = 0;
 
-        if (!LevelManager.Instance.IsLastLevel())
+        if (!IsLastLevel())
         {
-            Progress.Instance.PlayerInfo.Level = _curLevel;
+            Progress.Instance.PlayerInfo.SavedLevel = _curLevel;
             Progress.Instance.Save();
             NextLevel();
         }

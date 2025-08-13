@@ -36,15 +36,14 @@ public class TimerManager : MonoBehaviour
 
         if (_timerPanel != null)
         {
-            if (SceneManager.GetActiveScene().name == "StartScene")
+            if (Player.Instance.GetPlayerStatus() == PlayerStatus.InGame)
             {
-                _timerPanel.SetActive(false);
+                _timerPanel.SetActive(true);
+                ResumeTimer();
             }
             else
             {
-                _timerPanel.SetActive(true);
-                _remainingTime = _timeForLevel;
-                _txtRemainingSeconds.text = _remainingTime.ToString();
+                _timerPanel.SetActive(false);
             }
         }
     }
@@ -75,6 +74,12 @@ public class TimerManager : MonoBehaviour
     public void ResumeTimer()
     {
         _timerIsRunning = true;
+    }
+
+    public void ResetTimer()
+    {
+        _remainingTime = _timeForLevel;
+        _txtRemainingSeconds.text = _remainingTime.ToString();
     }
 
     public int GetRemainingSeconds()

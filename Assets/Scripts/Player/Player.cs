@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [Space]
     [SerializeField] private PlayerStatus _playerStatus = PlayerStatus.InGame;
 
+    private GameObject _spawnPoint;
     private Rigidbody2D _rb;
     private Bubble _bubbleComponent;
     private Cat _catComponent;
@@ -88,6 +89,17 @@ public class Player : MonoBehaviour
                 _rb.MovePosition(_rb.position - new Vector2(0, _fallingSpeed * Time.fixedDeltaTime));
                 break;
         }
+    }
+
+    public void Spawn()
+    {
+        if (_spawnPoint == null)
+        {
+            _spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
+        }
+
+        transform.position = _spawnPoint.transform.position;
+        Reset();
     }
 
     public void ResetPhisic()
