@@ -4,7 +4,7 @@ using UnityEngine;
 [SelectionBase]
 public class Chest : MonoBehaviour
 {
-    [SerializeField] private int _reward = 1;
+    //[SerializeField] private int _reward = 1;
 
     [Header("Sound Configuration")]
     [SerializeField] private AudioClip _audioClipCollectChest;

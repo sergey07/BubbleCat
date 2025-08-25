@@ -1640,7 +1640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerInfo:
     CurrentSceneName: 
-    Level: 0
+    SavedLevel: 0
     Score: 0
     ChestCount: 0
     IsSoundOn: 1

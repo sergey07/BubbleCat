@@ -24,17 +24,13 @@ public class Bubble : MonoBehaviour
     [SerializeField] public AudioClip _audioClipCpock;
 
     private Vector3 _originScale;
-    //private bool _isFinish;
 
-    // Start is called before the first frame update
     private void Start()
     {
         _originScale = new Vector3(_originSize, _originSize, _originSize);
-        //_isFinish = false;
         ResetScale();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (Player.Instance.GetPlayerStatus() == PlayerStatus.InGame)
@@ -105,7 +101,6 @@ public class Bubble : MonoBehaviour
         if (!isFinish && collision.gameObject.CompareTag("FinishTrigger"))
         {
             Player.Instance.SetFinish(true);
-            //GameManager.Instance.FinishLevel();
             LevelManager.Instance.FinishLevel();
         }
     }

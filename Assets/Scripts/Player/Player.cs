@@ -50,14 +50,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _isFinish = false;
-
-        if (SceneManager.GetActiveScene().name == "CatDied")
-        {
-            SetPlayerStatus(PlayerStatus.InCatDiedScene);
-            _catComponent.SetFalling(true);
-            _catObject.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
-            _bubbleObject.gameObject.SetActive(false);
-        }
     }
 
     private void Update()
@@ -68,7 +60,6 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                //GameManager.Instance.RestartScene();
                 LevelManager.Instance.RestartLevel();
             }
         }
@@ -91,13 +82,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Spawn()
+    public void Spawn(GameObject currentLevelGO)
     {
-        if (_spawnPoint == null)
-        {
-            _spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
-        }
-
+        _spawnPoint = currentLevelGO.transform.Find("SpawnPoint").gameObject;
         transform.position = _spawnPoint.transform.position;
         Reset();
     }
@@ -110,8 +97,6 @@ public class Player : MonoBehaviour
 
     public void Freeze()
     {
-        //Destroy(_rb);
-        //_rb.isKinematic = true;
         _rb.bodyType = RigidbodyType2D.Static;
     }
 
@@ -120,6 +105,7 @@ public class Player : MonoBehaviour
         _rb.bodyType = RigidbodyType2D.Dynamic;
         _isFinish = false;
     }
+
     public bool IsFinish()
     {
         return _isFinish;
@@ -151,6 +137,15 @@ public class Player : MonoBehaviour
     public void SetPlayerStatus(PlayerStatus status)
     {
         _playerStatus = status;
+
+        if (_playerStatus == PlayerStatus.BubbleBurst || _playerStatus == PlayerStatus.InCatDiedScene)
+        {
+            _catComponent.SetFalling(true);
+        }
+        else
+        {
+            _catComponent.SetFalling(false);
+        }
     }
 
     public void Fall()
@@ -169,7 +164,6 @@ public class Player : MonoBehaviour
         _bubbleObject.GetComponent<Bubble>().Boom();
 
         SetPlayerStatus(PlayerStatus.BubbleBurst);
-        _catComponent.SetFalling(true);
     }
 
     private void HandleInput()

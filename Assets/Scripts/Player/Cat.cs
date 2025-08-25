@@ -1,10 +1,15 @@
 using UnityEngine;
-//using UnityEngine.SceneManagement;
+
+public enum CatSprite { Normal, Flying }
 
 public class Cat : MonoBehaviour
 {
     [SerializeField] private Transform _playerTransform;
-    [SerializeField] private GameObject _catVisual;
+    //[SerializeField] private GameObject _catVisual;
+    // The cat's sprite in normal state
+    [SerializeField] private Sprite _normalCat;
+    // The falling cat's sprite
+    [SerializeField] private Sprite _fallingCat;
 
     [Header("Sound Configuration")]
     [SerializeField] public AudioClip _audioClipMau;
@@ -16,18 +21,56 @@ public class Cat : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        PlayerStatus playerStatus = Player.Instance.GetPlayerStatus();
+
+        if (playerStatus == PlayerStatus.InGame)
+        {
+            HandleInput();
+        }
+    }
+
+    private void HandleInput()
+    {
+        Vector2 inputVector = GameInput.Instance.GetMovementVector();
+
+        if (inputVector.x > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (inputVector.x < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
+
     public void SetFalling(bool isFalling)
     {
         if (isFalling)
         {
-            _catVisual.GetComponent<CatVisual>().SetCatSprite(CatSprite.Flying);
+            SetCatSprite(CatSprite.Flying);
         }
         else
         {
-            _catVisual.GetComponent<CatVisual>().SetCatSprite(CatSprite.Normal);
+            SetCatSprite(CatSprite.Normal);
         }
     }
 
+    public void SetCatSprite(CatSprite catSprite)
+    {
+        switch (catSprite)
+        {
+            case CatSprite.Flying:
+                GetComponent<SpriteRenderer>().sprite = _fallingCat;
+                break;
+            case CatSprite.Normal:
+            default:
+                GetComponent<SpriteRenderer>().sprite = _normalCat;
+                break;
+        }
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("FalledCatTrigger") && Player.Instance.GetPlayerStatus() != PlayerStatus.InCatDiedScene)

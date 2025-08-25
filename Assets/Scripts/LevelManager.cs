@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// TODO: разобраться, почему при воскрешении кот мертвый
+
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
@@ -120,6 +122,7 @@ public class LevelManager : MonoBehaviour
             UpdateLevel(_curLevel);
         }
     }
+
     public void LoadLevel(int level)
     {
         _curLevel = level;
@@ -168,7 +171,7 @@ public class LevelManager : MonoBehaviour
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
             _startCutSceneGO = Instantiate(_startCutScenePrefab);
-            Player.Instance.Spawn();
+            Player.Instance.Spawn(_startCutSceneGO);
         }
     }
 
@@ -185,7 +188,7 @@ public class LevelManager : MonoBehaviour
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
             _catDiedSceneGO = Instantiate(_catDiedScenePrefab);
-            Player.Instance.Spawn();
+            Player.Instance.Spawn(_catDiedSceneGO);
         }
     }
 
@@ -202,7 +205,7 @@ public class LevelManager : MonoBehaviour
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
             _finishGameSceneGO = Instantiate(_finishGameScenePrefab);
-            Player.Instance.Spawn();
+            Player.Instance.Spawn(_finishGameSceneGO);
         }
     }
 
@@ -219,7 +222,7 @@ public class LevelManager : MonoBehaviour
         if (_catDiedSceneGO != null)
         {
             //_catDiedScenePrefab = null;
-            Destroy(_catDiedScenePrefab);
+            Destroy(_catDiedSceneGO);
         }
 
         if (_finishGameSceneGO != null)
@@ -239,7 +242,8 @@ public class LevelManager : MonoBehaviour
             if (i == curLevel)
             {
                 _currentLevelGO = Instantiate(_levelPrefabs[i]);
-                Player.Instance.Spawn();
+                Player.Instance.SetPlayerStatus(PlayerStatus.InGame);
+                Player.Instance.Spawn(_currentLevelGO);
             }
         }
 
