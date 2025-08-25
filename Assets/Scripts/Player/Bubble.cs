@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Bubble : MonoBehaviour
@@ -25,7 +24,7 @@ public class Bubble : MonoBehaviour
 
     private Vector3 _originScale;
 
-    private void Start()
+    public void InitBubble()
     {
         _originScale = new Vector3(_originSize, _originSize, _originSize);
         ResetScale();

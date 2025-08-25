@@ -5,7 +5,6 @@ public enum CatSprite { Normal, Flying }
 public class Cat : MonoBehaviour
 {
     [SerializeField] private Transform _playerTransform;
-    //[SerializeField] private GameObject _catVisual;
     // The cat's sprite in normal state
     [SerializeField] private Sprite _normalCat;
     // The falling cat's sprite

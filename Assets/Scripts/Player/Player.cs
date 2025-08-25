@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public enum PlayerStatus { InStartGameScene, InGame, BubbleBurst, InCatDiedScene, InFinishGameScene }
 
@@ -17,16 +15,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float _fallingSpeed = 5.0f;
 
     [Header("Game Objects")]
-    [SerializeField] private GameObject _catObject;
-    [SerializeField] private GameObject _bubbleObject;
+    [SerializeField] private Cat _cat;
+    [SerializeField] private Bubble _bubble;
 
     [Space]
     [SerializeField] private PlayerStatus _playerStatus = PlayerStatus.InGame;
 
     private GameObject _spawnPoint;
     private Rigidbody2D _rb;
-    private Bubble _bubbleComponent;
-    private Cat _catComponent;
 
     private Vector2 _inputVector;
     private bool _isFinish;
@@ -37,9 +33,6 @@ public class Player : MonoBehaviour
         {
             Instance = this;
             _rb = GetComponent<Rigidbody2D>();
-
-            _bubbleComponent = _bubbleObject.gameObject.GetComponent<Bubble>();
-            _catComponent = _catObject.gameObject.GetComponent<Cat>();
         }
         else
         {
@@ -50,6 +43,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _isFinish = false;
+        _bubble.InitBubble();
     }
 
     private void Update()
@@ -121,9 +115,9 @@ public class Player : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        if (_bubbleComponent != null)
+        if (_bubble != null)
         {
-            _bubbleComponent.ResetScale();
+            _bubble.ResetScale();
         }
 
         Unfreeze();
@@ -140,28 +134,28 @@ public class Player : MonoBehaviour
 
         if (_playerStatus == PlayerStatus.BubbleBurst || _playerStatus == PlayerStatus.InCatDiedScene)
         {
-            _catComponent.SetFalling(true);
+            _cat.SetFalling(true);
         }
         else
         {
-            _catComponent.SetFalling(false);
+            _cat.SetFalling(false);
         }
     }
 
     public void Fall()
     {
-        _catObject.transform.position = _bubbleObject.transform.position;
-        _bubbleObject.gameObject.SetActive(false);
-        _catObject.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+        _cat.transform.position = _bubble.transform.position;
+        _bubble.gameObject.SetActive(false);
+        _cat.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
 
         GameObject.Find("CollideAble").gameObject.GetComponent<TilemapCollider2D>().enabled = false;
 
-        AudioSource audioSource = _catObject.gameObject.GetComponent<AudioSource>();
+        AudioSource audioSource = _cat.gameObject.GetComponent<AudioSource>();
 
-        audioSource.PlayOneShot(_bubbleComponent._audioClipCpock);
-        audioSource.PlayOneShot(_catComponent._audioClipMau);
+        audioSource.PlayOneShot(_bubble._audioClipCpock);
+        audioSource.PlayOneShot(_cat._audioClipMau);
 
-        _bubbleObject.GetComponent<Bubble>().Boom();
+        _bubble.Boom();
 
         SetPlayerStatus(PlayerStatus.BubbleBurst);
     }
@@ -173,7 +167,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        float deltaScale = _bubbleComponent.GetDeltaScale();
+        float deltaScale = _bubble.GetDeltaScale();
         float velocityY = deltaScale * _ySpeedMultiplayer;
         velocityY = Mathf.Clamp(velocityY, -_maxYSpeed, _maxYSpeed);
 

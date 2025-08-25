@@ -79,8 +79,8 @@ MonoBehaviour:
   _maxYSpeed: 8
   _ySpeedMultiplayer: 15
   _fallingSpeed: 15
-  _catObject: {fileID: 132074649906313055}
-  _bubbleObject: {fileID: 3168124936931957454}
+  _cat: {fileID: 2540251066103291035}
+  _bubble: {fileID: 6552108059648560360}
   _playerStatus: 1
 --- !u!1 &132074649906313055
 GameObject:
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 5337532896262658694}
   - component: {fileID: 7156171090880572990}
   m_Layer: 0
-  m_Name: BubbleBoomObject
+  m_Name: BubbleBoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
