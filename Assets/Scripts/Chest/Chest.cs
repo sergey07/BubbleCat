@@ -4,21 +4,12 @@ using UnityEngine;
 [SelectionBase]
 public class Chest : MonoBehaviour
 {
-    //[SerializeField] private int _reward = 1;
-
     [Header("Sound Configuration")]
     [SerializeField] private AudioClip _audioClipCollectChest;
-
-    [Header("Game Objects")]
-    [SerializeField] private GameObject _chestVisual;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private bool _isHit = false;
-    private AudioSource _audioSource;
-
-    private void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,7 +18,7 @@ public class Chest : MonoBehaviour
             _isHit = true;
             _audioSource.PlayOneShot(_audioClipCollectChest);
             ChestManager.Instance.CollectChest();
-            _chestVisual.GetComponent<SpriteRenderer>().enabled = false;
+            _spriteRenderer.enabled = false;
             StartCoroutine(DestroyChest(_audioClipCollectChest.length));
         }
     }
