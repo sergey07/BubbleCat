@@ -21,9 +21,9 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _repeatRate = 5;
 
     [Header("Components")]
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private Vector2 _movementVector;
     private Transform _playerTransform;

@@ -21,8 +21,10 @@ public class Player : MonoBehaviour
     [Space]
     [SerializeField] private PlayerStatus _playerStatus = PlayerStatus.InGame;
 
+    [Header("Components")]
+    [SerializeField] private Rigidbody2D _rb;
+
     private GameObject _spawnPoint;
-    private Rigidbody2D _rb;
 
     private Vector2 _inputVector;
     private bool _isFinish;
@@ -32,7 +34,6 @@ public class Player : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            _rb = GetComponent<Rigidbody2D>();
         }
         else
         {
@@ -57,6 +58,9 @@ public class Player : MonoBehaviour
                 LevelManager.Instance.RestartLevel();
             }
         }
+
+        _cat.UpdateCat();
+        _bubble.UpdateBubble();
     }
 
     private void FixedUpdate()
@@ -150,11 +154,8 @@ public class Player : MonoBehaviour
 
         GameObject.Find("CollideAble").gameObject.GetComponent<TilemapCollider2D>().enabled = false;
 
-        AudioSource audioSource = _cat.gameObject.GetComponent<AudioSource>();
-
-        audioSource.PlayOneShot(_bubble._audioClipCpock);
-        audioSource.PlayOneShot(_cat._audioClipMau);
-
+        _bubble.PlaySound();
+        _cat.PlaySound();
         _bubble.Boom();
 
         SetPlayerStatus(PlayerStatus.BubbleBurst);

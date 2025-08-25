@@ -20,7 +20,10 @@ public class Bubble : MonoBehaviour
 
     [Header("Sound Configuration")]
     // The sound of a bubble bursting
-    [SerializeField] public AudioClip _audioClipCpock;
+    [SerializeField] private AudioClip _audioClipCpock;
+
+    [Header("Components")]
+    [SerializeField] private AudioSource _audioSource;
 
     private Vector3 _originScale;
 
@@ -30,7 +33,7 @@ public class Bubble : MonoBehaviour
         ResetScale();
     }
 
-    private void Update()
+    public void UpdateBubble()
     {
         if (Player.Instance.GetPlayerStatus() == PlayerStatus.InGame)
         {
@@ -93,6 +96,10 @@ public class Bubble : MonoBehaviour
         _bubbleBoomObject.SetActive(true);
     }
 
+    public void PlaySound()
+    {
+        _audioSource.PlayOneShot(_audioClipCpock);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bool isFinish = Player.Instance.IsFinish();

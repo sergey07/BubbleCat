@@ -5,42 +5,27 @@ public enum CatSprite { Normal, Flying }
 public class Cat : MonoBehaviour
 {
     [SerializeField] private Transform _playerTransform;
+
+    [Header("Sprites")]
     // The cat's sprite in normal state
     [SerializeField] private Sprite _normalCat;
     // The falling cat's sprite
     [SerializeField] private Sprite _fallingCat;
 
     [Header("Sound Configuration")]
-    [SerializeField] public AudioClip _audioClipMau;
+    [SerializeField] private AudioClip _audioClipMau;
 
-    private AudioSource _audioSource;
+    [Header("Components")]
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private AudioSource _audioSource;
 
-    private void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
-
-    private void Update()
+    public void UpdateCat()
     {
         PlayerStatus playerStatus = Player.Instance.GetPlayerStatus();
 
         if (playerStatus == PlayerStatus.InGame)
         {
             HandleInput();
-        }
-    }
-
-    private void HandleInput()
-    {
-        Vector2 inputVector = GameInput.Instance.GetMovementVector();
-
-        if (inputVector.x > 0)
-        {
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if (inputVector.x < 0)
-        {
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 
@@ -61,21 +46,39 @@ public class Cat : MonoBehaviour
         switch (catSprite)
         {
             case CatSprite.Flying:
-                GetComponent<SpriteRenderer>().sprite = _fallingCat;
+                _spriteRenderer.sprite = _fallingCat;
                 break;
             case CatSprite.Normal:
             default:
-                GetComponent<SpriteRenderer>().sprite = _normalCat;
+                _spriteRenderer.sprite = _normalCat;
                 break;
         }
     }
-    
+
+    public void PlaySound()
+    {
+        _audioSource.PlayOneShot(_audioClipMau);
+    }
+
+    private void HandleInput()
+    {
+        Vector2 inputVector = GameInput.Instance.GetMovementVector();
+
+        if (inputVector.x > 0)
+        {
+            _spriteRenderer.flipX = true;
+        }
+        else if (inputVector.x < 0)
+        {
+            _spriteRenderer.flipX = false;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("FalledCatTrigger") && Player.Instance.GetPlayerStatus() != PlayerStatus.InCatDiedScene)
         {
             Player.Instance.SetPlayerStatus(PlayerStatus.InCatDiedScene);
-            //GameManager.Instance.LoadCatDiedScene();
             LevelManager.Instance.LoadCatDiedScene();
         }
         else if (collision.gameObject.CompareTag("Boiler"))

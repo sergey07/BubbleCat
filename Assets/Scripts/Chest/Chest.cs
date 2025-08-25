@@ -6,8 +6,10 @@ public class Chest : MonoBehaviour
 {
     [Header("Sound Configuration")]
     [SerializeField] private AudioClip _audioClipCollectChest;
-    [SerializeField] private AudioSource _audioSource;
+
+    [Header("Components")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private AudioSource _audioSource;
 
     private bool _isHit = false;
 
