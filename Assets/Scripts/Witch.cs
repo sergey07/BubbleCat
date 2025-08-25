@@ -20,18 +20,13 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _delay = 0;
     [SerializeField] private float _repeatRate = 5;
 
-    [SerializeField] private GameObject _witchVisual;
+    [Header("Components")]
+    [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
-    private Rigidbody2D _rb;
-    private AudioSource _audioSource;
     private Vector2 _movementVector;
     private Transform _playerTransform;
-
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-        _audioSource = GetComponent<AudioSource>();
-    }
 
     private void Start()
     {
@@ -74,11 +69,11 @@ public class Witch : MonoBehaviour
     {
         if (_movementVector.x > 0)
         {
-            _witchVisual.GetComponent<SpriteRenderer>().flipX = true;
+            _spriteRenderer.flipX = true;
         }
         else
         {
-            _witchVisual.GetComponent<SpriteRenderer>().flipX = false;
+            _spriteRenderer.flipX = false;
         }
 
         _rb.MovePosition(_rb.position + (_movementVector * _speed * Time.fixedDeltaTime));
