@@ -8,17 +8,14 @@ public class Boiler : MonoBehaviour
     // The gurgling sound of a cat falling into a boiler
     [SerializeField] public AudioClip _audioClipBulk;
 
-    private AudioSource _audioSource;
+    [Header("Components")]
+    [SerializeField] private AudioSource _audioSource;
+
     private GameObject _soundTrigger;
 
     private PlayerStatus _playerStatus;
     private bool _isSoundTriggerAdded = false;
     private bool _isSoundDone = false;
-
-    private void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
 
     private void Update()
     {
