@@ -316,7 +316,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 606577949363339641}
   _normalCat: {fileID: 21300000, guid: 382c4b9587dc78840ab70fc9f38fcf3d, type: 3}
   _fallingCat: {fileID: 21300000, guid: 5e8183b88c03dc741a3c4a3d3774caca, type: 3}
-  _audioClipMau: {fileID: 8300000, guid: d11c48fe0a53ebb41b75027ba47415a2, type: 3}
+  _audioClipMeow: {fileID: 8300000, guid: d11c48fe0a53ebb41b75027ba47415a2, type: 3}
   _spriteRenderer: {fileID: 1449554738785221341}
   _audioSource: {fileID: 8592219384402724631}
 --- !u!1 &1237189655066794581
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 5337532896262658694}
   - component: {fileID: 7156171090880572990}
   m_Layer: 0
-  m_Name: BubbleBoom
+  m_Name: BubbleBurst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,6 +637,6 @@ MonoBehaviour:
   _minSize: 1
   _maxSize: 2.3
   _scaleSpeed: 2
-  _bubbleBoomObject: {fileID: 1237189655066794581}
-  _audioClipCpock: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
+  _bubbleBurstObject: {fileID: 1237189655066794581}
+  _audioClipBurst: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
   _audioSource: {fileID: 741258778533455728}

@@ -16,11 +16,11 @@ public class Bubble : MonoBehaviour
 
     [Header("Game Objects")]
     // Burst bubble splash object
-    [SerializeField] private GameObject _bubbleBoomObject;
+    [SerializeField] private GameObject _bubbleBurstObject;
 
     [Header("Sound Configuration")]
     // The sound of a bubble bursting
-    [SerializeField] private AudioClip _audioClipCpock;
+    [SerializeField] private AudioClip _audioClipBurst;
 
     [Header("Components")]
     [SerializeField] private AudioSource _audioSource;
@@ -33,14 +33,6 @@ public class Bubble : MonoBehaviour
         ResetScale();
     }
 
-    public void UpdateBubble()
-    {
-        if (Player.Instance.GetPlayerStatus() == PlayerStatus.InGame)
-        {
-            HandleInput();
-        }
-    }
-
     // Gets different between current size of the bubble and its oroginal size
     public float GetDeltaScale()
     {
@@ -48,33 +40,19 @@ public class Bubble : MonoBehaviour
         return deltaScale;
     }
 
-    private void HandleInput()
+    public void IncreaseScale()
     {
-        Vector2 inputVector = GameInput.Instance.GetMovementVector();
-
-        if (inputVector.y > 0)
-        {
-            float scaleValue = ChangeScale(_scaleSpeed);
-            transform.localScale = new Vector3(scaleValue, scaleValue, transform.localScale.y);
-        }
-        else if (inputVector.y < 0)
-        {
-            float scaleValue = ChangeScale(-_scaleSpeed);
-            transform.localScale = new Vector3(scaleValue, scaleValue, transform.localScale.y);
-        }
-        else
-        {
-            ChangeScaleToOrigin();
-        }
+        float scaleValue = ChangeScale(_scaleSpeed);
+        transform.localScale = new Vector3(scaleValue, scaleValue, transform.localScale.y);
     }
 
-    private float ChangeScale(float scaleSpeed)
+    public void DecreaseScale()
     {
-        float newScaleX = Mathf.Clamp(transform.localScale.x + scaleSpeed * Time.fixedDeltaTime, _minSize, _maxSize);
-        return newScaleX;
+        float scaleValue = ChangeScale(-_scaleSpeed);
+        transform.localScale = new Vector3(scaleValue, scaleValue, transform.localScale.y);
     }
 
-    private void ChangeScaleToOrigin()
+    public void ChangeScaleToOrigin()
     {
         transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(_originSize, _originSize, _originSize), _scaleSpeed * Time.fixedDeltaTime);
     }
@@ -86,28 +64,25 @@ public class Bubble : MonoBehaviour
     }
 
     // Bubble burst
-    public void Boom()
+    public void Burst()
     {
-        if (_bubbleBoomObject != null)
+        if (_bubbleBurstObject == null)
         {
-            _bubbleBoomObject.transform.parent = null;
+            return;
         }
 
-        _bubbleBoomObject.SetActive(true);
+        _bubbleBurstObject.transform.parent = null;
+        _bubbleBurstObject.SetActive(true);
     }
 
-    public void PlaySound()
+    public void PlaySoundBurst()
     {
-        _audioSource.PlayOneShot(_audioClipCpock);
+        _audioSource.PlayOneShot(_audioClipBurst);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        bool isFinish = Player.Instance.IsFinish();
 
-        if (!isFinish && collision.gameObject.CompareTag("FinishTrigger"))
-        {
-            Player.Instance.SetFinish(true);
-            LevelManager.Instance.FinishLevel();
-        }
+    private float ChangeScale(float scaleSpeed)
+    {
+        float newScaleX = Mathf.Clamp(transform.localScale.x + scaleSpeed * Time.fixedDeltaTime, _minSize, _maxSize);
+        return newScaleX;
     }
 }

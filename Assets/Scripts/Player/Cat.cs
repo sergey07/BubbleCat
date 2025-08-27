@@ -13,21 +13,11 @@ public class Cat : MonoBehaviour
     [SerializeField] private Sprite _fallingCat;
 
     [Header("Sound Configuration")]
-    [SerializeField] private AudioClip _audioClipMau;
+    [SerializeField] private AudioClip _audioClipMeow;
 
     [Header("Components")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private AudioSource _audioSource;
-
-    public void UpdateCat()
-    {
-        PlayerStatus playerStatus = Player.Instance.GetPlayerStatus();
-
-        if (playerStatus == PlayerStatus.InGame)
-        {
-            HandleInput();
-        }
-    }
 
     public void SetFalling(bool isFalling)
     {
@@ -41,7 +31,22 @@ public class Cat : MonoBehaviour
         }
     }
 
-    public void SetCatSprite(CatSprite catSprite)
+    public void FlipRight()
+    {
+        _spriteRenderer.flipX = true;
+    }
+
+    public void FlipLeft()
+    {
+        _spriteRenderer.flipX = false;
+    }
+
+    public void PlaySoundMeow()
+    {
+        _audioSource.PlayOneShot(_audioClipMeow);
+    }
+
+    private void SetCatSprite(CatSprite catSprite)
     {
         switch (catSprite)
         {
@@ -52,39 +57,6 @@ public class Cat : MonoBehaviour
             default:
                 _spriteRenderer.sprite = _normalCat;
                 break;
-        }
-    }
-
-    public void PlaySound()
-    {
-        _audioSource.PlayOneShot(_audioClipMau);
-    }
-
-    private void HandleInput()
-    {
-        Vector2 inputVector = GameInput.Instance.GetMovementVector();
-
-        if (inputVector.x > 0)
-        {
-            _spriteRenderer.flipX = true;
-        }
-        else if (inputVector.x < 0)
-        {
-            _spriteRenderer.flipX = false;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("FalledCatTrigger") && Player.Instance.GetPlayerStatus() != PlayerStatus.InCatDiedScene)
-        {
-            Player.Instance.SetPlayerStatus(PlayerStatus.InCatDiedScene);
-            LevelManager.Instance.LoadCatDiedScene();
-        }
-        else if (collision.gameObject.CompareTag("Boiler"))
-        {
-            GameObject yandexAdv = GameObject.FindGameObjectWithTag("YandexAdv");
-            yandexAdv.GetComponent<YandexAdv>().ShowResurrectPanel();
         }
     }
 }

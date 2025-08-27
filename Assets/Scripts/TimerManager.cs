@@ -96,6 +96,6 @@ public class TimerManager : MonoBehaviour
 
     private void TimerEnded()
     {
-        Player.Instance.Fall();
+        Player.Instance.BubbleBurst();
     }
 }

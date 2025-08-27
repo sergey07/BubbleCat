@@ -24,8 +24,10 @@ public class Player : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
 
-    private GameObject _spawnPoint;
+    // TODO: move all audio into Player component
 
+    private YandexAdv _yandexAdv;
+    private GameObject _spawnPoint;
     private Vector2 _inputVector;
     private bool _isFinish;
 
@@ -45,6 +47,9 @@ public class Player : MonoBehaviour
     {
         _isFinish = false;
         _bubble.InitBubble();
+
+        GameObject yandexAdvGO = GameObject.FindGameObjectWithTag("YandexAdv");
+        _yandexAdv = yandexAdvGO.GetComponent<YandexAdv>();
     }
 
     private void Update()
@@ -58,9 +63,6 @@ public class Player : MonoBehaviour
                 LevelManager.Instance.RestartLevel();
             }
         }
-
-        _cat.UpdateCat();
-        _bubble.UpdateBubble();
     }
 
     private void FixedUpdate()
@@ -118,12 +120,7 @@ public class Player : MonoBehaviour
     public void Reset()
     {
         gameObject.SetActive(true);
-
-        if (_bubble != null)
-        {
-            _bubble.ResetScale();
-        }
-
+        _bubble.ResetScale();
         Unfreeze();
     }
 
@@ -146,17 +143,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Fall()
+    public void BubbleBurst()
     {
         _cat.transform.position = _bubble.transform.position;
         _bubble.gameObject.SetActive(false);
         _cat.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
 
+        // Disable collider for enviroment
         GameObject.Find("CollideAble").gameObject.GetComponent<TilemapCollider2D>().enabled = false;
 
-        _bubble.PlaySound();
-        _cat.PlaySound();
-        _bubble.Boom();
+        _bubble.PlaySoundBurst();
+        _bubble.Burst();
+        _cat.PlaySoundMeow();
 
         SetPlayerStatus(PlayerStatus.BubbleBurst);
     }
@@ -166,6 +164,28 @@ public class Player : MonoBehaviour
         if (_rb == null)
         {
             return;
+        }
+
+        if (_inputVector.x > 0)
+        {
+            _cat.FlipRight();
+        }
+        else if (_inputVector.x < 0)
+        {
+            _cat.FlipLeft();
+        }
+
+        if (_inputVector.y > 0)
+        {
+            _bubble.IncreaseScale();
+        }
+        else if (_inputVector.y < 0)
+        {
+            _bubble.DecreaseScale();
+        }
+        else
+        {
+            _bubble.ChangeScaleToOrigin();
         }
 
         float deltaScale = _bubble.GetDeltaScale();
@@ -182,15 +202,29 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Fall();
+            BubbleBurst();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Witch") && !_isFinish)
+        if (collision.CompareTag("Witch") && !_isFinish)
         {
-            Fall();
+            BubbleBurst();
+        }
+        else if (collision.CompareTag("FalledCatTrigger") && _playerStatus != PlayerStatus.InCatDiedScene)
+        {
+            _playerStatus = PlayerStatus.InCatDiedScene;
+            LevelManager.Instance.LoadCatDiedScene();
+        }
+        else if (collision.CompareTag("Boiler"))
+        {
+            _yandexAdv.ShowResurrectPanel();
+        }
+        else if (!_isFinish && collision.CompareTag("FinishTrigger"))
+        {
+            _isFinish = true;
+            LevelManager.Instance.FinishLevel();
         }
     }
 }
