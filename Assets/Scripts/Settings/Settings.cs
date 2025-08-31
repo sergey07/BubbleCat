@@ -24,14 +24,22 @@ public class Settings : MonoBehaviour
     public void ToggleMenu()
     {
         _pausePanel.SetActive(!_pausePanel.activeSelf);
-        Time.timeScale = _pausePanel.activeSelf ? 0.0f : 1.0f;
+        
+        if (_pausePanel.activeSelf)
+        {
+            GameManager.Instance.Pause();
+        }
+        else
+        {
+            GameManager.Instance.Resume();
+        }
+
         UpdatePausePanelButtons();
     }
 
     public void Restart()
     {
-        Time.timeScale = 1.0f;
-        //GameManager.Instance.RestartScene();
+        GameManager.Instance.Resume();
         LevelManager.Instance.RestartLevel();
     }
 

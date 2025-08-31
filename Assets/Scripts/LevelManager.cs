@@ -123,10 +123,7 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel(int level)
     {
         _curLevel = level;
-
-        GameManager.Instance.Resume();
-
-        string strCurrentLevel = (Progress.Instance.PlayerInfo.SavedLevel + 1).ToString();//GetCurrentLevelNumber();
+        string strCurrentLevel = (Progress.Instance.PlayerInfo.SavedLevel + 1).ToString();
 
         UpdateLevelTitle(strCurrentLevel);
 
@@ -246,6 +243,7 @@ public class LevelManager : MonoBehaviour
         TimerManager.Instance.ResetTimer();
         TimerManager.Instance.ResumeTimer();
         ScoreManager.Instance.UpdateScore();
+        GameManager.Instance.Resume();
     }
 
     private void ResetCamera()

@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     private static extern void GameplayApiStart();
     private static extern void GameplayApiStop();
 #endif
-    //private string _currentSceneName;
 
     private bool _isPaused = false;
 

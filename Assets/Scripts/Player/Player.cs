@@ -86,11 +86,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        gameObject.SetActive(true);
+        _bubble.gameObject.SetActive(true);
+        _bubble.ResetScale();
+        Unfreeze();
+    }
+
     public void Spawn(GameObject currentLevelGO)
     {
         _spawnPoint = currentLevelGO.transform.Find("SpawnPoint").gameObject;
         transform.position = _spawnPoint.transform.position;
-        Reset();
+
+        if (_playerStatus == PlayerStatus.InGame)
+        {
+            Reset();
+        }
     }
 
     public void ResetPhisic()
@@ -119,13 +131,6 @@ public class Player : MonoBehaviour
     {
         _isFinish = isFinish;
         Freeze();
-    }
-
-    public void Reset()
-    {
-        gameObject.SetActive(true);
-        _bubble.ResetScale();
-        Unfreeze();
     }
 
     public PlayerStatus GetPlayerStatus()
