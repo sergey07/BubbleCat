@@ -14,10 +14,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float _ySpeedMultiplayer = 2f;
     [SerializeField] private float _fallingSpeed = 5.0f;
 
-    [Header("Game Objects")]
-    [SerializeField] private Cat _cat;
-    [SerializeField] private Bubble _bubble;
-
     [Space]
     [SerializeField] private PlayerStatus _playerStatus = PlayerStatus.InGame;
 
@@ -25,8 +21,12 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _audioClipMeow;
     // The sound of a bubble bursting
     [SerializeField] private AudioClip _audioClipBurst;
+    // The gurgling sound of a cat falling into a boiler
+    [SerializeField] public AudioClip _audioClipSplash;
 
     [Header("Components")]
+    [SerializeField] private Cat _cat;
+    [SerializeField] private Bubble _bubble;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private AudioSource _audioSource;
 
@@ -220,6 +220,10 @@ public class Player : MonoBehaviour
         {
             _playerStatus = PlayerStatus.InCatDiedScene;
             LevelManager.Instance.LoadCatDiedScene();
+        }
+        else if (collision.CompareTag("SplashSoundTrigger"))
+        {
+            _audioSource.PlayOneShot(_audioClipSplash);
         }
         else if (collision.CompareTag("Boiler"))
         {

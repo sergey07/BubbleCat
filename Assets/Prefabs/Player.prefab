@@ -181,6 +181,7 @@ MonoBehaviour:
   _playerStatus: 1
   _audioClipMeow: {fileID: 8300000, guid: d11c48fe0a53ebb41b75027ba47415a2, type: 3}
   _audioClipBurst: {fileID: 8300000, guid: 98328077431df0146b883d59c7ad2c15, type: 3}
+  _audioClipSplash: {fileID: 8300000, guid: 0e467b37f6e587e43ba5efb97a870aef, type: 3}
   _rb: {fileID: 2984145587737043220}
   _audioSource: {fileID: 3856469962520817652}
 --- !u!1 &132074649906313055

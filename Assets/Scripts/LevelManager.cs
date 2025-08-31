@@ -57,8 +57,6 @@ public class LevelManager : MonoBehaviour
 
         Language.Instance.Init();
 
-        //string activeSceneName = SceneManager.GetActiveScene().name;
-
         if (_curLevel == 0)
         {
             LoadFirstLevel();
@@ -113,7 +111,6 @@ public class LevelManager : MonoBehaviour
         if (IsLastLevel())
         {
             Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
-            //SceneManager.LoadScene("FinishGame");
             _finishGameSceneGO = Instantiate(_finishGameScenePrefab);
         }
         else
@@ -154,7 +151,6 @@ public class LevelManager : MonoBehaviour
 
     public void Resurrect()
     {
-        GameManager.Instance.Resume();
         LoadLevel(Progress.Instance.PlayerInfo.SavedLevel);
     }
 
@@ -162,12 +158,13 @@ public class LevelManager : MonoBehaviour
     {
         if (_currentLevelGO != null)
         {
-            //_currentLevelPrefab = null;
             Destroy(_currentLevelGO);
         }
 
         if (_startCutScenePrefab != null)
         {
+            ResetCamera();
+
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
             _startCutSceneGO = Instantiate(_startCutScenePrefab);
@@ -179,12 +176,13 @@ public class LevelManager : MonoBehaviour
     {
         if (_currentLevelGO != null)
         {
-            //_currentLevelPrefab = null;
             Destroy(_currentLevelGO);
         }
 
         if (_catDiedScenePrefab != null)
         {
+            ResetCamera();
+
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
             _catDiedSceneGO = Instantiate(_catDiedScenePrefab);
@@ -196,12 +194,13 @@ public class LevelManager : MonoBehaviour
     {
         if (_currentLevelGO != null)
         {
-            //_currentLevelPrefab = null;
             Destroy(_currentLevelGO);
         }
 
         if (_finishGameScenePrefab != null)
         {
+            ResetCamera();
+
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
             _finishGameSceneGO = Instantiate(_finishGameScenePrefab);
@@ -215,25 +214,21 @@ public class LevelManager : MonoBehaviour
 
         if (_startCutSceneGO != null)
         {
-            //_startCutScenePrefab = null;
             Destroy(_startCutSceneGO);
         }
 
         if (_catDiedSceneGO != null)
         {
-            //_catDiedScenePrefab = null;
             Destroy(_catDiedSceneGO);
         }
 
         if (_finishGameSceneGO != null)
         {
-            //_finishGameScenePrefab = null;
             Destroy(_finishGameSceneGO);
         }
 
         if (_currentLevelGO != null)
         {
-            //_currentLevelPrefab = null;
             Destroy(_currentLevelGO);
         }
 
@@ -251,6 +246,11 @@ public class LevelManager : MonoBehaviour
         TimerManager.Instance.ResetTimer();
         TimerManager.Instance.ResumeTimer();
         ScoreManager.Instance.UpdateScore();
+    }
+
+    private void ResetCamera()
+    {
+        Camera.main.transform.position = new Vector3(0.0f, 0.0f, -10.0f);
     }
 
     private void UpdateLevelTitle(string strCurrentLevel)

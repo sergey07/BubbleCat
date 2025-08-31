@@ -16,6 +16,7 @@ TagManager:
   - Witch
   - WinLevelPanel
   - YandexAdv
+  - SplashSoundTrigger
   layers:
   - Default
   - TransparentFX

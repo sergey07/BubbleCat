@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class BulkSoundTrigger : MonoBehaviour
+public class SplashSoundTrigger : MonoBehaviour
 {
     private bool _isTriggered = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Cat"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             _isTriggered = true;
         }
