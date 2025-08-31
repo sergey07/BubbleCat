@@ -21,10 +21,14 @@ public class Player : MonoBehaviour
     [Space]
     [SerializeField] private PlayerStatus _playerStatus = PlayerStatus.InGame;
 
+    [Header("Sound Configuration")]
+    [SerializeField] private AudioClip _audioClipMeow;
+    // The sound of a bubble bursting
+    [SerializeField] private AudioClip _audioClipBurst;
+
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
-
-    // TODO: move all audio into Player component
+    [SerializeField] private AudioSource _audioSource;
 
     private YandexAdv _yandexAdv;
     private GameObject _spawnPoint;
@@ -152,9 +156,9 @@ public class Player : MonoBehaviour
         // Disable collider for enviroment
         GameObject.Find("CollideAble").gameObject.GetComponent<TilemapCollider2D>().enabled = false;
 
-        _bubble.PlaySoundBurst();
+        _audioSource.PlayOneShot(_audioClipBurst);
         _bubble.Burst();
-        _cat.PlaySoundMeow();
+        _audioSource.PlayOneShot(_audioClipMeow);
 
         SetPlayerStatus(PlayerStatus.BubbleBurst);
     }

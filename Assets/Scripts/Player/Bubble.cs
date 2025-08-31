@@ -18,13 +18,6 @@ public class Bubble : MonoBehaviour
     // Burst bubble splash object
     [SerializeField] private GameObject _bubbleBurstObject;
 
-    [Header("Sound Configuration")]
-    // The sound of a bubble bursting
-    [SerializeField] private AudioClip _audioClipBurst;
-
-    [Header("Components")]
-    [SerializeField] private AudioSource _audioSource;
-
     private Vector3 _originScale;
 
     public void InitBubble()
@@ -73,11 +66,6 @@ public class Bubble : MonoBehaviour
 
         _bubbleBurstObject.transform.parent = null;
         _bubbleBurstObject.SetActive(true);
-    }
-
-    public void PlaySoundBurst()
-    {
-        _audioSource.PlayOneShot(_audioClipBurst);
     }
 
     private float ChangeScale(float scaleSpeed)

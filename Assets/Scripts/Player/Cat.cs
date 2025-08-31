@@ -12,12 +12,8 @@ public class Cat : MonoBehaviour
     // The falling cat's sprite
     [SerializeField] private Sprite _fallingCat;
 
-    [Header("Sound Configuration")]
-    [SerializeField] private AudioClip _audioClipMeow;
-
     [Header("Components")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private AudioSource _audioSource;
 
     public void SetFalling(bool isFalling)
     {
@@ -39,11 +35,6 @@ public class Cat : MonoBehaviour
     public void FlipLeft()
     {
         _spriteRenderer.flipX = false;
-    }
-
-    public void PlaySoundMeow()
-    {
-        _audioSource.PlayOneShot(_audioClipMeow);
     }
 
     private void SetCatSprite(CatSprite catSprite)
