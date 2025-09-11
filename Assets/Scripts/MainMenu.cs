@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Tutorial");
+        GameManager.Instance.StartGame();
     }
     public void Auth()
     {

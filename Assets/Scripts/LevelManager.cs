@@ -1,9 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
-// TODO: разобраться, почему при воскрешении кот мертвый
 
 public class LevelManager : MonoBehaviour
 {
@@ -48,6 +45,12 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         Init();
+    }
+
+    private void OnDestroy()
+    {
+        Yandex.Instance.OnAuthStatusUpdated -= OnAuthStatusUpdated;
+        Yandex.Instance.OnAuthSuccess -= OnAuthSuccess;
     }
 
     public void Init()
@@ -241,7 +244,7 @@ public class LevelManager : MonoBehaviour
 
         ChestManager.Instance.ResetChestCount();
         TimerManager.Instance.ResetTimer();
-        TimerManager.Instance.ResumeTimer();
+        //TimerManager.Instance.ResumeTimer();
         ScoreManager.Instance.UpdateScore();
         GameManager.Instance.Resume();
     }
