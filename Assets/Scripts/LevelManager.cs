@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class LevelManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class LevelManager : MonoBehaviour
     private GameObject _startCutSceneGO;
     private GameObject _catDiedSceneGO;
     private GameObject _finishGameSceneGO;
+
+    // TODO: после смерти игрока при выборе "Новая игра" при загрузке игры после т уториала игрок как будто на паузе стоит
 
     private void Awake()
     {
