@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private static extern void GameplayApiStop();
 #endif
 
-    private bool _isPaused = false;
+    //private bool _isPaused = false;
 
     private void Awake()
     {
@@ -39,33 +39,21 @@ public class GameManager : MonoBehaviour
 #if !UNITY_EDITOR && UNITY_WEBGL
     GameplayApiStop();
 #endif
-
-        if (_isPaused)
-        {
-            return;
-        }
-
         SoundManager.Instance.Mute(true);
 
-        _isPaused = true;
         Time.timeScale = 0;
         TimerManager.Instance.StopTimer();
     }
 
     public void Resume()
     {
+
 #if !UNITY_EDITOR && UNITY_WEBGL
     GameplayApiStart();
 #endif
 
-        if (!_isPaused)
-        {
-            return;
-        }
-
         SoundManager.Instance.Mute(!Progress.Instance.PlayerInfo.IsSoundOn);
 
-        _isPaused = false;
         Time.timeScale = 1.0f;
         TimerManager.Instance.ResumeTimer();
     }

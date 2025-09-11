@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 964970996185069683}
   m_Layer: 5
   m_Name: FinishGamePanel
-  m_TagString: Untagged
+  m_TagString: FinishGamePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -895,8 +895,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2991708718689609201}
-  - {fileID: 6829315767053287879}
-  - {fileID: 3386636057086522770}
   m_Father: {fileID: 8035338936267906790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5889778746177795047
@@ -910,8 +908,8 @@ GameObject:
   - component: {fileID: 6829315767053287879}
   - component: {fileID: 8517295494032530314}
   m_Layer: 0
-  m_Name: EndTrigger
-  m_TagString: EndTrigger
+  m_Name: FinishGameEndTrigger
+  m_TagString: FinishGameEndTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -929,7 +927,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2729191711480544511}
+  m_Father: {fileID: 8035338936267906790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8517295494032530314
 SpriteRenderer:
@@ -1145,8 +1143,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7233155479361778011}
   - {fileID: 2729191711480544511}
+  - {fileID: 6829315767053287879}
+  - {fileID: 3386636057086522770}
+  - {fileID: 7233155479361778011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7854500821459341613
@@ -1327,7 +1327,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2729191711480544511}
+  m_Father: {fileID: 8035338936267906790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9070013612363990011
 GameObject:

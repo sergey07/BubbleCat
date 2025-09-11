@@ -28,8 +28,6 @@ public class LevelManager : MonoBehaviour
     private GameObject _catDiedSceneGO;
     private GameObject _finishGameSceneGO;
 
-    // TODO: после смерти игрока при выборе "Новая игра" при загрузке игры после т уториала игрок как будто на паузе стоит
-
     private void Awake()
     {
         if (Instance == null)
@@ -63,12 +61,15 @@ public class LevelManager : MonoBehaviour
 
         Language.Instance.Init();
 
+        Player.Instance.SetPlayerStatus(PlayerStatus.InGame);
+
         if (_curLevel == 0)
         {
             LoadFirstLevel();
         }
 
-        LoadLevel(Progress.Instance.PlayerInfo.SavedLevel);        
+        LoadLevel(Progress.Instance.PlayerInfo.SavedLevel);
+        GameManager.Instance.Resume();
     }
 
     private void Update()
@@ -207,6 +208,7 @@ public class LevelManager : MonoBehaviour
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
             _finishGameSceneGO = Instantiate(_finishGameScenePrefab);
+            Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
             Player.Instance.Spawn(_finishGameSceneGO);
         }
     }
@@ -247,7 +249,6 @@ public class LevelManager : MonoBehaviour
 
         ChestManager.Instance.ResetChestCount();
         TimerManager.Instance.ResetTimer();
-        //TimerManager.Instance.ResumeTimer();
         ScoreManager.Instance.UpdateScore();
         GameManager.Instance.Resume();
     }

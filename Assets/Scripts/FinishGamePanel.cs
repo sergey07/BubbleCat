@@ -13,6 +13,7 @@ public class FinishGamePanel : MonoBehaviour
 
     public void NewGame()
     {
-        LevelManager.Instance.LoadFirstLevel();
+        gameObject.SetActive(false);
+        GameManager.Instance.StartGame();
     }
 }

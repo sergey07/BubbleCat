@@ -12,11 +12,12 @@ TagManager:
   - Bubble
   - Chest
   - SpawnPoint
-  - EndTrigger
   - Witch
   - WinLevelPanel
   - YandexAdv
   - SplashSoundTrigger
+  - FinishGameEndTrigger
+  - FinishGamePanel
   layers:
   - Default
   - TransparentFX

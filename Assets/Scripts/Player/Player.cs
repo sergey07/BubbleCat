@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _maxYSpeed = 20.0f;
     [SerializeField] private float _ySpeedMultiplayer = 2f;
     [SerializeField] private float _fallingSpeed = 5.0f;
+    [SerializeField] private float _finishGameSpeed = 10.0f;
 
     [Space]
     [SerializeField] private PlayerStatus _playerStatus = PlayerStatus.InGame;
@@ -29,6 +30,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Bubble _bubble;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private AudioSource _audioSource;
+
+    private GameObject _finishGamePanel;
+    private Transform _finishGameEndTriggerTransform;
 
     private YandexAdv _yandexAdv;
     private GameObject _spawnPoint;
@@ -82,6 +86,20 @@ public class Player : MonoBehaviour
             case PlayerStatus.BubbleBurst:
             case PlayerStatus.InCatDiedScene:
                 _rb.MovePosition(_rb.position - new Vector2(0, _fallingSpeed * Time.fixedDeltaTime));
+                break;
+            case PlayerStatus.InFinishGameScene:
+                if (_finishGamePanel == null)
+                {
+                    _finishGamePanel = GameObject.FindGameObjectWithTag("FinishGamePanel");
+                    _finishGamePanel.SetActive(false);
+                    _finishGameEndTriggerTransform = GameObject.FindGameObjectWithTag("FinishGameEndTrigger").transform;
+                }
+
+                _rb.MovePosition(_rb.position + new Vector2(_finishGameSpeed * Time.fixedDeltaTime, 0));
+                if (_rb.position.x > _finishGameEndTriggerTransform.position.x)
+                {
+                    _finishGamePanel.SetActive(true);
+                }
                 break;
         }
     }
