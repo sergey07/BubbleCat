@@ -50,6 +50,19 @@ public class Bubble : MonoBehaviour
         transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(_originSize, _originSize, _originSize), _scaleSpeed * Time.fixedDeltaTime);
     }
 
+    public void Reset()
+    {
+        if (_bubbleBurstObject == null)
+        {
+            return;
+        }
+
+        _bubbleBurstObject.transform.parent = this.transform;
+        _bubbleBurstObject.SetActive(false);
+
+        ResetScale();
+    }
+
     // Resets size of the bubble to its original size
     public void ResetScale()
     {

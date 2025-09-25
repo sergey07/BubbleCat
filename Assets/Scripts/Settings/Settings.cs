@@ -2,12 +2,26 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
+    public static Settings Instance { get; private set; }
+
     [Header("Required Components")]
     [SerializeField] private GameObject _pausePanel;
 
     private int _joystickPosition;
 
     private PausePanel _ppComponent;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {

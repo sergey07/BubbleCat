@@ -57176,7 +57176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 740382013254989908, guid: e028e4c2373eb7241be98ee9712ea24f, type: 3}
       propertyPath: m_Name
-      value: FinishTrigger
+      value: NextLevelTrigger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

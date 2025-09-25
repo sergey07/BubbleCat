@@ -69,8 +69,6 @@ public class GameInput : MonoBehaviour
             inputVector.x = 1;
         }
 
-        //string currentSceneName = GameManager.Instance.GetCurrentSceneName();
-
         // Если схватил за джойстик, то он перезапишет значения - OnlyMeRus
         if (_joystick != null && (_joystick.Vertical != 0 || _joystick.Horizontal != 0))
         {

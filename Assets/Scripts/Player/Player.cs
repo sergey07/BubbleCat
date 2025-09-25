@@ -75,6 +75,11 @@ public class Player : MonoBehaviour
             {
                 GameManager.Instance.TogglePause();
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Settings.Instance.ToggleMenu();
+            }
         }
     }
 
@@ -113,7 +118,7 @@ public class Player : MonoBehaviour
     {
         gameObject.SetActive(true);
         _bubble.gameObject.SetActive(true);
-        _bubble.ResetScale();
+        _bubble.Reset();
         Unfreeze();
     }
 
