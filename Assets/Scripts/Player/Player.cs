@@ -70,6 +70,11 @@ public class Player : MonoBehaviour
             {
                 LevelManager.Instance.RestartLevel();
             }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                GameManager.Instance.TogglePause();
+            }
         }
     }
 
