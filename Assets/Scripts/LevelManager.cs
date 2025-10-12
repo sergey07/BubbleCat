@@ -63,6 +63,8 @@ public class LevelManager : MonoBehaviour
 
         Player.Instance.SetPlayerStatus(PlayerStatus.InGame);
 
+        SoundManager.Instance.Mute(!Progress.Instance.PlayerInfo.IsSoundOn);
+
         if (_curLevel == 0)
         {
             LoadFirstLevel();

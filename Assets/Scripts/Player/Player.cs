@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         {
             _inputVector = GameInput.Instance.GetMovementVector();
 
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 LevelManager.Instance.RestartLevel();
             }
@@ -76,9 +76,15 @@ public class Player : MonoBehaviour
                 GameManager.Instance.TogglePause();
             }
 
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                Progress.Instance.PlayerInfo.IsSoundOn = !Progress.Instance.PlayerInfo.IsSoundOn;
+                SoundManager.Instance.Mute(!Progress.Instance.PlayerInfo.IsSoundOn);
+            }
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Settings.Instance.ToggleMenu();
+                // TODO: exit to the main menu
             }
         }
     }
