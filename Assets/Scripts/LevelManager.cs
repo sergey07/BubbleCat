@@ -71,7 +71,6 @@ public class LevelManager : MonoBehaviour
         }
 
         LoadLevel(Progress.Instance.PlayerInfo.SavedLevel);
-        GameManager.Instance.Resume();
     }
 
     private void Update()

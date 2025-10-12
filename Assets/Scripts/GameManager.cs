@@ -55,12 +55,16 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
 
+        Debug.Log("GameManager.Resume()");
+
 #if !UNITY_EDITOR && UNITY_WEBGL
     GameplayApiStart();
 #endif
 
         _isPaused = false;
 
+        bool isMute = !Progress.Instance.PlayerInfo.IsSoundOn;
+        Debug.Log("isMute: " + isMute.ToString());
         SoundManager.Instance.Mute(!Progress.Instance.PlayerInfo.IsSoundOn);
 
         Time.timeScale = 1.0f;
