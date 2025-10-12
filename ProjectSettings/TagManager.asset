@@ -18,6 +18,7 @@ TagManager:
   - SplashSoundTrigger
   - FinishGameEndTrigger
   - FinishGamePanel
+  - PausePanel
   layers:
   - Default
   - TransparentFX

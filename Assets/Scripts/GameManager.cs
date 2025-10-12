@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     private static extern void GameplayApiStop();
 #endif
 
+    [Header("Game Objects")]
+    [SerializeField] private GameObject _pausePanel;
+
     private bool _isPaused = false;
 
     private void Awake()
@@ -50,6 +53,8 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 0;
         TimerManager.Instance.StopTimer();
+
+        _pausePanel.SetActive(true);
     }
 
     public void Resume()
@@ -60,6 +65,7 @@ public class GameManager : MonoBehaviour
 #if !UNITY_EDITOR && UNITY_WEBGL
     GameplayApiStart();
 #endif
+        _pausePanel.SetActive(false);
 
         _isPaused = false;
 
