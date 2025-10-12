@@ -3615,10 +3615,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PausePanel
       objectReference: {fileID: 0}
-    - target: {fileID: 7918497626490986133, guid: 5ed6cd64f81897942b08d799fcc6e429, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3836,13 +3832,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2824256304451174574, guid: 52dd5dfeca9839349ad577c7e9fed0fa, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2897309961914000790, guid: 52dd5dfeca9839349ad577c7e9fed0fa, type: 3}
       propertyPath: m_Name
       value: HintsPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897309961914000790, guid: 52dd5dfeca9839349ad577c7e9fed0fa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7293653369720945798, guid: 52dd5dfeca9839349ad577c7e9fed0fa, type: 3}
       propertyPath: m_LocalPosition.x

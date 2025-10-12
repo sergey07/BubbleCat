@@ -74,6 +74,17 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.P))
             {
                 GameManager.Instance.TogglePause();
+
+                bool isPaused = GameManager.Instance.IsPaused();
+
+                if (isPaused)
+                {
+                    GameManager.Instance.ShowPausePanel();
+                }
+                else
+                {
+                    GameManager.Instance.HidePausePanel();
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.M))

@@ -53,19 +53,14 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 0;
         TimerManager.Instance.StopTimer();
-
-        _pausePanel.SetActive(true);
     }
 
     public void Resume()
     {
 
-        Debug.Log("GameManager.Resume()");
-
 #if !UNITY_EDITOR && UNITY_WEBGL
     GameplayApiStart();
 #endif
-        _pausePanel.SetActive(false);
 
         _isPaused = false;
 
@@ -91,5 +86,15 @@ public class GameManager : MonoBehaviour
         {
             Pause();
         }
+    }
+
+    public void ShowPausePanel()
+    {
+        _pausePanel.SetActive(true);
+    }
+
+    public void HidePausePanel()
+    {
+        _pausePanel.SetActive(false);
     }
 }
