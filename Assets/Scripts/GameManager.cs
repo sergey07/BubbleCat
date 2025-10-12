@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GoToStartMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Tutorial");

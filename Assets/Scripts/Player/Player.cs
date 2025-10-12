@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                // TODO: exit to the main menu
+                GameManager.Instance.GoToStartMenu();
             }
         }
     }
