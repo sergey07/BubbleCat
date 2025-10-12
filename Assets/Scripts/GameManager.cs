@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
         _isPaused = false;
 
         bool isMute = !Progress.Instance.PlayerInfo.IsSoundOn;
-        Debug.Log("isMute: " + isMute.ToString());
         SoundManager.Instance.Mute(!Progress.Instance.PlayerInfo.IsSoundOn);
 
         Time.timeScale = 1.0f;

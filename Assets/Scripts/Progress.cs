@@ -39,7 +39,6 @@ public class Progress: MonoBehaviour
 #if !UNITY_EDITOR && UNITY_WEBGL
         LoadExtern();
 #else
-            Debug.Log("LoadExtern");
             PlayerInfo.CurrentSceneName = PlayerPrefs.GetString("LoadExtern");
             PlayerInfo.SavedLevel = PlayerPrefs.GetInt("SavedLevel");
             PlayerInfo.Score = PlayerPrefs.GetInt("Score");
