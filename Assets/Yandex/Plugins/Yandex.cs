@@ -22,7 +22,10 @@ public class Yandex : MonoBehaviour
 
 #if !UNITY_EDITOR && UNITY_WEBGL
     [DllImport("__Internal")]
-    private static extern void YandexRequestAuthorization();
+    private static extern void InitYandexSDKExtern();
+
+    [DllImport("__Internal")]
+    private static extern void RequestAuthorizationExtern();
 
     //[DllImport("__Internal")]
     //private static extern void FetchPlayerDataExtern();
@@ -61,16 +64,25 @@ public class Yandex : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Start()
-    {
-        //InitPlayerData();
+
+    public void InitYandexSDK() {
+#if !UNITY_EDITOR && UNITY_WEBGL
+        InitYandexSDKExtern();
+#else
+        Debug.LogWarning("Yandex SDK initialization works only in WebGL build");
+#endif
     }
+
+    //private void Start()
+    //{
+    //    //InitPlayerData();
+    //}
 
     // Запрос авторизации (опциональный)
     public void RequestAuthorization()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        YandexRequestAuthorization();
+        RequestAuthorizationExtern();
 #else
         Debug.LogWarning("Yandex Games auth works only in WebGL build");
         OnAuthFailed?.Invoke("Not in WebGL environment");

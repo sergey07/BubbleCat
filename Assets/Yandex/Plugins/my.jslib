@@ -1,7 +1,7 @@
 mergeInto(LibraryManager.library, {
 	var self = this;
 	
-	Init: function() {
+	InitYandexSDKExtern: function() {
         YaGames.init().then(_ysdk => {
             ysdk = _ysdk;
             console.log("Yandex SDK initialized");
@@ -51,7 +51,7 @@ mergeInto(LibraryManager.library, {
             .then(() => self.checkAuthStatus());
     },
 	
-	YandexRequestAuthorization: function() {
+	RequestAuthorizationExtern: function() {
         self.requestAuthorization()
             .then(() => {
                 // Статус будет обновлен через checkAuthStatus
