@@ -4,9 +4,12 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSourceLoop;
+
+    [SerializeField] private AudioClip _audioClipMainMusic;
     [SerializeField] private AudioClip _audioClipFinishLevel;
 
-    private AudioSource _audioSource;
     private bool _isMute = false;
 
     private void Awake()
@@ -14,7 +17,6 @@ public class SoundManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            _audioSource = GetComponent<AudioSource>();
             transform.parent = null;
         }
         else
@@ -32,10 +34,6 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
         _isMute = isMute;
-//        Progress.Instance.PlayerInfo.IsSoundOn = !_isMute;
-//#if UNITY_WEBGL
-//        Progress.Instance.Save();
-//#endif
 
         foreach (AudioSource audioSource in audioSources)
         {
@@ -46,6 +44,16 @@ public class SoundManager : MonoBehaviour
     public bool IsMute()
     {
         return _isMute;
+    }
+
+    public void PlayMainMusic()
+    {
+        _audioSourceLoop.Play();
+    }
+
+    public void StopMainMusic()
+    {
+        _audioSourceLoop.Stop();
     }
 
     public void PlayLevelFinishMusic()

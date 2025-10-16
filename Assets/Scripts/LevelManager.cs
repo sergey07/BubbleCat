@@ -119,6 +119,7 @@ public class LevelManager : MonoBehaviour
         int scoreForChest = ChestManager.Instance.GetScoreForChest();
         int remainingTime = TimerManager.Instance.GetRemainingSeconds();
         _finishLevelPanel.GetComponent<FinishLevel>().UpdatePanel(chestCount, scoreForChest, remainingTime);
+        SoundManager.Instance.StopMainMusic();
         SoundManager.Instance.PlayLevelFinishMusic();
         StartCoroutine(LoadNextLevel(SoundManager.Instance.GetLevelFinishMusicDuration()));
     }
@@ -265,6 +266,7 @@ public class LevelManager : MonoBehaviour
         ScoreManager.Instance.UpdateScore();
         GameManager.Instance.Resume();
         SoundManager.Instance.Init();
+        SoundManager.Instance.PlayMainMusic();
     }
 
     private void ResetCamera()
