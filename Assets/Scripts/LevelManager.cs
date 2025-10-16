@@ -76,8 +76,15 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        Player.Instance.UpdatePlayer();
-        TimerManager.Instance.UpdateTimer();
+        if (Player.Instance != null)
+        {
+            Player.Instance.UpdatePlayer();
+        }
+
+        if (TimerManager.Instance != null)
+        {
+            TimerManager.Instance.UpdateTimer();
+        }
 
         if (Input.GetKeyDown(KeyCode.N))
         {
@@ -87,7 +94,10 @@ public class LevelManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Player.Instance.FixedUpdatePlayer();
+        if (Player.Instance != null)
+        {
+            Player.Instance.FixedUpdatePlayer();
+        }
     }
 
     public int GetCurrentLevel()
@@ -121,7 +131,8 @@ public class LevelManager : MonoBehaviour
         _finishLevelPanel.GetComponent<FinishLevel>().UpdatePanel(chestCount, scoreForChest, remainingTime);
         SoundManager.Instance.StopMainMusic();
         SoundManager.Instance.PlayLevelFinishMusic();
-        StartCoroutine(LoadNextLevel(SoundManager.Instance.GetLevelFinishMusicDuration()));
+        float finishMusicDuration = SoundManager.Instance.GetLevelFinishMusicDuration();
+        Invoke("LoadNextLevel", finishMusicDuration);
     }
 
     public void NextLevel()
@@ -311,9 +322,9 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"User authorized: {Yandex.Instance.PlayerName}");
     }
 
-    IEnumerator LoadNextLevel(float delay)
+    private void LoadNextLevel()
     {
-        yield return new WaitForSeconds(delay);
+        Debug.Log("Загрузка...");
 
         _finishLevelPanel.SetActive(false);
         Progress.Instance.PlayerInfo.ChestCount = 0;
