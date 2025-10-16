@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void InitPlayer()
     {
         _isFinish = false;
         _bubble.InitBubble();
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
         _yandexAdv = yandexAdvGO.GetComponent<YandexAdv>();
     }
 
-    private void Update()
+    public void UpdatePlayer()
     {
         if (_playerStatus == PlayerStatus.InGame)
         {
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public void FixedUpdatePlayer()
     {
         switch (_playerStatus)
         {

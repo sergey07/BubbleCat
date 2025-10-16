@@ -23,7 +23,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Init()
     {
         Mute(!Progress.Instance.PlayerInfo.IsSoundOn);
     }

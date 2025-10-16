@@ -26,20 +26,21 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void ShowScore()
     {
         if (_scorePanel != null)
         {
-            if (Player.Instance.GetPlayerStatus() == PlayerStatus.InGame)
-            {
-                _scorePanel.SetActive(true);
-                _score = Progress.Instance.PlayerInfo.Score;
-                UpdateView(_score);
-            }
-            else
-            {
-                _scorePanel.SetActive(false);
-            }
+            _scorePanel.SetActive(true);
+            _score = Progress.Instance.PlayerInfo.Score;
+            UpdateView(_score);
+        }
+    }
+
+    public void HideScore()
+    {
+        if (_scorePanel != null)
+        {
+            _scorePanel.SetActive(false);
         }
     }
 

@@ -61,6 +61,7 @@ public class LevelManager : MonoBehaviour
 
         Language.Instance.Init();
 
+        Player.Instance.InitPlayer();
         Player.Instance.SetPlayerStatus(PlayerStatus.InGame);
 
         SoundManager.Instance.Mute(!Progress.Instance.PlayerInfo.IsSoundOn);
@@ -75,10 +76,18 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
+        Player.Instance.UpdatePlayer();
+        TimerManager.Instance.UpdateTimer();
+
         if (Input.GetKeyDown(KeyCode.N))
         {
             NextLevel();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Player.Instance.FixedUpdatePlayer();
     }
 
     public int GetCurrentLevel()
@@ -174,6 +183,7 @@ public class LevelManager : MonoBehaviour
 
             _startCutSceneGO = Instantiate(_startCutScenePrefab);
             Player.Instance.Spawn(_startCutSceneGO);
+            StartGame.Instance.Init();
         }
     }
 
@@ -249,9 +259,12 @@ public class LevelManager : MonoBehaviour
         }
 
         ChestManager.Instance.ResetChestCount();
+        ChestManager.Instance.ShowChestCounter();
         TimerManager.Instance.ResetTimer();
+        TimerManager.Instance.StartTimer();
         ScoreManager.Instance.UpdateScore();
         GameManager.Instance.Resume();
+        SoundManager.Instance.Init();
     }
 
     private void ResetCamera()

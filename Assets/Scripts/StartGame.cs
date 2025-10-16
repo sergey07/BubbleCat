@@ -1,8 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
+// Скрипт для стартовой катсцены
 public class StartGame : MonoBehaviour
 {
+    public static StartGame Instance { get; private set; }
+
     [Header("Time Configuration")]
     [SerializeField] private float _timeBeforeTranslateCatByWitch = 2.0f;
     [SerializeField] private float _timeBeforeBoilerBoils = 2.0f;
@@ -29,8 +32,19 @@ public class StartGame : MonoBehaviour
     [SerializeField] private Sprite _witchWithCat;
     [SerializeField] private Sprite _witchWithoutCat;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Init()
     {
         Player.Instance.SetPlayerStatus(PlayerStatus.InStartGameScene);
 

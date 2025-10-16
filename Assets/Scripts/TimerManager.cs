@@ -29,7 +29,7 @@ public class TimerManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void StartTimer()
     {
         _timerIsRunning = true;
 
@@ -47,7 +47,7 @@ public class TimerManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void UpdateTimer()
     {
         if (_timerIsRunning)
         {

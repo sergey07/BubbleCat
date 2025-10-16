@@ -25,30 +25,31 @@ public class ChestManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void ShowChestCounter()
     {
         if (_chestCounterPanel != null)
         {
-            if (Player.Instance.GetPlayerStatus() == PlayerStatus.InGame)
+            _chestCounterPanel.SetActive(true);
+
+            if (Progress.Instance == null)
             {
-                _chestCounterPanel.SetActive(true);
-
-                if (Progress.Instance == null)
-                {
-                    Debug.Log("Progress.Instance is null!");
-                }
-
-                if (_txtChestCounter == null)
-                {
-                    Debug.Log("_txtChestCounter is null!");
-                }
-
-                UpdateChestCounterText();
+                Debug.Log("Progress.Instance is null!");
             }
-            else
+
+            if (_txtChestCounter == null)
             {
-                _chestCounterPanel.SetActive(false);
+                Debug.Log("_txtChestCounter is null!");
             }
+
+            UpdateChestCounterText();
+        }
+    }
+
+    public void hideChestCounter()
+    {
+        if (_chestCounterPanel != null)
+        {
+            _chestCounterPanel.SetActive(false);
         }
     }
 
