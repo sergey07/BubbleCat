@@ -16,4 +16,9 @@ public class FinishGamePanel : MonoBehaviour
         gameObject.SetActive(false);
         GameManager.Instance.StartGame();
     }
+
+    public void RateGame()
+    {
+        Yandex.Instance.RateGame();
+    }
 }

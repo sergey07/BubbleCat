@@ -103,33 +103,10 @@ public class Yandex : MonoBehaviour
     //    }
     //}
 
-    //public void SetAvatar(string url)
-    //{
-    //    if (_avatar != null)
-    //    {
-    //        StartCoroutine(DownloadImage(url));
-    //    }
-    //}
-
-    public void RateGameButton()
+    public void RateGame()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
         RateGameExtern();
 #endif
     }
-
-    //IEnumerator DownloadImage(string mediaUrl)
-    //{
-    //    UnityWebRequest request = UnityWebRequestTexture.GetTexture(mediaUrl);
-    //    yield return request.SendWebRequest();
-
-    //    if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-    //    {
-    //        Debug.Log(request.error);
-    //    }
-    //    else
-    //    {
-    //        _avatar.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
-    //    }
-    //}
 }
