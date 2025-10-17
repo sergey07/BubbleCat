@@ -26,15 +26,14 @@ mergeInto(LibraryManager.library, {
         if (status.authorized) {
             status.player = {
                 id: ysdk.player.getUniqueID(),
-                name: ysdk.player.getName(),
-                photo: ysdk.player.getPhoto('medium')
+                name: ysdk.player.getName()
             };
         }
         
         // Отправляем статус в Unity
-        if (typeof UnityInstance !== 'undefined') {
+        if (typeof myGameInstance !== 'undefined') {
             const jsonStatus = JSON.stringify(status);
-            UnityInstance.SendMessage('Yandex', 'OnAuthStatusUpdated', jsonStatus);
+            myGameInstance.SendMessage('Yandex', 'OnAuthStatusUpdated', jsonStatus);
         }
         
         return status;

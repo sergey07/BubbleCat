@@ -13,7 +13,6 @@ public class Yandex : MonoBehaviour
     public bool IsAuthorized { get; private set; }
     public string PlayerId { get; private set; }
     public string PlayerName { get; private set; }
-    public string PlayerPhotoUrl { get; private set; }
 
     public event Action OnAuthSuccess;
     public event Action<string> OnAuthFailed;
@@ -31,6 +30,9 @@ public class Yandex : MonoBehaviour
     //private static extern void FetchPlayerDataExtern();
 
     [DllImport("__Internal")]
+    private static extern void ResurrectExtern();
+
+    [DllImport("__Internal")]
     private static extern void RateGameExtern();
 #endif
 
@@ -46,11 +48,10 @@ public class Yandex : MonoBehaviour
     {
         public string id;
         public string name;
-        public string photo;
     }
 
     //[SerializeField] private TextMeshProUGUI _playerName;
-    //[SerializeField] private RawImage _avatar;
+
     private void Awake()
     {
         if (Instance == null)
@@ -72,11 +73,6 @@ public class Yandex : MonoBehaviour
         Debug.LogWarning("Yandex SDK initialization works only in WebGL build");
 #endif
     }
-
-    //private void Start()
-    //{
-    //    //InitPlayerData();
-    //}
 
     // Запрос авторизации (опциональный)
     public void RequestAuthorization()
@@ -102,6 +98,13 @@ public class Yandex : MonoBehaviour
     //        _playerName.text = playerName;
     //    }
     //}
+
+    public void Resurrect()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+        ResurrectExtern();
+#endif
+    }
 
     public void RateGame()
     {

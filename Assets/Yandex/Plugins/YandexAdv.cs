@@ -3,11 +3,6 @@ using System.Runtime.InteropServices;
 
 public class YandexAdv : MonoBehaviour
 {
-#if !UNITY_EDITOR && UNITY_WEBGL
-    [DllImport("__Internal")]
-    private static extern void ResurrectExtern();
-#endif
-
     [SerializeField] private GameObject _resurrectPanel;
 
     public void ShowResurrectPanel()
@@ -20,15 +15,21 @@ public class YandexAdv : MonoBehaviour
     {
         _resurrectPanel.gameObject.SetActive(false);
     }
-    public void ShowAdvButton()
+
+    public void ShowAdv()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        ResurrectExtern();
+        Resurrect();
 #else
-        Debug.Log("ResurrectExtern");
+        Debug.Log("Resurrect");
         //GameManager.Instance.Resurrect();
         HideResurrectPanel();
         LevelManager.Instance.RestartLevel();
 #endif
+    }
+
+    private void Resurrect()
+    {
+        Yandex.Instance.Resurrect();
     }
 }
