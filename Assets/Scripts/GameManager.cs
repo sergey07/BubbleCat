@@ -34,11 +34,17 @@ public class GameManager : MonoBehaviour
 
     public void GoToStartMenu()
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
+    GameplayApiStop();
+#endif
         SceneManager.LoadScene("StartMenu");
     }
 
     public void StartGame()
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
+    GameplayApiStop();
+#endif
         SceneManager.LoadScene("Tutorial");
     }
 
