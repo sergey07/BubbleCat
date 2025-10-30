@@ -1,14 +1,18 @@
 mergeInto(LibraryManager.library, {
-	var self = this;
 	
 	InitYandexSDKExtern: function() {
         YaGames.init().then(_ysdk => {
             ysdk = _ysdk;
             console.log("Yandex SDK initialized");
-            ysdk.features.LoadingAPI?.ready();
-            
-            // Автоматически проверяем статус авторизации после инициализации
-            checkAuthStatus();
+
+            // if (ysdk.features.LoadingAPI == undefined) {
+            // 	return;
+            // }
+
+        	// ysdk.features.LoadingAPI.ready();
+        
+        	// Автоматически проверяем статус авторизации после инициализации
+        	checkAuthStatus();
         });
     },
     
@@ -63,41 +67,56 @@ mergeInto(LibraryManager.library, {
 	},
 	
 	// Инициализация API загрузки
-	//LoadingApiReady: function() {
-	//	console.log("LoadingApiReady() started");
-	//	
-	//	if (ysdk === undefined)
-	//	{
-	//		console.log("LoadingApiReady: ysdk is undefined!");
-	//		return;
-	//	}
-	//	
-	//	ysdk.features.LoadingAPI?.ready();
-	//},
-	
-	// Управление игровым процессом
-	GameplayApiStart: function() {
-		console.log("GameplayApiStart() started");
+	LoadingApiReadyExtern: function() {
+		console.log("LoadingApiReadyExtern() started");
 		
 		if (ysdk === undefined)
 		{
-			console.log("GameplayApiStart: ysdk is undefined!");
+			console.log("LoadingApiReadyExtern: ysdk is undefined!");
 			return;
 		}
 		
-		ysdk.features.GameplayAPI?.start();
+		if (ysdk.features.LoadingAPI == undefined) {
+			console.log("LoadingApiReadyExtern: LoadingAPI is undefined!");
+            return;
+        }
+
+		ysdk.features.LoadingAPI.ready();
 	},
 	
-	GameplayApiStop: function() {
-		console.log("GameplayApiStop() started");
+	// Управление игровым процессом
+	GameplayApiStartExtern: function() {
+		console.log("GameplayApiStartExtern() started");
 		
 		if (ysdk === undefined)
 		{
-			console.log("GameplayApiStop: ysdk is undefined!");
+			console.log("GameplayApiStartExtern: ysdk is undefined!");
+			return;
+		}
+
+		if (ysdk.features.GameplayAPI == undefined) {
+			console.log("GameplayApiStartExtern: GameplayAPI is undefined!");
+            return;
+        }
+		
+		ysdk.features.GameplayAPI.start();
+	},
+	
+	GameplayApiStopExtern: function() {
+		console.log("GameplayApiStopExtern() started");
+		
+		if (ysdk === undefined)
+		{
+			console.log("GameplayApiStopExtern: ysdk is undefined!");
 			return;
 		}
 		
-		ysdk.features.GameplayAPI?.stop();
+		if (ysdk.features.GameplayAPI == undefined) {
+			console.log("GameplayApiStopExtern: GameplayAPI is undefined!");
+            return;
+        }
+
+		ysdk.features.GameplayAPI.stop();
 	},
 
 	//FetchPlayerDataExtern: function() {

@@ -24,6 +24,15 @@ public class Yandex : MonoBehaviour
     private static extern void InitYandexSDKExtern();
 
     [DllImport("__Internal")]
+    private static extern void LoadingApiReadyExtern();
+
+    [DllImport("__Internal")]
+    private static extern void GameplayApiStartExtern();
+
+    [DllImport("__Internal")]
+    private static extern void GameplayApiStopExtern();
+
+    [DllImport("__Internal")]
     private static extern void RequestAuthorizationExtern();
 
     //[DllImport("__Internal")]
@@ -71,6 +80,33 @@ public class Yandex : MonoBehaviour
         InitYandexSDKExtern();
 #else
         Debug.LogWarning("Yandex SDK initialization works only in WebGL build");
+#endif
+    }
+
+    public void GameplayApiStart()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+        GameplayApiStartExtern();
+#else
+        Debug.LogWarning("Yandex SDK GameplayApiStart works only in WebGL build");
+#endif
+    }
+
+    public void GameplayApiStop()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+        GameplayApiStopExtern();
+#else
+        Debug.LogWarning("Yandex SDK GameplayApiStop works only in WebGL build");
+#endif
+    }
+
+    public void LoadingApiReady()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+        LoadingApiReadyExtern();
+#else
+        Debug.LogWarning("Yandex SDK LoadingApiReady works only in WebGL build");
 #endif
     }
 

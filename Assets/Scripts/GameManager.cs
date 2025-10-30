@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Runtime.InteropServices;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
-#if !UNITY_EDITOR && UNITY_WEBGL
-    [DllImport("__Internal")]
-    private static extern void GameplayApiStart();
-    private static extern void GameplayApiStop();
-#endif
 
     [Header("Game Objects")]
     [SerializeField] private GameObject _pausePanel;
@@ -34,25 +25,19 @@ public class GameManager : MonoBehaviour
 
     public void GoToStartMenu()
     {
-#if !UNITY_EDITOR && UNITY_WEBGL
-    GameplayApiStop();
-#endif
+        Yandex.Instance.GameplayApiStop();
         SceneManager.LoadScene("StartMenu");
     }
 
     public void StartGame()
     {
-#if !UNITY_EDITOR && UNITY_WEBGL
-    GameplayApiStop();
-#endif
+        Yandex.Instance.GameplayApiStop();
         SceneManager.LoadScene("Tutorial");
     }
 
     public void Pause()
     {
-#if !UNITY_EDITOR && UNITY_WEBGL
-    GameplayApiStop();
-#endif
+        Yandex.Instance.GameplayApiStop();
         _isPaused = true;
 
         SoundManager.Instance.Mute(true);
@@ -64,9 +49,7 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
 
-#if !UNITY_EDITOR && UNITY_WEBGL
-    GameplayApiStart();
-#endif
+        Yandex.Instance.GameplayApiStart();
 
         _isPaused = false;
 
