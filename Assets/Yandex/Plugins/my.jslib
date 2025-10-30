@@ -173,7 +173,7 @@ mergeInto(LibraryManager.library, {
 		var myObj = JSON.parse(dataString);
 		console.log(myObj);
 
-		if (player == undefined)
+		if (player === undefined)
 		{
 			console.log("SaveExtern: player is undefined!");
 			return;
@@ -185,7 +185,7 @@ mergeInto(LibraryManager.library, {
 	LoadExtern: function() {
 		console.log("LoadExtern() started");
 		
-		if (player == undefined)
+		if (player === undefined)
 		{
 			console.log("LoadExtern: player is undefined!");
 			return;
