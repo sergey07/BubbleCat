@@ -60,9 +60,9 @@ mergeInto(LibraryManager.library, {
                 // Статус будет обновлен через checkAuthStatus
             })
             .catch(error => {
-                const ptr = allocate(intArrayFromString(error.toString()), 'i8', ALLOC_NORMAL);
-                myGameInstance.SendMessage('Yandex', 'OnAuthFailedCallback', ptr);
-                _free(ptr);
+                //const ptr = allocate(intArrayFromString(error.toString()), 'i8', ALLOC_NORMAL);
+                //myGameInstance.SendMessage('Yandex', 'OnAuthFailedCallback', ptr);
+                //_free(ptr);
             });
 	},
 	
