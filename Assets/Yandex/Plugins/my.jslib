@@ -51,11 +51,11 @@ mergeInto(LibraryManager.library, {
         }
         
         return ysdk.auth.openAuthDialog()
-            .then(() => self.checkAuthStatus());
+            .then(() => checkAuthStatus());
     },
 	
 	RequestAuthorizationExtern: function() {
-        self.requestAuthorization()
+        requestAuthorization()
             .then(() => {
                 // Статус будет обновлен через checkAuthStatus
             })
