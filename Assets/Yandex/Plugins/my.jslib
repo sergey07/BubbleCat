@@ -172,6 +172,13 @@ mergeInto(LibraryManager.library, {
 		var dataString = UTF8ToString(data);
 		var myObj = JSON.parse(dataString);
 		console.log(myObj);
+
+		if (player == undefined)
+		{
+			console.log("SaveExtern: player is undefined!");
+			return;
+		}
+
 		player.setData(myObj);
 	},
 	
