@@ -1,8 +1,12 @@
 mergeInto(LibraryManager.library, {
 	
 	InitYandexSDKExtern: function() {
+		console.log("InitYandexSDKExtern() started");
+
+		var self = this;
+
         YaGames.init().then(_ysdk => {
-            ysdk = _ysdk;
+            window.ysdk = _ysdk;
             console.log("Yandex SDK initialized");
 
             // if (ysdk.features.LoadingAPI == undefined) {
@@ -12,12 +16,14 @@ mergeInto(LibraryManager.library, {
         	// ysdk.features.LoadingAPI.ready();
         
         	// Автоматически проверяем статус авторизации после инициализации
-        	checkAuthStatus();
+        	self.CheckAuthStatus();
         });
     },
     
     // Проверка статуса авторизации
     CheckAuthStatus: function() {
+    	console.log("CheckAuthStatus() started");
+
         if (!ysdk) {
 			return { authorized: false };
 		}
@@ -35,35 +41,44 @@ mergeInto(LibraryManager.library, {
         }
         
         // Отправляем статус в Unity
-        if (typeof myGameInstance !== 'undefined') {
+        if (myGameInstance !== undefined) {
             const jsonStatus = JSON.stringify(status);
             myGameInstance.SendMessage('Yandex', 'OnAuthStatusUpdated', jsonStatus);
         }
         
         return status;
     },
-    
-    // Запрос авторизации (опциональный)
-    RequestAuthorization: function() {
-        if (!ysdk) {
-            console.error("Yandex SDK not initialized");
-            return Promise.reject("SDK not initialized");
-        }
-        
-        return ysdk.auth.openAuthDialog()
-            .then(() => checkAuthStatus());
-    },
 	
 	RequestAuthorizationExtern: function() {
-        requestAuthorization()
+		console.log("RequestAuthorizationExtern() started");
+
+		if (!ysdk) {
+			console.error("RequestAuthorizationExtern: ysdk not initialized");
+		}
+
+		var self = this;
+
+		return ysdk.auth.openAuthDialog()
+            .then(() => self.CheckAuthStatus())
             .then(() => {
                 // Статус будет обновлен через checkAuthStatus
+                console.log("RequestAuthorizationExtern: OK");
             })
             .catch(error => {
                 //const ptr = allocate(intArrayFromString(error.toString()), 'i8', ALLOC_NORMAL);
                 //myGameInstance.SendMessage('Yandex', 'OnAuthFailedCallback', ptr);
                 //_free(ptr);
-            });
+            });;
+
+        // this.RequestAuthorization()
+        //     .then(() => {
+        //         // Статус будет обновлен через checkAuthStatus
+        //     })
+        //     .catch(error => {
+        //         //const ptr = allocate(intArrayFromString(error.toString()), 'i8', ALLOC_NORMAL);
+        //         //myGameInstance.SendMessage('Yandex', 'OnAuthFailedCallback', ptr);
+        //         //_free(ptr);
+        //     });
 	},
 	
 	// Инициализация API загрузки
