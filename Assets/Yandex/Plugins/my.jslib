@@ -16,7 +16,7 @@ mergeInto(LibraryManager.library, {
         	// ysdk.features.LoadingAPI.ready();
         
         	// Автоматически проверяем статус авторизации после инициализации
-        	self.CheckAuthStatus();
+        	LibraryManager.library.CheckAuthStatus();
         });
     },
     
@@ -59,7 +59,7 @@ mergeInto(LibraryManager.library, {
 		var self = this;
 
 		return ysdk.auth.openAuthDialog()
-            .then(() => self.CheckAuthStatus())
+            .then(() => LibraryManager.library.CheckAuthStatus())
             .then(() => {
                 // Статус будет обновлен через checkAuthStatus
                 console.log("RequestAuthorizationExtern: OK");
