@@ -50,14 +50,14 @@ public class LevelManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        Yandex.Instance.OnAuthStatusUpdated -= OnAuthStatusUpdated;
-        Yandex.Instance.OnAuthSuccess -= OnAuthSuccess;
+        //Yandex.Instance.OnAuthStatusUpdated -= OnAuthStatusUpdated;
+        //Yandex.Instance.OnAuthSuccess -= OnAuthSuccess;
     }
 
     public void Init()
     {
-        Yandex.Instance.OnAuthStatusUpdated += OnAuthStatusUpdated;
-        Yandex.Instance.OnAuthSuccess += OnAuthSuccess;
+        //Yandex.Instance.OnAuthStatusUpdated += OnAuthStatusUpdated;
+        //Yandex.Instance.OnAuthSuccess += OnAuthSuccess;
 
         Language.Instance.Init();
 
@@ -305,22 +305,22 @@ public class LevelManager : MonoBehaviour
             _txtLevel.text = "Level " + strCurrentLevel;
         }
     }
-    private void OnAuthStatusUpdated()
-    {
-        if (Yandex.Instance.IsAuthorized)
-        {
-            Debug.Log("User is authorized");
-        }
-        else
-        {
-            Debug.Log("User is not authorized (guest mode)");
-        }
-    }
+    //private void OnAuthStatusUpdated()
+    //{
+    //    if (Yandex.Instance.IsAuthorized)
+    //    {
+    //        Debug.Log("User is authorized");
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("User is not authorized (guest mode)");
+    //    }
+    //}
 
-    private void OnAuthSuccess()
-    {
-        Debug.Log($"User authorized: {Yandex.Instance.PlayerName}");
-    }
+    //private void OnAuthSuccess()
+    //{
+    //    Debug.Log($"User authorized: {Yandex.Instance.PlayerName}");
+    //}
 
     private void LoadNextLevel()
     {

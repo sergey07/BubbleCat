@@ -1,16 +1,11 @@
 using System;
-using System.Collections;
-using System.Runtime.InteropServices;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
 
 public class Yandex : MonoBehaviour
 {
     public static Yandex Instance { get; private set; }
 
-    public bool IsAuthorized { get; private set; }
+    public bool IsAuthorized { get; private set; } = false;
     public string PlayerId { get; private set; }
     public string PlayerName { get; private set; }
 
@@ -20,29 +15,29 @@ public class Yandex : MonoBehaviour
 
 
 #if !UNITY_EDITOR && UNITY_WEBGL
-    [DllImport("__Internal")]
-    private static extern void InitYandexSDKExtern();
-
-    [DllImport("__Internal")]
-    private static extern void LoadingApiReadyExtern();
-
-    [DllImport("__Internal")]
-    private static extern void GameplayApiStartExtern();
-
-    [DllImport("__Internal")]
-    private static extern void GameplayApiStopExtern();
-
-    [DllImport("__Internal")]
-    private static extern void RequestAuthorizationExtern();
+    //[DllImport("__Internal")]
+    //private static extern void InitYandexSDKExtern();
 
     //[DllImport("__Internal")]
-    //private static extern void FetchPlayerDataExtern();
+    //private static extern void LoadingApiReadyExtern();
 
-    [DllImport("__Internal")]
-    private static extern void ResurrectExtern();
+    //[DllImport("__Internal")]
+    //private static extern void GameplayApiStartExtern();
 
-    [DllImport("__Internal")]
-    private static extern void RateGameExtern();
+    //[DllImport("__Internal")]
+    //private static extern void GameplayApiStopExtern();
+
+    //[DllImport("__Internal")]
+    //private static extern void RequestAuthorizationExtern();
+
+    ////[DllImport("__Internal")]
+    ////private static extern void FetchPlayerDataExtern();
+
+    //[DllImport("__Internal")]
+    //private static extern void ResurrectExtern();
+
+    //[DllImport("__Internal")]
+    //private static extern void RateGameExtern();
 #endif
 
     [Serializable]
@@ -77,7 +72,7 @@ public class Yandex : MonoBehaviour
 
     public void InitYandexSDK() {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        InitYandexSDKExtern();
+        //InitYandexSDKExtern();
 #else
         Debug.LogWarning("Yandex SDK initialization works only in WebGL build");
 #endif
@@ -86,7 +81,7 @@ public class Yandex : MonoBehaviour
     public void GameplayApiStart()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        GameplayApiStartExtern();
+        //GameplayApiStartExtern();
 #else
         Debug.LogWarning("Yandex SDK GameplayApiStart works only in WebGL build");
 #endif
@@ -95,7 +90,7 @@ public class Yandex : MonoBehaviour
     public void GameplayApiStop()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        GameplayApiStopExtern();
+        //GameplayApiStopExtern();
 #else
         Debug.LogWarning("Yandex SDK GameplayApiStop works only in WebGL build");
 #endif
@@ -104,7 +99,7 @@ public class Yandex : MonoBehaviour
     public void LoadingApiReady()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        LoadingApiReadyExtern();
+        //LoadingApiReadyExtern();
 #else
         Debug.LogWarning("Yandex SDK LoadingApiReady works only in WebGL build");
 #endif
@@ -114,7 +109,7 @@ public class Yandex : MonoBehaviour
     public void RequestAuthorization()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        RequestAuthorizationExtern();
+        //RequestAuthorizationExtern();
 #else
         Debug.LogWarning("Yandex Games auth works only in WebGL build");
         OnAuthFailed?.Invoke("Not in WebGL environment");
@@ -138,14 +133,14 @@ public class Yandex : MonoBehaviour
     public void Resurrect()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        ResurrectExtern();
+        //ResurrectExtern();
 #endif
     }
 
     public void RateGame()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        RateGameExtern();
+        //RateGameExtern();
 #endif
     }
 }

@@ -19,7 +19,7 @@ public class YandexAdv : MonoBehaviour
     public void ShowAdv()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        Resurrect();
+        //Resurrect();
 #else
         Debug.Log("Resurrect");
         //GameManager.Instance.Resurrect();
@@ -28,8 +28,8 @@ public class YandexAdv : MonoBehaviour
 #endif
     }
 
-    private void Resurrect()
-    {
-        Yandex.Instance.Resurrect();
-    }
+    //private void Resurrect()
+    //{
+    //    Yandex.Instance.Resurrect();
+    //}
 }

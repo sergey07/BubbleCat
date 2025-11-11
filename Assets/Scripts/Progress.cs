@@ -1,4 +1,4 @@
-using System.Runtime.InteropServices;
+//using System.Runtime.InteropServices;
 using UnityEngine;
 
 [System.Serializable]
@@ -16,14 +16,14 @@ public class Progress: MonoBehaviour
 {
     public PlayerInfo PlayerInfo;
 
-#if !UNITY_EDITOR && UNITY_WEBGL
-    [DllImport("__Internal")]
-    private static extern void SaveExtern(string data);
-    [DllImport("__Internal")]
-    private static extern void LoadExtern();
-    [DllImport("__Internal")]
-    private static extern void SetToLeaderboard(int value);
-#endif
+//#if !UNITY_EDITOR && UNITY_WEBGL
+//    [DllImport("__Internal")]
+//    private static extern void SaveExtern(string data);
+//    [DllImport("__Internal")]
+//    private static extern void LoadExtern();
+//    [DllImport("__Internal")]
+//    private static extern void SetToLeaderboard(int value);
+//#endif
 
     public static Progress Instance { get; private set; }
 
@@ -37,7 +37,7 @@ public class Progress: MonoBehaviour
             Instance = this;
 
 #if !UNITY_EDITOR && UNITY_WEBGL
-        LoadExtern();
+        //LoadExtern();
 #else
             PlayerInfo.CurrentSceneName = PlayerPrefs.GetString("LoadExtern");
             PlayerInfo.SavedLevel = PlayerPrefs.GetInt("SavedLevel");
@@ -65,18 +65,18 @@ public class Progress: MonoBehaviour
 
 #if !UNITY_EDITOR && UNITY_WEBGL
         // Пытаемся отправить в лидерборд, если авторизованы
-        if (Yandex.Instance.IsAuthorized)
-        {
-            string jsonString = JsonUtility.ToJson(PlayerInfo);
-            SaveExtern(jsonString);
-            SetToLeaderboard(PlayerInfo.Score);
-            Debug.Log("Score submitted to leaderboard");
-        }
-        else
-        {
-            Debug.Log("Score not submitted to leaderboard (not authorized)");
-            // Можно показать кнопку "Авторизоваться для сохранения в лидерборд"
-        }
+        //if (Yandex.Instance.IsAuthorized)
+        //{
+        //    string jsonString = JsonUtility.ToJson(PlayerInfo);
+        //    SaveExtern(jsonString);
+        //    SetToLeaderboard(PlayerInfo.Score);
+        //    Debug.Log("Score submitted to leaderboard");
+        //}
+        //else
+        //{
+        //    Debug.Log("Score not submitted to leaderboard (not authorized)");
+        //    // Можно показать кнопку "Авторизоваться для сохранения в лидерборд"
+        //}
 #else
         Debug.Log("SetToLeaderboard");
 #endif

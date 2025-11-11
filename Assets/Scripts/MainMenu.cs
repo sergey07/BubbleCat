@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     private void Awake()
     {
-        Yandex.Instance.InitYandexSDK();
+        //Yandex.Instance.InitYandexSDK();
     }
 
     public void StartGame()
@@ -14,6 +14,6 @@ public class MainMenu : MonoBehaviour
     }
     public void Auth()
     {
-        Yandex.Instance.RequestAuthorization();
+        //Yandex.Instance.RequestAuthorization();
     }
 }

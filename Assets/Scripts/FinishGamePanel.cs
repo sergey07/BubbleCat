@@ -19,6 +19,6 @@ public class FinishGamePanel : MonoBehaviour
 
     public void RateGame()
     {
-        Yandex.Instance.RateGame();
+        //Yandex.Instance.RateGame();
     }
 }
