@@ -1,4 +1,3 @@
-//using System.Runtime.InteropServices;
 using UnityEngine;
 
 [System.Serializable]
@@ -9,21 +8,11 @@ public class PlayerInfo
     public int Score = 0;
     public int ChestCount = 0;
     public bool IsSoundOn = true;
-    public int JoystickPos = 2;
 }
 
 public class Progress: MonoBehaviour
 {
     public PlayerInfo PlayerInfo;
-
-//#if !UNITY_EDITOR && UNITY_WEBGL
-//    [DllImport("__Internal")]
-//    private static extern void SaveExtern(string data);
-//    [DllImport("__Internal")]
-//    private static extern void LoadExtern();
-//    [DllImport("__Internal")]
-//    private static extern void SetToLeaderboard(int value);
-//#endif
 
     public static Progress Instance { get; private set; }
 
@@ -44,7 +33,6 @@ public class Progress: MonoBehaviour
             PlayerInfo.Score = PlayerPrefs.GetInt("Score");
             PlayerInfo.ChestCount = PlayerPrefs.GetInt("ChestCount");
             PlayerInfo.IsSoundOn = PlayerPrefs.GetInt("IsSoundOn") == 1;
-            PlayerInfo.JoystickPos = PlayerPrefs.GetInt("JoystickPos");
 #endif
         }
         else
@@ -52,6 +40,7 @@ public class Progress: MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void Save()
     {
         Debug.Log("SaveExtern");
@@ -60,7 +49,6 @@ public class Progress: MonoBehaviour
         PlayerPrefs.SetInt("Score", PlayerInfo.Score);
         PlayerPrefs.SetInt("ChestCount", PlayerInfo.ChestCount);
         PlayerPrefs.SetInt("IsSoundOn", PlayerInfo.IsSoundOn ? 1 : 0);
-        PlayerPrefs.SetInt("JoystickPos", PlayerInfo.JoystickPos);
         PlayerPrefs.Save();
 
 #if !UNITY_EDITOR && UNITY_WEBGL
