@@ -25,19 +25,19 @@ public class GameManager : MonoBehaviour
 
     public void GoToStartMenu()
     {
-        //Yandex.Instance.GameplayApiStop();
+        Yandex.Instance.GameplayApiStop();
         SceneManager.LoadScene("StartMenu");
     }
 
     public void StartGame()
     {
-        //Yandex.Instance.GameplayApiStop();
+        Yandex.Instance.GameplayApiStop();
         SceneManager.LoadScene("Tutorial");
     }
 
     public void Pause()
     {
-        //Yandex.Instance.GameplayApiStop();
+        Yandex.Instance.GameplayApiStop();
         _isPaused = true;
 
         SoundManager.Instance.Mute(true);
@@ -48,8 +48,7 @@ public class GameManager : MonoBehaviour
 
     public void Resume()
     {
-
-        //Yandex.Instance.GameplayApiStart();
+        Yandex.Instance.GameplayApiStart();
 
         _isPaused = false;
 

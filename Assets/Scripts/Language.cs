@@ -30,7 +30,7 @@ public class Language : MonoBehaviour
     public void Init()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        //CurrentLanguage = GetLang();
+        CurrentLanguage = GetLang();
 #else
         CurrentLanguage = "ru";
 #endif

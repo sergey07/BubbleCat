@@ -1,7 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Android;
+//using UnityEngine.Android;
 
 public class LevelManager : MonoBehaviour
 {

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using YG;
 
 public class Yandex : MonoBehaviour
 {
@@ -73,6 +74,7 @@ public class Yandex : MonoBehaviour
     public void InitYandexSDK() {
 #if !UNITY_EDITOR && UNITY_WEBGL
         //InitYandexSDKExtern();
+        
 #else
         Debug.LogWarning("Yandex SDK initialization works only in WebGL build");
 #endif
@@ -81,7 +83,7 @@ public class Yandex : MonoBehaviour
     public void GameplayApiStart()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        //GameplayApiStartExtern();
+        YG2.GameplayStart();
 #else
         Debug.LogWarning("Yandex SDK GameplayApiStart works only in WebGL build");
 #endif
@@ -90,7 +92,7 @@ public class Yandex : MonoBehaviour
     public void GameplayApiStop()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        //GameplayApiStopExtern();
+        YG2.GameplayStop();
 #else
         Debug.LogWarning("Yandex SDK GameplayApiStop works only in WebGL build");
 #endif
@@ -99,7 +101,7 @@ public class Yandex : MonoBehaviour
     public void LoadingApiReady()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        //LoadingApiReadyExtern();
+        YG2.GameReadyAPI();
 #else
         Debug.LogWarning("Yandex SDK LoadingApiReady works only in WebGL build");
 #endif
@@ -109,7 +111,7 @@ public class Yandex : MonoBehaviour
     public void RequestAuthorization()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        //RequestAuthorizationExtern();
+        YG2.OpenAuthDialog();
 #else
         Debug.LogWarning("Yandex Games auth works only in WebGL build");
         OnAuthFailed?.Invoke("Not in WebGL environment");
@@ -135,12 +137,21 @@ public class Yandex : MonoBehaviour
 #if !UNITY_EDITOR && UNITY_WEBGL
         //ResurrectExtern();
 #endif
+        string rewardID = "resurrect"; // ѕередача id требуетс€ дл€ внутренней работы плагина
+
+        YG2.RewardedAdvShow(rewardID, () =>
+        {
+            if (rewardID == "resurrect")
+            {
+                LevelManager.Instance.Resurrect();
+            }
+        });
     }
 
     public void RateGame()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        //RateGameExtern();
+        YG2.ReviewShow();
 #endif
     }
 }

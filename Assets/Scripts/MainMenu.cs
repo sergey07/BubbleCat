@@ -14,6 +14,6 @@ public class MainMenu : MonoBehaviour
     }
     public void Auth()
     {
-        //Yandex.Instance.RequestAuthorization();
+        Yandex.Instance.RequestAuthorization();
     }
 }
