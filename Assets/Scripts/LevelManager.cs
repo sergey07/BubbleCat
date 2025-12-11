@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-//using UnityEngine.Android;
 
 public class LevelManager : MonoBehaviour
 {
@@ -50,15 +49,11 @@ public class LevelManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        //Yandex.Instance.OnAuthStatusUpdated -= OnAuthStatusUpdated;
-        //Yandex.Instance.OnAuthSuccess -= OnAuthSuccess;
+        
     }
 
     public void Init()
     {
-        //Yandex.Instance.OnAuthStatusUpdated += OnAuthStatusUpdated;
-        //Yandex.Instance.OnAuthSuccess += OnAuthSuccess;
-
         Language.Instance.Init();
 
         Player.Instance.InitPlayer();

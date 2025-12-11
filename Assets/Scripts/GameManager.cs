@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         Yandex.Instance.GameplayApiStop();
+
         _isPaused = true;
 
         SoundManager.Instance.Mute(true);

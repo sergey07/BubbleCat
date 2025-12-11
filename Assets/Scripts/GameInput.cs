@@ -17,11 +17,6 @@ public class GameInput : MonoBehaviour
         }
     }
 
-    public bool GetEscapeKey()
-    {
-        return Input.GetKeyDown(KeyCode.Escape);
-    }
-
     public Vector2 GetMovementVector()
     {
         Vector2 inputVector = new Vector2(0, 0);
@@ -49,11 +44,5 @@ public class GameInput : MonoBehaviour
         inputVector.Normalize();
 
         return inputVector;
-    }
-
-    public Vector3 GetMousePosition()
-    {
-        Vector3 mousePos = Mouse.current.position.ReadValue();
-        return mousePos;
     }
 }
