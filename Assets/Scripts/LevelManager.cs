@@ -47,11 +47,6 @@ public class LevelManager : MonoBehaviour
         Init();
     }
 
-    private void OnDestroy()
-    {
-        
-    }
-
     public void Init()
     {
         Language.Instance.Init();
@@ -83,7 +78,7 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            NextLevel();
+            LoadNextLevel();
         }
     }
 
@@ -319,7 +314,7 @@ public class LevelManager : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        Debug.Log("Загрузка...");
+        Debug.Log("Loading of the next level...");
 
         _finishLevelPanel.SetActive(false);
         Progress.Instance.PlayerInfo.ChestCount = 0;
