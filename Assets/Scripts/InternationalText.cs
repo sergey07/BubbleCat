@@ -14,6 +14,7 @@ public class InternationalText : MonoBehaviour
     {
         _text = GetComponent<TextMeshProUGUI>();
     }
+
     private void Start()
     {
         if (Language.Instance.CurrentLanguage == "en")
