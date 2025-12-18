@@ -7,15 +7,14 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get; private set; }
 
     [Header("Sprites")]
+    [SerializeField] Sprite _doorToNextLevel;
     [SerializeField] Sprite _doorToFinish;
 
     [Header("Game Objects")]
-    [SerializeField] private GameObject _startCutScenePrefab;
     [SerializeField] private GameObject _catDiedScenePrefab;
     [SerializeField] private GameObject _finishGameScenePrefab;
     [SerializeField] private GameObject[] _levelPrefabs;
 
-    [SerializeField] private GameObject _finishTrigger;
     [SerializeField] private GameObject _finishLevelPanel;
     [SerializeField] private GameObject _levelTitlePanel;
 
@@ -78,6 +77,7 @@ public class LevelManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.N))
         {
+            SoundManager.Instance.StopMainMusic();
             LoadNextLevel();
         }
     }
@@ -129,8 +129,7 @@ public class LevelManager : MonoBehaviour
     {
         if (IsLastLevel())
         {
-            Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
-            _finishGameSceneGO = Instantiate(_finishGameScenePrefab);
+            LoadFinishGameScene();
         }
         else
         {
@@ -145,12 +144,6 @@ public class LevelManager : MonoBehaviour
         string strCurrentLevel = (Progress.Instance.PlayerInfo.SavedLevel + 1).ToString();
 
         UpdateLevelTitle(strCurrentLevel);
-
-        if (IsLastLevel())
-        {
-            _finishTrigger.GetComponent<SpriteRenderer>().sprite = _doorToFinish;
-        }
-
         UpdateLevel(_curLevel);
     }
 
@@ -168,25 +161,6 @@ public class LevelManager : MonoBehaviour
     public void Resurrect()
     {
         LoadLevel(Progress.Instance.PlayerInfo.SavedLevel);
-    }
-
-    public void LoadStartCutScene()
-    {
-        if (_currentLevelGO != null)
-        {
-            Destroy(_currentLevelGO);
-        }
-
-        if (_startCutScenePrefab != null)
-        {
-            ResetCamera();
-
-            Progress.Instance.PlayerInfo.ChestCount = 0;
-
-            _startCutSceneGO = Instantiate(_startCutScenePrefab);
-            Player.Instance.Spawn(_startCutSceneGO);
-            StartGame.Instance.Init();
-        }
     }
 
     public void LoadCatDiedScene()
@@ -220,9 +194,17 @@ public class LevelManager : MonoBehaviour
 
             Progress.Instance.PlayerInfo.ChestCount = 0;
 
+            ScoreManager.Instance.HideScore();
+            ChestManager.Instance.HideChestCounter();
+            TimerManager.Instance.HideTimer();
+
             _finishGameSceneGO = Instantiate(_finishGameScenePrefab);
             Player.Instance.SetPlayerStatus(PlayerStatus.InFinishGameScene);
             Player.Instance.Spawn(_finishGameSceneGO);
+            Player.Instance.InitPlayer();
+
+            SoundManager.Instance.Init();
+            SoundManager.Instance.PlayWinGameMusic();
         }
     }
 
@@ -260,11 +242,16 @@ public class LevelManager : MonoBehaviour
             }
         }
 
+        ScoreManager.Instance.HideScore();
+        TimerManager.Instance.HideTimer();
+
         ChestManager.Instance.ResetChestCount();
         ChestManager.Instance.ShowChestCounter();
         TimerManager.Instance.ResetTimer();
+        TimerManager.Instance.ShowTimer();
         TimerManager.Instance.StartTimer();
         ScoreManager.Instance.UpdateScore();
+        ScoreManager.Instance.ShowScore();
         GameManager.Instance.Resume();
         SoundManager.Instance.Init();
         SoundManager.Instance.PlayMainMusic();
@@ -295,6 +282,7 @@ public class LevelManager : MonoBehaviour
             _txtLevel.text = "Level " + strCurrentLevel;
         }
     }
+
     //private void OnAuthStatusUpdated()
     //{
     //    if (Yandex.Instance.IsAuthorized)
@@ -324,6 +312,7 @@ public class LevelManager : MonoBehaviour
             Progress.Instance.PlayerInfo.SavedLevel = _curLevel;
             Progress.Instance.Save();
             NextLevel();
+            UpdateLevelTitle((_curLevel + 1).ToString());
         }
         else
         {
@@ -332,7 +321,6 @@ public class LevelManager : MonoBehaviour
         }
 
         Progress.Instance.Save();
-        UpdateLevelTitle((_curLevel + 1).ToString());
         Player.Instance.Unfreeze();
     }
 }

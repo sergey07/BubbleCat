@@ -45,7 +45,7 @@ public class ChestManager : MonoBehaviour
         }
     }
 
-    public void hideChestCounter()
+    public void HideChestCounter()
     {
         if (_chestCounterPanel != null)
         {

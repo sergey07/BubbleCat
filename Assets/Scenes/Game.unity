@@ -689,8 +689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db930db73d227740bf105b6aec7822b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doorToNextLevel: {fileID: 21300000, guid: ea1a1cfc8b58665498914890756c93c4, type: 3}
   _doorToFinish: {fileID: 21300000, guid: 47f2ce8f03f51b34b8fb6d6774c81210, type: 3}
-  _startCutScenePrefab: {fileID: 7303192586037648681, guid: 552e8f9ba2f410b43a614cc212e93e5e, type: 3}
   _catDiedScenePrefab: {fileID: 7303192586037648681, guid: 60c29a1b8b392c14687ed1f7ca68c1d4, type: 3}
   _finishGameScenePrefab: {fileID: 7303192586037648681, guid: 6762630639b71214e8d2843b244667ad, type: 3}
   _levelPrefabs:
@@ -703,7 +703,6 @@ MonoBehaviour:
   - {fileID: 68510621553292272, guid: 2294a798f36672749835bfb90a823401, type: 3}
   - {fileID: 3807966634616237494, guid: 7b6148bd1f576614796efecab9a8bc8d, type: 3}
   - {fileID: 2728127524257530449, guid: bff8173341a3c3c47be6c73320c603b5, type: 3}
-  _finishTrigger: {fileID: 740382013254989908, guid: e028e4c2373eb7241be98ee9712ea24f, type: 3}
   _finishLevelPanel: {fileID: 1665492175}
   _levelTitlePanel: {fileID: 1207530860}
 --- !u!1001 &685401836
@@ -2775,6 +2774,7 @@ MonoBehaviour:
   _audioSourceLoop: {fileID: 1742923706}
   _audioClipMainMusic: {fileID: 8300000, guid: 6a771e116c10d354998e8dd7360d6819, type: 3}
   _audioClipFinishLevel: {fileID: 8300000, guid: c7f529dca0d7cdf4396d2d07eb8a83fc, type: 3}
+  _audioClipWinGame: {fileID: 8300000, guid: 51454a7a196ccf54286f3b00ade67696, type: 3}
 --- !u!4 &1742923704
 Transform:
   m_ObjectHideFlags: 0
@@ -3595,10 +3595,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2824256304451174574, guid: 52dd5dfeca9839349ad577c7e9fed0fa, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 2897309961914000790, guid: 52dd5dfeca9839349ad577c7e9fed0fa, type: 3}
       propertyPath: m_Name
       value: HintsPanel

@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioClip _audioClipMainMusic;
     [SerializeField] private AudioClip _audioClipFinishLevel;
+    [SerializeField] private AudioClip _audioClipWinGame;
 
     private bool _isMute = false;
 
@@ -64,5 +65,10 @@ public class SoundManager : MonoBehaviour
     public float GetLevelFinishMusicDuration()
     {
         return _audioClipFinishLevel.length;
+    }
+
+    public void PlayWinGameMusic()
+    {
+        _audioSource.PlayOneShot(_audioClipWinGame);
     }
 }

@@ -86,6 +86,22 @@ public class TimerManager : MonoBehaviour
         return _remainingSeconds;
     }
 
+    public void ShowTimer()
+    {
+        if (_timerPanel != null)
+        {
+            _timerPanel.SetActive(true);
+        }
+    }
+
+    public void HideTimer()
+    {
+        if (_timerPanel != null)
+        {
+            _timerPanel.SetActive(false);
+        }
+    }
+
     private void UpdateTimerView()
     {
         // Added 1 because FloorToInt returns the largest integer smaller to or equal to argument

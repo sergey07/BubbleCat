@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
     private GameObject _spawnPoint;
     private Vector2 _inputVector;
     private bool _isFinish;
+    // Флаг окончания движения кота в финальной кат-сцене
+    private bool _isWinGame;
 
     private void Awake()
     {
@@ -54,6 +56,8 @@ public class Player : MonoBehaviour
     public void InitPlayer()
     {
         _isFinish = false;
+        _isWinGame = false;
+        _cat.FlipRight();
         _bubble.InitBubble();
 
         GameObject yandexAdvGO = GameObject.FindGameObjectWithTag("YandexAdv");
@@ -122,10 +126,15 @@ public class Player : MonoBehaviour
                     _finishGameEndTriggerTransform = GameObject.FindGameObjectWithTag("FinishGameEndTrigger").transform;
                 }
 
-                _rb.MovePosition(_rb.position + new Vector2(_finishGameSpeed * Time.fixedDeltaTime, 0));
-                if (_rb.position.x > _finishGameEndTriggerTransform.position.x)
+                if (!_isWinGame)
                 {
-                    _finishGamePanel.SetActive(true);
+                    _rb.MovePosition(_rb.position + new Vector2(_finishGameSpeed * Time.fixedDeltaTime, 0));
+
+                    if (_rb.position.x > _finishGameEndTriggerTransform.position.x)
+                    {
+                        _isWinGame = true;
+                        _finishGamePanel.SetActive(true);
+                    }
                 }
                 break;
         }
