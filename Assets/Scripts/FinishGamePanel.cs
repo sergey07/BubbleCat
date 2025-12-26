@@ -17,8 +17,8 @@ public class FinishGamePanel : MonoBehaviour
         GameManager.Instance.StartGame();
     }
 
-    public void RateGame()
-    {
-        //Yandex.Instance.RateGame();
-    }
+    //public void RateGame()
+    //{
+    //    Yandex.Instance.RateGame();
+    //}
 }

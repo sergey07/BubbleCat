@@ -14,33 +14,6 @@ public class Yandex : MonoBehaviour
     public event Action<string> OnAuthFailed;
     public event Action OnAuthStatusUpdated;
 
-
-#if !UNITY_EDITOR && UNITY_WEBGL
-    //[DllImport("__Internal")]
-    //private static extern void InitYandexSDKExtern();
-
-    //[DllImport("__Internal")]
-    //private static extern void LoadingApiReadyExtern();
-
-    //[DllImport("__Internal")]
-    //private static extern void GameplayApiStartExtern();
-
-    //[DllImport("__Internal")]
-    //private static extern void GameplayApiStopExtern();
-
-    //[DllImport("__Internal")]
-    //private static extern void RequestAuthorizationExtern();
-
-    ////[DllImport("__Internal")]
-    ////private static extern void FetchPlayerDataExtern();
-
-    //[DllImport("__Internal")]
-    //private static extern void ResurrectExtern();
-
-    //[DllImport("__Internal")]
-    //private static extern void RateGameExtern();
-#endif
-
     [Serializable]
     private class AuthStatus
     {
@@ -148,10 +121,10 @@ public class Yandex : MonoBehaviour
         });
     }
 
-    public void RateGame()
-    {
-#if !UNITY_EDITOR && UNITY_WEBGL
-        YG2.ReviewShow();
-#endif
-    }
+//    public void RateGame()
+//    {
+//#if !UNITY_EDITOR && UNITY_WEBGL
+//        YG2.ReviewShow();
+//#endif
+//    }
 }
